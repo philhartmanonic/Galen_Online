@@ -5,16 +5,20 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @recents = Post.order("created_at desc").limit(5)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @recents = Post.order("created_at desc").limit(5)
+
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @recents = Post.order("created_at desc").limit(5)
   end
 
   # GET /posts/1/edit

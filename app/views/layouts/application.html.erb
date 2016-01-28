@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-</body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  	<ul class="dropdown menu" data-dropdown-menu>
+	  <li>
+	    <%= link_to "Home", "/" %>
+	  </li>
+	  <li>
+	  	<%= link_to "Blog", posts_path %>
+	  	<ul class="menu">
+	  		<% @recents.each do |f| %>
+	  			<li><%= link_to f.title, f %></li>
+	  		<% end %>
+	  	</ul>
+	  </li>
+	</ul>
+    <%= yield %>
+
+  </body>
 </html>
