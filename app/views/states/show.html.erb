@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @state.name %>
+</p>
+
+<p>
+  <strong>P or c:</strong>
+  <%= @state.p_or_c %>
+</p>
+
+<p>
+  <strong>Gop date:</strong>
+  <%= @state.gop_date %>
+</p>
+
+<p>
+  <strong>Dem date:</strong>
+  <%= @state.dem_date %>
+</p>
+
+<p>
+  <strong>Gop pledged:</strong>
+  <%= @state.gop_pledged %>
+</p>
+
+<p>
+  <strong>Gop unpledged:</strong>
+  <%= @state.gop_unpledged %>
+</p>
+
+<p>
+  <strong>Dem pledged:</strong>
+  <%= @state.dem_pledged %>
+</p>
+
+<p>
+  <strong>Dem unpledged:</strong>
+  <%= @state.dem_unpledged %>
+</p>
+
+<%= link_to 'Edit', edit_state_path(@state) %> |
+<%= link_to 'Back', states_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :states
   get 'resume/index'
 
   get 'welcome/welcome'

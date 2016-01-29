@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  p_or_c: MyString
+  gop_date: 2016-01-29
+  dem_date: 2016-01-29
+  gop_pledged: 1
+  gop_unpledged: 1
+  dem_pledged: 1
+  dem_unpledged: 1
+
+two:
+  name: MyString
+  p_or_c: MyString
+  gop_date: 2016-01-29
+  dem_date: 2016-01-29
+  gop_pledged: 1
+  gop_unpledged: 1
+  dem_pledged: 1
+  dem_unpledged: 1

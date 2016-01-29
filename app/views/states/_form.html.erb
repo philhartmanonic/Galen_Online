@@ -1,0 +1,49 @@
+<%= form_for(@state) do |f| %>
+  <% if @state.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@state.errors.count, "error") %> prohibited this state from being saved:</h2>
+
+      <ul>
+      <% @state.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :p_or_c %><br>
+    <%= f.text_field :p_or_c %>
+  </div>
+  <div class="field">
+    <%= f.label :gop_date %><br>
+    <%= f.date_select :gop_date %>
+  </div>
+  <div class="field">
+    <%= f.label :dem_date %><br>
+    <%= f.date_select :dem_date %>
+  </div>
+  <div class="field">
+    <%= f.label :gop_pledged %><br>
+    <%= f.number_field :gop_pledged %>
+  </div>
+  <div class="field">
+    <%= f.label :gop_unpledged %><br>
+    <%= f.number_field :gop_unpledged %>
+  </div>
+  <div class="field">
+    <%= f.label :dem_pledged %><br>
+    <%= f.number_field :dem_pledged %>
+  </div>
+  <div class="field">
+    <%= f.label :dem_unpledged %><br>
+    <%= f.number_field :dem_unpledged %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
