@@ -1,22 +1,23 @@
 <%= render 'shared/topmenu' %>
 <%= render 'shared/head' %>
 <div class="row"><br><hr><br></div>
-<div class="expanded row">
-	<div class="small-4 columns">
-		<div class="large-11 large-offset-1 columns" style="background-color: #E6E6E6;">
+<div class="expanded row" data-equalizer data-equalizer="main">
+	<div class="small-3 columns panel" data-equalizer-watch="main">
+		<div class="large-11 large-offset-1 columns panel" style="background-color: #E6E6E6;" data-equalizer-watch="main">
 			<div class="row"><br></div>
 			<div class="row">
 				<center><h5><b>What do we have here?</b></h5></center>
 			</div>
 			<div class="row">
 				<ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+					<li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
 					<li><a href="#">Portfolio</a>
 						<ul class="menu">
 							<li><%= link_to "Blog", posts_path %></li>
-							<li><a href="#">Primaries</a></li>
+							<li><%= link_to "Presidential Primaries", states_path %></li>
 						</ul>
 					</li>
-					<li><a href="#">Resume</a></li>
+					<li><%= link_to "Resume", resume_index_path %></li>
 					<li><a href="https://github.com/philhartmanonic">Github</a></li>
 					<li>
 						<a href="#">Music</a>
@@ -27,21 +28,32 @@
 					</li>	
 				</ul>
 			</div>
+			<br><br><br><br><br>
 			<div class="row">
 				<center><p><%= image_tag "galenGuitar.jpg", width: "275", align: "center" %><br>
 					<small>I sing all of the pretty songs</small></p></center>
 			</div>
-
 		</div>
 	</div>
-	<div class="small-8 columns">
+	<div class="small-7 small-offset-1 columns panel" data-equalizer watch="main">
 		<div class="row">
-			<p><h3><center>So who is this "Galen" character anyways?</center></h3></p><br>
+			<p><h3>So who is this "Galen" character anyways?</h3></p><br>
 		</div>
 		<div class="row">	
 			<%= image_tag "bbg.jpg", width: "200", align: "left", hspace: "20" %>
 			<p>I'm a father, web developer, musician, retired punk rocker, and I get oddly excited when given the opportunity to talk about the Jungian philosophy on psychology and psychoanalysis.</p>
 			<p>As a web developer, I specialize in Rails, Python, and Data Modeling.  I'm in the process of getting up to speed with all of these JS frameworks, as that seems to be the way the wind is blowing.</p>
 			<p>I got into development because of the charming guy in the picture.</p>
+			<p><h4>Some back story</h4></p>
+			<p>I’ve been working in Business Development Consulting, Marketing, and Sales Operations for years.  It was alright, I was happy to be working and I loved a lot of the people I was working with, but I was always jealous of the brilliant developers, data architects, and solution architects that were all around me.  I loved how they were tackling big problems, and had this tactile relationship with their work that simply isn’t available in Marketing.</p>
+
+			<p>That’s when this dude came around, and it ceased to be a matter of comfort.  I needed to set an example for him.  I need him to know that there’s a reason I have to leave him every day, that I’m doing work that I’m passionate about and proud of.  I need him to grow up knowing work is hard, but it’s worth it.</p>
+
+			<p>At this point, I had been working with Python and SQL for a year or two, mainly self-directed, but with a few projects at work.  I decided it was time to dive in with both feet, so I left my job and enrolled in the Startup Institute Chicago.  If you’re unfamiliar, SIC is an organization built around preparing people with the hard and soft skills necessary to succeed and thrive in the startup ecosystem.</p>
+
+			<p>I am currently looking to join a team that fundamentally embraces challenge – challenging work, challenging ourselves, and challenging each other to be better.  I want to have fun at work, and I’ve learned the key to that it’s never easy and it always has a purpose</p>
 		</div>
+	</div>
+	<div class="small-1 columns"></div>
+</div>
 
