@@ -5,15 +5,34 @@
 <div class="expanded row">
 	<div class="small-4 columns">
 		<div class="large-11 large-offset-1 columns" style="background-color: #E6E6E6;">
+			<div class="row"><br></div>
 			<div class="row">
-				<h5><b>What do we have here?</b></h5>
+				<center><h5><b>What do we have here?</b></h5></center>
 			</div>
 			<div class="row">
 				<ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
-					<li><%= link_to "Blog", posts_path %></li>
-					<li><a href="#">Primaries - State by delegates</a></li>
+					<li><a href="#">Portfolio</a>
+						<ul class="menu">
+							<li><%= link_to "Blog", posts_path %></li>
+							<li><a href="#">Primaries</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Resume</a></li>
+					<li><a href="https://github.com/philhartmanonic">Github</a></li>
+					<li>
+						<a href="#">Music</a>
+						<ul class="menu">
+							<li><a href="http://teatsunami.bandcamp.com/">Tea Tsunami</a></li>
+							<li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
+						</ul>
+					</li>	
 				</ul>
 			</div>
+			<div class="row">
+				<center><p><%= image_tag "galenGuitar.jpg", width: "275", align: "center" %><br>
+					<small>I sing all of the pretty songs</small></p></center>
+			</div>
+
 		</div>
 	</div>
 	<div class="small-8 columns">

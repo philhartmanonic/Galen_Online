@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'resume/index'
+
   get 'welcome/welcome'
 
   resources :posts
