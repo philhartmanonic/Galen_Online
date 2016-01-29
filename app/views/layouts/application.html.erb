@@ -12,28 +12,6 @@
   </head>
 
   <body>
-  	<ul class="dropdown menu" data-dropdown-menu>
-	  <li>
-	    <%= link_to "Home", "/" %>
-	  </li>
-	  <li>
-	  	<a href="#">Portfolio</a>
-	  		<ul class="menu">
-	  			<li><%= link_to "Blog", posts_path %></li>
-	  			<li><a href="#">Primaries</a></li>
-	  			<li><a href="#">Social metrics</a></li>
-	  		</ul>
-	  </li>
-	  <li><a href="#">Resume</a></li>
-	  <li><a href="https://github.com/philhartmanonic">Github</a></li>
-	  <li>
-	  	<a href="#">Music</a>
-	  	<ul class="menu">
-	  		<li><a href="http://teatsunami.bandcamp.com/">Tea Tsunami</a></li>
-	  		<li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
-	  	</ul>
-	  </li>
-	</ul>
     <%= yield %>
 
   </body>
