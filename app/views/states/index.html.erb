@@ -1,41 +1,43 @@
-<%= render 'shared/topmenu' %>
+<%= render 'shared/stateMenu' %>
 <br>
-<h1>Listing States</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>P or c</th>
-      <th>Gop date</th>
-      <th>Dem date</th>
-      <th>Gop pledged</th>
-      <th>Gop unpledged</th>
-      <th>Dem pledged</th>
-      <th>Dem unpledged</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @states.each do |state| %>
+<div class="row"><h1>Listing States</h1></div>
+<br>
+<div class="row">
+  <table>
+    <thead>
       <tr>
-        <td><%= state.name %></td>
-        <td><%= state.p_or_c %></td>
-        <td><%= state.gop_date %></td>
-        <td><%= state.dem_date %></td>
-        <td><%= state.gop_pledged %></td>
-        <td><%= state.gop_unpledged %></td>
-        <td><%= state.dem_pledged %></td>
-        <td><%= state.dem_unpledged %></td>
-        <td><%= link_to 'Show', state %></td>
-        <td><%= link_to 'Edit', edit_state_path(state) %></td>
-        <td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>GOP Date</th>
+        <th>Dem Date</th>
+        <th>GOP Pledged Delegates</th>
+        <th>GOP Unpledged Delegates</th>
+        <th>Dem Pledged Delegates</th>
+        <th>Dem Unpledged Delegates</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @states.each do |state| %>
+        <tr>
+          <td><%= state.name %></td>
+          <td><%= state.p_or_c %></td>
+          <td><%= state.gop_date %></td>
+          <td><%= state.dem_date %></td>
+          <td><%= state.gop_pledged %></td>
+          <td><%= state.gop_unpledged %></td>
+          <td><%= state.dem_pledged %></td>
+          <td><%= state.dem_unpledged %></td>
+          <td><%= link_to 'Show', state %></td>
+          <td><%= link_to 'Edit', edit_state_path(state) %></td>
+          <td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New State', new_state_path %>
+<div class="row"><%= link_to 'New State', new_state_path %></div>

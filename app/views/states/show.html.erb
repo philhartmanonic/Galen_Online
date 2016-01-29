@@ -1,44 +1,49 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/stateMenu' %>
+<div class="row"><center><h1><%= @state.name %></h1></center></div>
+<div class="row">
+  <div class="small-3 small-offset-1 columns">
+    <p>
+      <strong>Name:</strong>
+      <%= @state.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @state.name %>
-</p>
+    <p>
+      <strong>P or c:</strong>
+      <%= @state.p_or_c %>
+    </p>
 
-<p>
-  <strong>P or c:</strong>
-  <%= @state.p_or_c %>
-</p>
+    <p>
+      <strong>Gop date:</strong>
+      <%= @state.gop_date %>
+    </p>
 
-<p>
-  <strong>Gop date:</strong>
-  <%= @state.gop_date %>
-</p>
+    <p>
+      <strong>Dem date:</strong>
+      <%= @state.dem_date %>
+    </p>
 
-<p>
-  <strong>Dem date:</strong>
-  <%= @state.dem_date %>
-</p>
+    <p>
+      <strong>Gop pledged:</strong>
+      <%= @state.gop_pledged %>
+    </p>
 
-<p>
-  <strong>Gop pledged:</strong>
-  <%= @state.gop_pledged %>
-</p>
+    <p>
+      <strong>Gop unpledged:</strong>
+      <%= @state.gop_unpledged %>
+    </p>
 
-<p>
-  <strong>Gop unpledged:</strong>
-  <%= @state.gop_unpledged %>
-</p>
+    <p>
+      <strong>Dem pledged:</strong>
+      <%= @state.dem_pledged %>
+    </p>
 
-<p>
-  <strong>Dem pledged:</strong>
-  <%= @state.dem_pledged %>
-</p>
+    <p>
+      <strong>Dem unpledged:</strong>
+      <%= @state.dem_unpledged %>
+    </p>
 
-<p>
-  <strong>Dem unpledged:</strong>
-  <%= @state.dem_unpledged %>
-</p>
-
-<%= link_to 'Edit', edit_state_path(@state) %> |
-<%= link_to 'Back', states_path %>
+    <%= link_to 'Edit', edit_state_path(@state) %> |
+    <%= link_to 'Back', states_path %>
+  </div>
+  <div class="small-8 columns"><center><%= link_to (image_tag @state.map.url(:medium)), @state.map.url(:original), { style:"vertical-align:middle;" } %></center></div>
+</div>

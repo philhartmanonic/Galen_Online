@@ -11,38 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :p_or_c %><br>
-    <%= f.text_field :p_or_c %>
-  </div>
-  <div class="field">
-    <%= f.label :gop_date %><br>
-    <%= f.date_select :gop_date %>
-  </div>
-  <div class="field">
-    <%= f.label :dem_date %><br>
-    <%= f.date_select :dem_date %>
-  </div>
-  <div class="field">
-    <%= f.label :gop_pledged %><br>
-    <%= f.number_field :gop_pledged %>
-  </div>
-  <div class="field">
-    <%= f.label :gop_unpledged %><br>
-    <%= f.number_field :gop_unpledged %>
-  </div>
-  <div class="field">
-    <%= f.label :dem_pledged %><br>
-    <%= f.number_field :dem_pledged %>
-  </div>
-  <div class="field">
-    <%= f.label :dem_unpledged %><br>
-    <%= f.number_field :dem_unpledged %>
-  </div>
+<div class="row">
+  <div class="large-10 large-offset-1 columns">
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :p_or_c %><br>
+      <%= f.text_field :p_or_c %>
+    </div>
+    <div class="field">
+      <%= f.label :gop_date %><br>
+      <%= f.date_field :gop_date %>
+    </div>
+    <div class="field">
+      <%= f.label :dem_date %><br>
+      <%= f.date_field :dem_date %>
+    </div>
+    <div class="field">
+      <%= f.label :gop_pledged %><br>
+      <%= f.number_field :gop_pledged %>
+    </div>
+    <div class="field">
+      <%= f.label :gop_unpledged %><br>
+      <%= f.number_field :gop_unpledged %>
+    </div>
+    <div class="field">
+      <%= f.label :dem_pledged %><br>
+      <%= f.number_field :dem_pledged %>
+    </div>
+    <div class="field">
+      <%= f.label :dem_unpledged %><br>
+      <%= f.number_field :dem_unpledged %>
+    </div>
+    <div class="field">
+      <%= f.label :map %><br>
+      <%= f.file_field(:map) %>
   <div class="actions">
     <%= f.submit %>
   </div>
