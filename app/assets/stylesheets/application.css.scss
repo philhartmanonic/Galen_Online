@@ -34,13 +34,21 @@ body > footer {
 }
 
 main > article {
-	@include flex-grid-column(8);
+	@media #{$medium-up} {
+		@include flex-grid-column(8);
+	}
+	@include flex-grid-column(12);
 }
 main > aside {
 	@include flex-grid-column(3);
 }
 main > emp {
 	@include flex-grid-column(1);
+	@include show-for(medium);
+}
+
+img {
+	max-width: 70%;
 }
 
 main {
@@ -51,5 +59,9 @@ main {
 }
 
 #name_main > img {
-	max-width: 40%;
+	max-width: 30%;
+}
+
+dt {
+	
 }
