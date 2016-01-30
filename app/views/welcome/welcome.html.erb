@@ -1,46 +1,43 @@
 <%= render 'shared/topmenu' %>
 <%= render 'shared/head' %>
-<div class="row"><br><hr><br></div>
-<div class="expanded row" data-equalizer data-equalizer="main">
-	<div class="small-3 columns panel" data-equalizer-watch="main">
-		<div class="large-11 large-offset-1 columns panel" style="background-color: #E6E6E6;" data-equalizer-watch="main">
-			<div class="row"><br></div>
-			<div class="row">
-				<center><h5><b>What do we have here?</b></h5></center>
-			</div>
-			<div class="row">
-				<ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
-					<li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
-					<li><a href="#">Portfolio</a>
-						<ul class="menu">
-							<li><%= link_to "Blog", posts_path %></li>
-							<li><%= link_to "Presidential Primaries", states_path %></li>
-						</ul>
-					</li>
-					<li><%= link_to "Resume", resume_index_path %></li>
-					<li><a href="https://github.com/philhartmanonic">Github</a></li>
-					<li>
-						<a href="#">Music</a>
-						<ul class="menu">
-							<li><a href="http://teatsunami.bandcamp.com/">Tea Tsunami</a></li>
-							<li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
-						</ul>
-					</li>	
-				</ul>
-			</div>
-			<br><br><br><br><br>
-			<div class="row">
-				<center><p><%= image_tag "galenGuitar.jpg", width: "275", align: "center" %><br>
-					<small>I sing all of the pretty songs</small></p></center>
-			</div>
+<br>
+<main>
+	<aside class="show-for-medium">
+		<div class="row">
+			<center><h5><b>What do we have here?</b></h5></center>
 		</div>
-	</div>
-	<div class="small-7 small-offset-1 columns panel" data-equalizer watch="main">
+		<div class="row">
+			<ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+				<li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
+				<li><a href="#">Portfolio</a>
+					<ul class="menu">
+						<li><%= link_to "Blog", posts_path %></li>
+						<li><%= link_to "Presidential Primaries", states_path %></li>
+					</ul>
+				</li>
+				<li><%= link_to "Resume", resume_index_path %></li>
+				<li><a href="https://github.com/philhartmanonic">Github</a></li>
+				<li>
+					<a href="#">Music</a>
+					<ul class="menu">
+						<li><a href="http://teatsunami.bandcamp.com/">Tea Tsunami</a></li>
+						<li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
+					</ul>
+				</li>	
+			</ul>
+		</div>
+		<div class="row align-bottom">
+			<center><p><%= image_tag "galenGuitar.jpg", width: "275", align: "center" %><br>
+				<small>I sing all of the pretty songs</small></p></center>
+		</div>
+	</aside>
+	<emp></emp>
+	<article>
 		<div class="row">
 			<p><h3>So who is this "Galen" character anyways?</h3></p><br>
 		</div>
-		<div class="row">	
-			<%= image_tag "bbg.jpg", width: "200", align: "left", hspace: "20" %>
+		<div class="row" id="name_main">	
+			<%= image_tag "bbg.jpg", align: "left", hspace: "20" %>
 			<p>I'm a father, web developer, musician, retired punk rocker, and I get oddly excited when given the opportunity to talk about the Jungian philosophy on psychology and psychoanalysis.</p>
 			<p>As a web developer, I specialize in Rails, Python, and Data Modeling.  I'm in the process of getting up to speed with all of these JS frameworks, as that seems to be the way the wind is blowing.</p>
 			<p>I got into development because of the charming guy in the picture.</p>
@@ -53,7 +50,5 @@
 
 			<p>I am currently looking to join a team that fundamentally embraces challenge – challenging work, challenging ourselves, and challenging each other to be better.  I want to have fun at work, and I’ve learned the key to that it’s never easy and it always has a purpose</p>
 		</div>
-	</div>
-	<div class="small-1 columns"></div>
-</div>
-
+	</article>
+</main>

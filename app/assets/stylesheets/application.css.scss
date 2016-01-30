@@ -15,3 +15,41 @@
  *= require foundation_and_overrides
 
  */
+
+@import "foundation";
+@import "foundation_and_overrides";
+
+
+.container,
+body > header,
+body > footer,
+main {
+	@include flex-grid-row();
+}
+
+.container,
+body > header,
+body > footer {
+	@include flex-grid-row-align(center);
+}
+
+main > article {
+	@include flex-grid-column(8);
+}
+main > aside {
+	@include flex-grid-column(3);
+}
+main > emp {
+	@include flex-grid-column(1);
+}
+
+main {
+	@media #{$medium-up} {
+		@include flex-grid-column(9);
+	}
+	@include flex-grid-column(12);
+}
+
+#name_main > img {
+	max-width: 40%;
+}
