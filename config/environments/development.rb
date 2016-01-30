@@ -39,9 +39,8 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_host_name => 's3-us-west-2.amazonaws.com',
-    :s3_credentials => {
-      :bucket => 'elasticbeanstalk-us-west-2-762356920553'
-    }
+    :bucket => 'elasticbeanstalk-us-west-2-762356920553'
+    
   }
 
   # Raises error for missing translations
