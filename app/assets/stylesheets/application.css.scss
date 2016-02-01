@@ -19,18 +19,128 @@
 @import "foundation";
 @import "foundation_and_overrides";
 
+@font-face {
+	font-family: 'Aaargh';
+	src:font-url('Aaargh-webfont.eot');
+	src:font-url('Aaargh-webfont.eot?iefix') format('eot'),
+		font-url('Aaargh-webfont.woff') format('woff'),
+		font-url('Aaargh-webfont.ttf') format('truetype'),
+		font-url('Aaargh-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+	font-family: 'DroidSerif';
+	src:font-url('DroidSerif-Regular-webfont.eot');
+	src:font-url('DroidSerif-Regular-webfont.eot?iefix') format('eot'),
+		font-url('DroidSerif-Regular-webfont.woff') format('woff'),
+		font-url('DroidSerif-Regular-webfont.ttf') format('truetype'),
+		font-url('DroidSerif-Regular-webfont.svg#webfont') format('svg');
+}
+
+/// Test if value is a valid direction for the gradient mixin
+@function is-direction($value) {
+	$is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+	$is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+
+	@return $is-keyword or $is-angle;
+}
+
+/// Convert a direction to legacy syntax
+/// @param {Keyword | Angle} $value - Value to convert
+/// @require {function} is-direction
+/// @require {function} convert-angle
+/// @throw Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.;
+@function legacy-direction($value) {
+  @if is-direction($value) == false {
+    @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+  }
+
+  $conversion-map: (
+    to top          : bottom,
+    to top right    : bottom left,
+    to right top    : left bottom,
+    to right        : left,
+    to bottom right : top left,
+    to right bottom : left top,
+    to bottom       : top,
+    to bottom left  : top right,
+    to left bottom  : right top,
+    to left         : right,
+    to left top     : right bottom,
+    to top left     : bottom right
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return 90deg - $value;
+}
+
+/// Gradient mixin
+@mixin linear-gradient($direction, $color-stops...) {
+	@if is-direction($direction) == false {
+		$color-stops: $direction, $color-stops;
+		$direction: 180deg;
+	}
+
+	background: nth(ngth($color-stops,1), 1);
+	background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+	background: linear-gradeint($direction, $color-stops);
+}
 
 .container,
 body > header,
 body > footer,
 main {
-	@include flex-grid-row();
+	@include flex-grid-row($width: 95%);
 }
 
 .container,
 body > header,
 body > footer {
 	@include flex-grid-row-align(center);
+}
+
+secthead {
+	@include flex-grid-row($width: 100%);
+	font-size: 1em;
+	line-height: 1.4;
+	color: white;
+	font-weight: 300;
+	@include linear-gradient(to right, $med-blue-purple, $grad-purple);
+	padding-left: 2em;
+}
+
+secthead > h1 {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-size: 6em;
+	font-weight: 100;
+	line-height: 1.1;
+}
+
+secthead > h4 {
+	font-family: 'Aaargh', 'Helvetica-Neue', Helvetica, sans-serif;
+	font-size: 2em;
+	font-weight: 200;
+	line-height: 1.1;
+
+}
+
+main > h3 {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	color: $cyanish;
+	font-size: 2.5em;
+	font-weight: 200;
+	line-height: 1.4;
+}
+
+main > div > h4 {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	color: $cyanish;
+	font-size: 1.8em;
+	font-weight: 200;
+	line-height: 1.4;	
 }
 
 main > article {
@@ -51,17 +161,30 @@ img {
 	max-width: 70%;
 }
 
-main {
-	@media #{$medium-up} {
-		@include flex-grid-column(9);
-	}
-	@include flex-grid-column(12);
-}
-
 #name_main > img {
 	max-width: 30%;
 }
 
-dt {
-	
+.top-bar {
+	font-size: 0.8em;
+}
+
+.welcome {
+	@include linear-gradient(to right, $med-blue-purple, $grad-purple);
+	color: white;
+
+}
+
+.top-bar {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-weight: 200;
+}
+
+.menu-text {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-weight: 600;
+}
+
+p {
+	font-family: DroidSerif;
 }
