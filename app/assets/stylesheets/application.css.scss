@@ -110,6 +110,8 @@ secthead {
 	font-weight: 300;
 	@include linear-gradient(to right, $med-blue-purple, $grad-purple);
 	padding-left: 2em;
+	padding-top: 2em;
+	padding-bottom: 2em;
 }
 
 secthead > h1 {
