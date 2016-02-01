@@ -25,4 +25,21 @@
       </li>
     </ul>
   </div>
+  <div class="top-bar-right">
+    <% if current_user %>
+      <ul class="menu horizontal">
+        <li class="menu-text">Signed in as <strong><%= current_user.name %></strong>!</li>
+        <li><%= link_to "Sign Out", signout_path, id: "sign_out" %>
+      </ul>
+    <% else %>
+      <ul class="menu vertical">
+        <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, id: "flash_#{name}" %>
+  <% end %>
+
 </div>
