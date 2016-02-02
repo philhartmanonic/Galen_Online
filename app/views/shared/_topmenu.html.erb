@@ -11,7 +11,7 @@
           <li class="hide-for-large"><a href="https://github.com/philhartmanonic">Github</a></li>
           <li><%= link_to "Blog", posts_path %></li>
           <li><%= link_to "Presidential Primaries", states_path %></li>
-          <li><a href="#">Social Tracking</a></li>
+          <li><%= link_to "Facebook - Your Bands!", bands_my_path %></li>
         </ul>
       </li>
       <li class="show-for-large"><%= link_to "Resume", resume_index_path %></li>
@@ -23,32 +23,6 @@
           <li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
         </ul>
       </li>
-      <% if current_user %>
-        <li class="hide-for-medium">Signed in as <strong><%= current_user.name %></strong>!</li>
-        <li class="hide-for-medium"><%= link_to "Sign Out", signout_path, id: "sign_out" %>
-      <% else %>
-        <li class="hide-for-medium"><%= link_to "Sign in w/ Facebook", "/auth/facebook", id: "sign_in" %></li>
-      <% end %>
     </ul>
   </div>
-
-  <div class="top-bar-right">
-    <% if current_user %>
-      <ul class="menu horizontal">
-        <li class="show-for-large">Signed in as <strong><%= current_user.name %></strong>!</li>
-        <li class="show-for-medium-only">Hi <strong><%= current_user.name %></strong>!</li>
-        <li class="show-for-large"><%= link_to "Sign Out", signout_path, id: "sign_out" %></li>
-      </ul>
-    <% else %>
-      <ul class="menu vertical">
-        <li class="show-for-large"><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
-        <li class="show-for-medium-only"><%= link_to "Sign in w/ Facebook", "/auth/facebook", id: "sign_in" %></li>
-      </ul>
-    <% end %>
-  </div>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
-
 </div>

@@ -115,6 +115,7 @@ pagehead {
 }
 
 pagehead > h1 {
+	@include flex-grid-column(12);
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
 	@media #{$medium-up} {
 		font-size: 7em;
@@ -125,9 +126,45 @@ pagehead > h1 {
 }
 
 pagehead > h4 {
+	@include flex-grid-column(12);
 	font-family: 'Aaargh', 'Helvetica-Neue', Helvetica, sans-serif;
 	@media #{$medium-up} {
 		font-size: 2em;
+	}
+	font-size: 1em;
+	font-weight: 200;
+	line-height: 1.1;
+
+}
+
+secthead {
+	@include flex-grid-row($width: 100%);
+	font-size: 1em;
+	line-height: 1.4;
+	color: white;
+	font-weight: 300;
+	@include linear-gradient(to right, $med-blue-purple, $grad-purple);
+	padding-left: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+secthead > h1 {
+	@include flex-grid-column(12);
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	@media #{$medium-up} {
+		font-size: 5em;
+	}
+	font-size: 3em;
+	font-weight: 100;
+	line-height: 1.1;
+}
+
+secthead > h4 {
+	@include flex-grid-column(12);
+	font-family: 'Aaargh', 'Helvetica-Neue', Helvetica, sans-serif;
+	@media #{$medium-up} {
+		font-size: 1.6em;
 	}
 	font-size: 1em;
 	font-weight: 200;
