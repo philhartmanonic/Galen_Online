@@ -1,9 +1,5 @@
 class CreateBands < ActiveRecord::Migration
   def change
-    drop_table :bands
-  end
-  
-  def change
     create_table :bands do |t|
       t.string :name
       t.string :fb_id
