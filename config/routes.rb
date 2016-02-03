@@ -1,16 +1,34 @@
 Rails.application.routes.draw do
-  get 'bands/my'
 
-  get 'bands/index'
+  get '/users' => 'users#index', as: :users
+  get '/users/admin/:id/edit' => 'users#edit', as: :edit_users
+  patch '/users/admin/:id' => 'users#update'
+  put '/users/admin_edit/:id' => 'users#update'
+  post '/users' => 'users#create'
+  get '/users/admin/:id' => 'users#show', as: :user
+  get '/users/admin/new' => 'users#new', as: :new_user
+  delete '/users/admin/:id' => 'users#destroy'
+  resources :pics
+  resources :bands
+  resources :roles
+  # devise_scope :user do
+  #   get   '/users/sign_in'  => 'custom_devise/sessions#new',  as: :new_user_session      
+  #   post   '/users/sign_in'  => 'custom_devise/sessions#create',  as: :user_session
+  #   delete '/users/sign_out' => 'custom_devise/sessions#destroy', as: :destroy_user_session
 
-  get 'bands/show'
-
-  get 'bands/destroy'
-
+  #   post  '/users/password'  => 'custom_devise/passwords#create', as: :user_password
+  #   put   '/users/password'  => 'custom_devise/passwords#update', as: nil
+  #   patch '/users/password'  => 'custom_devise/passwords#update', as: nil
+  # end
+  devise_for :users
   resources :states
   get 'resume/index'
 
   get 'welcome/welcome'
+
+  get 'bands/my'
+
+  get 'posts/blog'
 
   resources :posts
   resources :resumes

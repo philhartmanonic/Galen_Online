@@ -1,0 +1,14 @@
+<%= render 'shared/topmenu' %>
+<secthead>
+<h1>EDIT USER</h1>
+</secthead>
+<br>
+<main>
+	<%= render 'form' %>
+</main>
+<br>
+<hr>
+<br>
+<div class="row">
+	<%= link_to 'Back to #{@user.email}', @user %>  |  <%= link_to 'Back to all users', users_path %>
+</div>

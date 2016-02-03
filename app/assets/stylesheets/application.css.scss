@@ -202,6 +202,11 @@ main > emp {
 	@include show-for(medium);
 }
 
+main > em {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-weight: 200;
+}
+
 img {
 	max-width: 70%;
 }
