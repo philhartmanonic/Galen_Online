@@ -2,20 +2,6 @@
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text"><%= link_to "Galen Online!", "/" %></li>
-      <% if current_user.role.name === "Admin" %>
-        <li>
-          <a href="#">Admin</a>
-          <ul class="menu vertical">
-            <li><%= link_to "Users Dashboard", users_path %></li>
-            <li><%= link_to "Blog Dashboard", posts_path %></li>
-          </ul>
-        </li>
-      <% end %>
-      <% if current_user.role.name === "Blogger" %>
-        <li>
-          <%= link_to "Blogger", posts_path %>
-        </li>
-      <% end %>
       <li class="show-for-large"><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
       <li>
         <a href="#">Portfolio</a>
@@ -23,7 +9,7 @@
           <li class="hide-for-large"><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
           <li class="hide-for-large"><%= link_to "Resume", resume_index_path %></li>
           <li class="hide-for-large"><a href="https://github.com/philhartmanonic">Github</a></li>
-          <li><%= link_to "Blog", posts_blog_path %></li>
+          <li><%= link_to "Blog", posts_path %></li>
           <li><%= link_to "Presidential Primaries", states_path %></li>
           <li><%= link_to "Facebook - Your Bands!", bands_my_path %></li>
         </ul>
@@ -37,11 +23,6 @@
           <li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
         </ul>
       </li>
-    </ul>
-  </div>
-  <div class="top-bar-right show-for-medium">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <%= render 'shared/nav_links_for_auth' %>
     </ul>
   </div>
 </div>

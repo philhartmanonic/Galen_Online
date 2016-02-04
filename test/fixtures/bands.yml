@@ -3,21 +3,9 @@
 one:
   name: MyString
   fb_id: MyString
-  fb_name: MyString
-  likes_count: 1
-  ta_count: 1
-  pic_url: MyString
-  follower_count: 1
-  following_count: 1
-  tweets: 1
+  thumb_url: MyString
 
 two:
   name: MyString
   fb_id: MyString
-  fb_name: MyString
-  likes_count: 1
-  ta_count: 1
-  pic_url: MyString
-  follower_count: 1
-  following_count: 1
-  tweets: 1
+  thumb_url: MyString
