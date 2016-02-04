@@ -102,7 +102,7 @@ body > footer {
 	@include flex-grid-row-align(center);
 }
 
-pagehead {
+secthead {
 	@include flex-grid-row($width: 100%);
 	font-size: 1em;
 	line-height: 1.4;
@@ -114,22 +114,16 @@ pagehead {
 	padding-bottom: 2em;
 }
 
-pagehead > h1 {
+secthead > h1 {
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
-	@media #{$medium-up} {
-		font-size: 7em;
-	}
-	font-size: 4em;
+	font-size: 7em;
 	font-weight: 100;
 	line-height: 1.1;
 }
 
-pagehead > h4 {
+secthead > h4 {
 	font-family: 'Aaargh', 'Helvetica-Neue', Helvetica, sans-serif;
-	@media #{$medium-up} {
-		font-size: 2em;
-	}
-	font-size: 1em;
+	font-size: 2em;
 	font-weight: 200;
 	line-height: 1.1;
 
