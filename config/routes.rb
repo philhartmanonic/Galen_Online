@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  
+  scope '/admin' do
+    resources :users, :roles
+  end
+
+  devise_for :users, controlers: {
+    sessions: 'users/sessions'
+  }
   resources :states
   get 'resume/index'
 
