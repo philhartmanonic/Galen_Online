@@ -4,9 +4,7 @@ Rails.application.routes.draw do
     resources :users, :roles
   end
 
-  devise_for :users, controlers: {
-    sessions: 'users/sessions'
-  }
+  devise_for :users
   resources :states
   get 'resume/index'
   get 'posts/blog'
