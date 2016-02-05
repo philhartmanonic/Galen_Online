@@ -121,6 +121,13 @@ secthead > h1 {
 	line-height: 1.1;
 }
 
+secthead > h3 {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-size: 4em;
+	font-weight: 100;
+	line-height: 1.1;
+}
+
 secthead > h4 {
 	font-family: 'Aaargh', 'Helvetica-Neue', Helvetica, sans-serif;
 	font-size: 2em;
@@ -189,4 +196,23 @@ img {
 
 p {
 	font-family: DroidSerif;
+}
+
+line {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-family: DroidSerif;
+}
+
+line > key {
+	@include flex-grid-column(4);
+}
+
+line > val {
+	@include flex-grid-column(8);
+}
+
+main {
+	padding-top: 1em;
+	padding-bottom: 1em;
 }

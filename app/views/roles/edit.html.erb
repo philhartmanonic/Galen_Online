@@ -1,12 +1,14 @@
 <%= render 'shared/topmenu' %>
-<secthead><h1>Create a New User</h1></secthead>
-<br>
+<secthead>
+<h1>Editing Role</h1>
+</secthead>
 <main>
-	<%= render 'form' %>
+<%= render 'form' %>
 </main>
 <br>
 <hr>
 <br>
 <div class="row">
+<%= link_to 'Show', @role %> |
 <%= link_to 'Back', roles_path %>
 </div>

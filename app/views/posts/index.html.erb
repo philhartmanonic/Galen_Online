@@ -1,11 +1,11 @@
-<p id="notice"><%= notice %></p>
 <%= render 'shared/topmenu' %>
-<h1>Listing Posts</h1>
-
+<secthead><h2>Blog Posts</h2></secthead>
+<main>
 <table>
   <thead>
     <tr>
       <th>Title</th>
+      <th>Author</th>
       <th>Body</th>
       <th colspan="3"></th>
     </tr>
@@ -15,15 +15,23 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
+        <% if post.user.nil? %>
+          <td>Unknown</td>
+        <% else %>
+          <td><%= post.user.email %></td>
+        <% end %>
         <td><%= post.body %></td>
         <td><%= link_to 'Show', post %></td>
+        <% if current_user === post.user or current_user.role.name === "Admin" %>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</main>
+<hr>
 <br>
-
-<%= link_to 'New Post', new_post_path %>
+<div class="row">
+<%= link_to 'New Post', new_post_path %></div>
