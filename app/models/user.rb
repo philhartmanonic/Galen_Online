@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_many :posts
 
   def role?(type)
-  	self.role.name == type
+  	if self.role.nil?
+  		false
+  	else	
+	  	self.role.name == type
+	end
   end
 end

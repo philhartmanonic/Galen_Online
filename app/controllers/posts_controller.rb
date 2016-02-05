@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :except => :blog
 
   # GET /posts
   # GET /posts.json
@@ -12,7 +13,11 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @recents = Post.order("created_at desc").limit(5)
+    @posts = Post.all
+  end
 
+  def blog
+    @recents = Post.order("created_at desc").limit(5)
   end
 
   # GET /posts/new

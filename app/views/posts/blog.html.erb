@@ -1,0 +1,21 @@
+<%= render 'shared/topmenu' %>
+<secthead><h1>The Daily Galen</h1></secthead>
+<main>
+	<% @recents.each do |p| %>
+		<blogarticle>
+			<bloghead>
+				<%= p.title %>
+			</bloghead>
+			<author>
+				<% if p.user.nil? %>
+				By Unkown
+				<% else %>
+				By <%= p.user.email %>
+				<% end %>
+			</author>
+			<blogbody>
+				<%= p.body %>
+			</blogbody>
+		</blogarticle>
+	<% end %>
+</main>

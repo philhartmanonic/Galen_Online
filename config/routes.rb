@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
   resources :states
   get 'resume/index'
-
+  get 'posts/blog'
   get 'welcome/welcome'
 
   resources :posts
