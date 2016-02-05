@@ -1,2 +1,42 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<%= render 'shared/topmenu' %>
+<br>
+<div class="row"><h1>List of Users</h1></div>
+<br>
+<div class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Created At</th>
+        <th>Login Count</th>
+        <th>Role</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.sign_in_count %></td>
+          <% if user.role.nil? %>
+          	<td>None</td>
+          	<td>None</td>
+          <% else %>
+	        <td><%= user.role.name %></td>
+	        <td><%= user.role.description %></td>
+	      <% end %>
+          <td><%= link_to 'Show', user %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div class="row"><%= link_to 'New User', new_user_path %></div>

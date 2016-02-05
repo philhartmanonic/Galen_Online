@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def new
     @user = User.new
+    @roles = Role.all
   end
 
   def create
@@ -23,6 +24,8 @@ class UsersController < ApplicationController
 
   def edit
     @users = User.all
+    @user = User.find(params[:id])
+    @roles = Role.all
   end
 
   def update
