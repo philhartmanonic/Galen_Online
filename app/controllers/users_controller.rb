@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -61,6 +62,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :sign_in_count, :created_at, :updated_at, :role_id, roles_attributes[:name, :description])
+      params.require(:user).permit(:email, :sign_in_count, :created_at, :updated_at, :role_id, roles_attributes: [:name, :description])
     end
 end

@@ -1,23 +1,38 @@
-<%= render 'shared/topmenu' %>
-<secthead>
-	<h1 class="show-for-medium">GALEN ONLINE!</h1><h3 class="hide-for-medium">GALEN ONLINE!</h3><br>
-	<h4>Welcome to the home of all things Galen <span class="show-for-medium">W Burghardt </span>related!</h4>
-</secthead>
-<br>
-<main data-equalizer>
-	<p><h3>So who is this "Galen" character anyway?</h3><p>
-	<div class="row" id="name_main">	
-		<%= image_tag "bbg.jpg", align: "left", hspace: "20", width: "200" %>
-		<p>I'm a father, web developer, musician, retired punk rocker, and I get oddly excited when given the opportunity to talk about the Jungian philosophy on psychology and psychoanalysis.</p>
-		<p>As a web developer, I specialize in Rails, Python, and Data Modeling.  I'm in the process of getting up to speed with all of these JS frameworks, as that seems to be the way the wind is blowing.</p>
-		<p>I got into development because of the charming guy in the picture.</p>
-		<p><h4>Some back story</h4></p>
-		<p>I’ve been working in Business Development Consulting, Marketing, and Sales Operations for years.  It was alright, I was happy to be working and I loved a lot of the people I was working with, but I was always jealous of the brilliant developers, data architects, and solution architects that were all around me.  I loved how they were tackling big problems, and had this tactile relationship with their work that simply isn’t available in Marketing.</p>
-
-		<p>That’s when this dude came around, and it ceased to be a matter of comfort.  I needed to set an example for him.  I need him to know that there’s a reason I have to leave him every day, that I’m doing work that I’m passionate about and proud of.  I need him to grow up knowing work is hard, but it’s worth it.</p>
-
-		<p>At this point, I had been working with Python and SQL for a year or two, mainly self-directed, but with a few projects at work.  I decided it was time to dive in with both feet, so I left my job and enrolled in the Startup Institute Chicago.  If you’re unfamiliar, SIC is an organization built around preparing people with the hard and soft skills necessary to succeed and thrive in the startup ecosystem.</p>
-
-		<p>I am currently looking to join a team that fundamentally embraces challenge – challenging work, challenging ourselves, and challenging each other to be better.  I want to have fun at work, and I’ve learned the key to that it’s never easy and it always has a purpose</p>
-	</div>
+<main>
+	<aside>
+		<br>
+		<h3 style="text-align: center;">My Projects</h3>
+		<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-use-m-u-i="false">
+	        <ul class="orbit-container">
+	          <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+	          <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+	          <li class="is-active orbit-slide">
+	          	<br>
+	            <sidebox>
+	            	<h5 style="text-align: center;"><%= link_to "The Daily Galen", posts_blog_path %></h5>
+	            	<p>A personal, markup-enabled blog, with custom views and abilities for Readers, Bloggers, and Administrators</p>
+	            </sidebox>
+	            <br>
+	          </li>
+	          <li class="orbit-slide">
+	          	<br>
+	            <sidebox>
+	            	<h5 style="text-align: center;"><%= link_to "Presidential Primaries", states_path %></h5>
+	            	<p>A database of state primary/caucus information</p>
+	            </sidebox>
+	            <br>
+	          </li>
+	        </ul>
+	        <nav class="orbit-bullets">
+	         <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+	         <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+	       </nav>
+      </div>
+	</aside>
+	<article>
+		<br>
+		<h1 style="text-align: center;">Welcome to Galen Online</h1><br>
+		<p>This is the online home of the personal projects of Galen W Burghardt.  I am a web developer living in Evanston, IL, just north of Chicago.  I've built this site full-stack from scratch, using Rails, Foundation 6 (so CSS and SASS), PostgreSQL, and it's hosted on AWS using Elastic Beanstalk and RDS.</p>
+		<p>Please check out some of my projects, my resume, my code samples, etc.  I'm currently on the hunt for my next full-time gig, so if you're working on something cool that I can help you out with, or if you'd just like to connect, feel free to <a href="mailto:galen.w.burghardt@gmail.com">get in touch!</a></p>
+	</article>
 </main>

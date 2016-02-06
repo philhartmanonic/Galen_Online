@@ -17,6 +17,14 @@
         <li><%= link_to "Blogger", posts_path %></li>
         <% end %>
       <% end %>
+      <li>
+        <a href="#">About</a>
+        <ul class="menu vertical">
+          <li><%= link_to "About Me", welcome_about_path %></li>
+          <li><%= link_to "Resume", resume_index_path %></li>
+          <li><a href="https://github.com/philhartmanonic">Github</a></li>
+        </ul>
+      </li>
       <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
       <li>
         <a href="#">Portfolio</a>
@@ -26,8 +34,6 @@
           <li><a href="#">Social Tracking</a></li>
         </ul>
       </li>
-      <li><%= link_to "Resume", resume_index_path %></li>
-      <li><a href="https://github.com/philhartmanonic">Github</a></li>
       <li>
         <a href="#">Music</a>
         <ul class="menu vertical">
@@ -48,6 +54,29 @@
         <ul class="menu vertical nested">
           <%= render 'shared/mob_nav_auth' %>
           <li><%= link_to "Home", "/" %></li>
+          <% if current_user.nil? or current_user.role.nil? %>
+          <% else %>
+            <% if current_user.role.name === "Admin" %>
+            <li><a href="#">Admin</a>
+              <ul class="menu vertical nested">
+                <li><%= link_to "Blog", posts_path %></li>
+                <li><%= link_to "Users", users_path %></li>
+                <li><%= link_to "Roles", roles_path %></li>
+              </ul>
+            </li>
+            <% end %>
+            <% if current_user.role.name === "Blogger" %>
+            <li><%= link_to "Blogger", posts_path %></li>
+            <% end %>
+          <% end %>
+          <li>
+            <a href="#">About</a>
+            <ul class="menu vertical nested">
+              <li><%= link_to "About Me", welcome_about_path %></li>
+              <li><%= link_to "Resume", resume_index_path %></li>
+              <li><a href="https://github.com/philhartmanonic">Github</a></li>
+            </ul>
+          </li>
           <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
           <li>
             <a href="#">Portfolio</a>
@@ -57,8 +86,6 @@
               <li><a href="#">Social Tracking</a></li>
             </ul>
           </li>
-          <li><%= link_to "Resume", resume_index_path %></li>
-          <li><a href="https://github.com/philhartmanonic">Github</a></li>
           <li>
             <a href="#">Music</a>
             <ul class="menu vertical nested">

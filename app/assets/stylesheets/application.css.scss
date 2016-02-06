@@ -94,6 +94,7 @@ body > header,
 body > footer,
 main {
 	@include flex-grid-row($width: 95%);
+	padding-top: 1em;
 }
 
 .container,
@@ -217,3 +218,26 @@ main {
 	padding-bottom: 1em;
 }
 
+sidebox {
+	@include flex-grid-row();
+	@include flex-grid-column(8,2);
+	font-family: DroidSerif;
+	color: $grad-purple;
+	background-color: $light-lav;
+	outline-color: $grad-purple;
+	outline-style: ridge;
+	box-shadow: 0.8em 0.8em 0.4em $grad-purple;
+	text-align: center;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+sidebox > p {
+	font-size: 0.8em;
+}
+
+sidebox > h5 {
+	text-align: center;
+}

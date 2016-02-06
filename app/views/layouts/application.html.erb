@@ -12,6 +12,13 @@
   </head>
 
   <body>
+    <secthead class="show-for-medium">
+      <%= image_tag "logo.png", align: "center" %>
+    </secthead>
+    <%= render 'shared/topmenu' %>
+    <secthead class="hide-for-medium">
+      <%= image_tag "logo.png", align: "center" %>
+    </secthead>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'resume/index'
   get 'posts/blog'
   get 'welcome/welcome'
+  get 'welcome/about'
 
   resources :posts
   resources :resumes
