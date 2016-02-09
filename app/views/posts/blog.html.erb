@@ -9,9 +9,9 @@
 				<score>
 					<table>
 						<tr>
-							<td><%= button_to '+1', upvote_post_path(p), method: :post %></td>
-							<td><%= p.score %></td>
 							<td><%= button_to '-1', downvote_post_path(p), method: :post %></td>
+							<td><%= p.score %></td>
+							<td><%= button_to '+1', upvote_post_path(p), method: :post %></td>
 						</tr>
 					</table>
 				</score>
