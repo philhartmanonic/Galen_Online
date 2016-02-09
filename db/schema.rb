@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205212253) do
+ActiveRecord::Schema.define(version: 20160208190524) do
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20160205212253) do
 
   add_index "bands_users", ["band_id"], name: "index_bands_users_on_band_id"
   add_index "bands_users", ["user_id"], name: "index_bands_users_on_user_id"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "upvotes"
+    t.integer  "downvotes"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "pics", force: :cascade do |t|
     t.datetime "created_at",           null: false
@@ -98,5 +111,16 @@ ActiveRecord::Schema.define(version: 20160205212253) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["role_id"], name: "index_users_on_role_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.boolean  "up",               default: true, null: false
+    t.integer  "takes_votes_id"
+    t.string   "takes_votes_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

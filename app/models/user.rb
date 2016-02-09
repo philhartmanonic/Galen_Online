@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
   has_many :posts
+  has_many :comments
+  has_many :votes
 
   def role?(type)
   	if self.role.nil?

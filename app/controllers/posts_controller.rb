@@ -14,10 +14,17 @@ class PostsController < ApplicationController
   def show
     @recents = Post.order("created_at desc").limit(5)
     @posts = Post.all
+    @comments = Comment.where("post_id like ?", @post.id).sort_by{|p| -p.score}
+    @post = Post.find(params[:id])
   end
 
   def blog
     @recents = Post.order("created_at desc").limit(5)
+    @posts = Post.includes(:comments).all
+  end
+
+  def all_blog
+    @posts = Post.order("created_at desc")
   end
 
   # GET /posts/new
@@ -70,6 +77,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.votes.create(user_id: current_user.id, up: true)
+    redirect_to post_path
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.votes.create(user_id: current_user.id, up: false)
+    redirect_to post_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -78,6 +97,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, user_attributes[:email])
+      params.require(:post).permit(:title, :body, user_attributes[:email], comments_attributes[:body, :score], votes_attributes[:up])
     end
 end

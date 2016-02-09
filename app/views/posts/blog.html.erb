@@ -3,7 +3,18 @@
 	<% @recents.each do |p| %>
 		<blogarticle>
 			<bloghead>
-				<%= p.title %>
+				<blogtitle>
+					<%= p.title %>
+				</blogtitle>
+				<score>
+					<table>
+						<tr>
+							<td><%= button_to '+1', upvote_post_path(p), method: :post %></td>
+							<td><%= p.score %></td>
+							<td><%= button_to '-1', downvote_post_path(p), method: :post %></td>
+						</tr>
+					</table>
+				</score>
 			</bloghead>
 			<author>
 				<% if p.user.nil? %>
@@ -15,6 +26,9 @@
 			<blogbody>
 				<%= p.body %>
 			</blogbody>
+			<blogfoot>
+				<%= link_to "View #{p.comments.count} Comments", post_path(p) %>
+			</blogfoot>
 		</blogarticle>
 	<% end %>
 </main>

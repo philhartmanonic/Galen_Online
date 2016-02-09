@@ -1,0 +1,25 @@
+<header><h1>The Daily Galen</h1></header>
+<main>
+	<% @posts.each do |p| %>
+		<blogarticle>
+			<bloghead>
+				<%= p.title %>
+			</bloghead>
+			<score>
+				<p class="flex-grid-column(12)" style="text-align: center"><%= button_to '+1', upvote_post_path, method: :post %></p>
+				<p class="flex-grid-column(12)" style="text-align: center"><%= p.score %></p>
+				<p class="flex-grid-column(12)" style="text-align: center"><%= button_to '-1', downvote_post_path, method: :post %></p>
+			</score>
+			<author>
+				<% if p.user.nil? %>
+				By Unkown
+				<% else %>
+				By <%= p.user.email %>
+				<% end %>
+			</author>
+			<blogbody>
+				<%= p.body %>
+			</blogbody>
+		</blogarticle>
+	<% end %>
+</main>

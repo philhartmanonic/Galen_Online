@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+
   scope '/admin' do
     resources :users, :roles
   end
@@ -8,10 +9,23 @@ Rails.application.routes.draw do
   resources :states
   get 'resume/index'
   get 'posts/blog'
+  get 'posts/all_blog'
   get 'welcome/welcome'
   get 'welcome/about'
 
-  resources :posts
+  resources :posts do
+    member do
+      resources :comments do
+        member do
+          post 'upvote'
+          post 'downvote'
+        end
+      end
+      post 'upvote'
+      post 'downvote'
+    end
+  end
+
   resources :resumes
   root 'welcome#welcome'
   # The priority is based upon order of creation: first created -> highest priority.

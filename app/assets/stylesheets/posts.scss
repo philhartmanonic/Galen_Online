@@ -10,25 +10,53 @@ main > blogarticle {
 	font-family: DroidSerif;
 	outline-color: $light-lav;
 	outline-style: ridge;
+	padding-left: 0em;
 }
 
 blogarticle > bloghead {
 	@include flex-grid-row();
-	@include flex-grid-column(12);
+	@include flex-grid-row-align(middle);
+	@include flex-grid-column(12, 0);
+	line-height: 0;
+	padding-left: 0em;
+}
+
+bloghead > blogtitle {
+	padding-left: 0em;
+	@include flex-grid-column(8);
 	font-size: 2.5em;
 	line-height: 0;
 	color: $cyanish;
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
 	font-weight: 300;
-	padding-left: 2em;
+	padding-top: 0.7em;
+}
+bloghead > score {
+	@include flex-grid-column(4);
+	font-size: 0.8em;
+	line-height: 0;
+	color: $cyanish;
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-weight: 300;
 	padding-top: 0.7em;
 	padding-bottom: 0.7em;
+	text-align: center;
+}
+
+score > button {
+	font-size: 0.8em;
+}
+
+score > table {
+	line-height: 0;
+	margin-bottom: 0em;
 }
 
 blogarticle > blogbody {
 	@include flex-grid-row();
 	@include flex-grid-column(12);
 	padding-bottom: 1em;
+	padding-left: 1em;
 }
 
 blogarticle > author {
@@ -36,5 +64,81 @@ blogarticle > author {
 	@include flex-grid-column(12);
 	padding-left: 2.5em;
 	font-size: 0.8em;
+	padding-bottom: 2em;
+}
+
+blogarticle > blogfoot {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-size: 1em;
 	padding-bottom: 1em;
+	padding-top: 1em;
+	border-top: thin groove $light-lav;
+}
+
+blogfoot > a {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+main > commentbox {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-family: DroidSerif;
+	outline-color: $light-lav;
+	outline-style: ridge;
+}
+
+commentbox > commenthead {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-size: 1.5em;
+	line-height: 0;
+	color: $cyanish;
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	text-align: center;
+}
+
+commentbox > commentbody {
+	@include flex-grid-row();
+	@include flex-grid-column(8);
+	font-family: DroidSerif;
+	padding-top: 1em;
+	border-top: medium groove $light-lav;
+}
+
+commentbox > commentvotes {
+	@include flex-grid-row();
+	@include flex-grid-column(4);
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	color: $cyanish;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	font-size: 0.8em;
+	border-top: medium groove $light-lav
+}
+
+commentvotes > button {
+	font-size: 0.8em;
+}
+
+commentvotes > table {
+	margin-bottom: 0em;
+}
+
+commentbox > commentfoot {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-family: DroidSerif;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+	font-size: 0.8em;
+	border-top: thin groove $light-lav;
+}
+
+commentvotes > table > tbody > tr > td {
+	padding: 0.2em;
 }
