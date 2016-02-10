@@ -73,6 +73,10 @@ blogbody > p {
 	@include flex-grid-column(12);
 }
 
+blogbody > form {
+	width: 100%;
+}
+
 blogarticle > author {
 	@include flex-grid-row();
 	@include flex-grid-column(12);

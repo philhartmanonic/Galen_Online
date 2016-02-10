@@ -31,16 +31,25 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @recents = Post.order("created_at desc").limit(5)
+    @users = User.all
+    @user = User.find(current_user)
+    @roles = Role.all
+    @role = Role.where(id: @user.role_id)
   end
 
   # GET /posts/1/edit
   def edit
+    @users = User.all
+    @user = User.find(params[:id])
+    @roles = Role.all
+    @role = Role.where(id: @user.role_id)
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
@@ -97,6 +106,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, user_attributes: [:email], comments_attributes: [:body, :score], votes_attributes: [:up])
+      params.require(:post).permit(:title, :body, :user_id, user_attributes: [:id, :email, :username], comments_attributes: [:body, :score], votes_attributes: [:up])
     end
 end
