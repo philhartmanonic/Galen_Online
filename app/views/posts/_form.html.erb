@@ -16,7 +16,7 @@
   </div>
   <div class="field">
     <%= f.label "Author" %>
-    <%= f.collection_select :user_id, @users.joins(:role).where(@role.name == ["Admin", "Blogger"]), :id, :username, include_blank: true, selected: current_user.try(:id) %>
+    <%= f.collection_select :user_id, @users.joins(:role).where(:name == ["Admin", "Blogger"]), :id, :username, include_blank: true, selected: current_user.try(:id) %>
   <div class="field">
     <%= f.label :body %><br>
     <%= f.text_area :body, message: "Write your post here", size: "24x40" %>

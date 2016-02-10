@@ -40,9 +40,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @users = User.all
-    @user = User.find(params[:id])
     @roles = Role.all
-    @role = Role.where(id: @user.role_id)
   end
 
   # POST /posts

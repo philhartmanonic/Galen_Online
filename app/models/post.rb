@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 	has_many :votes, as: :takes_votes, dependent: :destroy
 	accepts_nested_attributes_for :comments
 	accepts_nested_attributes_for :votes
+	accepts_nested_attributes_for :user
 
 	def score
 		return self.votes.where(up: true).count - self.votes.where(up: false).count
