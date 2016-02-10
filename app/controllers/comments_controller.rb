@@ -52,14 +52,14 @@ class CommentsController < ApplicationController
     @post = Post.where(id: params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.votes.create(user_id: current_user.id, up: true)
-    redirect_to :back
+    redirect_to post_path(@comment.post_id, anchor: "comment_" + @comment.id.to_s)
   end
 
   def downvote
     @post = Post.where(id: params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.votes.create(user_id: current_user.id, up: false)
-    redirect_to :back
+    redirect_to post_path(@comment.post_id, anchor: "comment_" + @comment.id.to_s)
   end
 
   private

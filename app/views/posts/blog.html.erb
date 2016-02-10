@@ -4,7 +4,7 @@
 		<blogarticle>
 			<bloghead>
 				<blogtitle>
-					<%= p.title %>
+					<%= p.title.strip %>
 				</blogtitle>
 				<score>
 					<table>
@@ -24,7 +24,7 @@
 				<% end %>
 			</author>
 			<blogbody>
-				<%= p.body %>
+				<%= markdown(p.body) %>
 			</blogbody>
 			<blogfoot>
 				<%= link_to "View #{p.comments.count} Comments", post_path(p) %>

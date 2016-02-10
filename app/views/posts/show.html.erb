@@ -2,7 +2,7 @@
 	<blogarticle>
 		<bloghead>
 			<blogtitle>
-				<%= @post.title %>
+				<%= @post.title.strip %>
 			</blogtitle>
 			<score>
 				<table>
@@ -22,7 +22,7 @@
 			<% end %>
 		</author>
 		<blogbody>
-			<%= @post.body %>
+			<%= markdown(@post.body) %>
 		</blogbody>
 		<blogfoot>
 			<% if user_signed_in? %>
@@ -31,14 +31,16 @@
 				<div class="small-12 columns" style="padding-left: 0em;"><%= f.text_area :body %></div>
 				<div class="small-12 columns" style="padding-left: 0em;"><%= f.submit %></div>
 			<% end %>
+			<% else %>
+				<div class="small-12 columns" stlye="padding-left: 0em;">You need to <%= link_to 'Sign in', new_user_session_path %> to comment.  <%= link_to 'Sign up', new_user_registration_path %>.</div>
 			<% end %>
 		</blogfoot>
 	</blogarticle>
 	<commentbox>
 		<commenthead><%= @comments.count %> comments</commenthead>
 		<% @comments.each do |c| %>
-			<commentbody>
-				<%= c.body %>
+			<commentbody id="comment_<%= c.id %>">
+				<%= markdown(c.body) %>
 			</commentbody>
 			<commentvotes>
 				<table>
