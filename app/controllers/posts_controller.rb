@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def show
     @recents = Post.order("created_at desc").limit(5)
     @posts = Post.all
-    @comments = Comment.where("post_id like ?", @post.id).sort_by{|p| -p.score}
+    @comments = Comment.where(post_id: @post.id).sort_by{|p| -p.score}
     @post = Post.find(params[:id])
   end
 
