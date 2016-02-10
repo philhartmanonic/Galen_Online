@@ -20,8 +20,9 @@
 				<% if p.user.nil? %>
 				By Unkown
 				<% else %>
-				By <%= p.user.email %>
+				By <%= p.user.username %>
 				<% end %>
+				<%= p.formatted_created_time %>
 			</author>
 			<blogbody>
 				<%= markdown(p.body) %>

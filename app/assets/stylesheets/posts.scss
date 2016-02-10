@@ -81,6 +81,11 @@ blogarticle > author {
 	padding-left: 1em;
 }
 
+author > p {
+	@include flex-grid-row();
+	@inclide flex-grid-column(12);
+}
+
 blogarticle > blogfoot {
 	@include flex-grid-row();
 	@include flex-grid-column(12);

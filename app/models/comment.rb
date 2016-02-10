@@ -7,4 +7,9 @@ class Comment < ActiveRecord::Base
   def score
   	return self.votes.where(up: true).count - self.votes.where(up: false).count
   end
+
+	def formatted_created_time
+		self.created_at.strftime(" on %B %d, %Y at %I:%M %P")
+	end
+
 end

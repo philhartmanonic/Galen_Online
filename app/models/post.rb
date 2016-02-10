@@ -13,4 +13,8 @@ class Post < ActiveRecord::Base
 		self.comments.load
 		return self.comments.any?
 	end
+
+	def formatted_created_time
+		self.created_at.strftime(" on %B %d, %Y at %I:%M %P")
+	end
 end

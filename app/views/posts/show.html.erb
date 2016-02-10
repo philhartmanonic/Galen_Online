@@ -18,7 +18,7 @@
 			<% if @post.user.nil? %>
 			By Unkown
 			<% else %>
-			By <%= @post.user.email %>
+			By <%= @post.user.username %>
 			<% end %>
 		</author>
 		<blogbody>
@@ -52,7 +52,7 @@
 				</table>
 			</commentvotes>
 			<commentfoot>
-				<div class="flex-grid-column(12)">Posted by <strong><%= c.user.email %> at <%= c.created_at %></strong></div>
+				<div class="flex-grid-column(12)">Posted by <strong><%= c.user.username %></strong><%= c.formatted_created_time %></div>
 			</commentfoot>
 		<% end %>
 	</commentbox>

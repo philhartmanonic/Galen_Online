@@ -1,5 +1,6 @@
-<h2><%= @user.email %></h2>
 <main>
+	<h2><%= @user.username %></h2>
+	<line><key>Email:</key> <val><%= @user.email %></val></line>
 	<line><key>Created At:</key>  <val><%= @user.created_at %></val></line>
 	<line><key>Updated At:</key>  <val><%= @user.updated_at %></val></line>
 	<line><key>Login Count:</key>  <val><%= @user.sign_in_count %></val></line>
