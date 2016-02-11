@@ -15,7 +15,7 @@ main > blogarticle {
 blogarticle > bloghead {
 	@include flex-grid-row(nest, $base: true);
 	@include flex-grid-column(12, 0);
-	padding-left: 1em;
+	padding-left: 10px;
 }
 
 bloghead > blogtitle {
@@ -32,11 +32,12 @@ bloghead > blogtitle {
 		@include flex-grid-column(8);
 	}
 	font-size: 1.5em;
-	@include flex-grid-column(7);
+	@include flex-grid-column-align(stretch);
+	@include flex-grid-row();
+	@include flex-grid-order(1);
 	line-height: 1.5;
 }
 bloghead > score {
-	@include flex-grid-column-align(middle);
 	font-size: 0.8em;
 	line-height: 0;
 	color: $cyanish;
@@ -47,8 +48,12 @@ bloghead > score {
 	text-align: center;
 	@media #{$medium-up} {
 		@include flex-grid-column(4);
+		@include flex-grid-column-align(middle);
 	}
-	@include flex-grid-column(5);
+	@include flex-grid-column-align(stretch);
+	@include flex-grid-row();
+	@include flex-grid-row-align(center);
+	@include flex-grid-order(0);
 }
 
 score > button {
@@ -61,15 +66,14 @@ score > table {
 }
 
 blogarticle > blogbody {
-	@include flex-grid-row();
+	@include flex-grid-row(nest);
 	@include flex-grid-column(12);
 	padding-bottom: 1em;
-	padding-left: 1em;
 	line-height: 1;
 }
 
 blogbody > p {
-	@include flex-grid-row(nest collapse);
+	@include flex-grid-row(nest);
 	@include flex-grid-column(12);
 }
 
@@ -78,11 +82,11 @@ blogbody > form {
 }
 
 blogarticle > author {
-	@include flex-grid-row();
+	@include flex-grid-row(nest);
 	@include flex-grid-column(12);
 	padding-bottom: 2em;
 	font-size: 0.8em;
-	padding-left: 1em;
+	padding-left: 10px;
 }
 
 author > p {
