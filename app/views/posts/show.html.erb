@@ -39,18 +39,20 @@
 	<commentbox>
 		<commenthead><%= @comments.count %> comments</commenthead>
 		<% @comments.each do |c| %>
-			<commentbody id="comment_<%= c.id %>">
-				<%= markdown(c.body) %>
-			</commentbody>
-			<commentvotes>
-				<table>
-					<tr>
-						<td align="center"><%= button_to '-1', "/posts/#{c.post_id}/comments/#{c.id}/downvote", method: :post %></td>
-						<td align="center"><%= c.score %></td>
-						<td align="center"><%= button_to '+1', "/posts/#{c.post_id}/comments/#{c.id}/upvote", method: :post %></td>
-					</tr>
-				</table>
-			</commentvotes>
+			<commenthing>
+				<commentbody id="comment_<%= c.id %>">
+					<%= markdown(c.body) %>
+				</commentbody>
+				<commentvotes>
+					<table>
+						<tr>
+							<td align="center"><%= button_to '-1', "/posts/#{c.post_id}/comments/#{c.id}/downvote", method: :post %></td>
+							<td align="center"><%= c.score %></td>
+							<td align="center"><%= button_to '+1', "/posts/#{c.post_id}/comments/#{c.id}/upvote", method: :post %></td>
+						</tr>
+					</table>
+				</commentvotes>
+			</commenthing>
 			<commentfoot>
 				<div class="flex-grid-column(12)">Posted by <strong><%= c.user.username %></strong><%= c.formatted_created_time %></div>
 			</commentfoot>

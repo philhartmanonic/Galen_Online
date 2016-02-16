@@ -1,34 +1,13 @@
-<header><center><h1><center><%= @state.name %></center></h1></center></header>
-<br>
-<div>
-  <main>
-    <article>
-      <p><strong>Primary or Caucus:</strong> <%= @state.p_or_c %></p>
-      <p><strong>Republican Date:</strong> <%= @state.gop_date %></p>
-      <p><strong>Democratic Date:</strong> <%= @state.dem_date %></p>
-      <dl>  
-        <dt><strong>Republican Delegates</strong></dt>
-          <dd>  
-            <ul>
-              <li>Pledged: <%= @state.gop_pledged %></li>
-              <li>Unpledged: <%= @state.gop_unpledged %></li>
-            </ul>
-          </dd>
-        </dl>
-        <dl>
-          <dt><strong>Democratic Delegates</strong></dt>
-          <dd>
-            <ul>
-              <li>Pledged: <%= @state.dem_pledged %></li>
-              <li>Unpledged: <%= @state.dem_unpledged %></li>
-            </ul>
-          </dd>
-        </dl>
-    </article>
-    <aside>
-      <%= link_to (image_tag @state.map.url(:medium)), @state.map.url(:original) %>
-    </aside>
-  </main>
-</div>
+<main>
+  <shade><%= @state.name %></shade>
+  <article>
+    <p><strong>Primary or Caucus:</strong> <%= @state.p_or_c %></p>
+    <p><strong>Republican Date:</strong> <%= @state.gop_date %></p>
+    <p><strong>Democratic Date:</strong> <%= @state.dem_date %></p>
+  </article>
+  <aside>
+    <%= link_to (image_tag @state.map.url(:medium)), @state.map.url(:original) %>
+  </aside>
+</main>
 <br>
 <footer><%= link_to "Back", states_path, {style: "margin-right:8px"} %>  |  <%= link_to "Edit #{@state.name}", edit_state_path(@state), {style: "margin-left: 8px"} %></footer>

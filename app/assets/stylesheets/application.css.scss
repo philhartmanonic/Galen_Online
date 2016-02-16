@@ -103,13 +103,19 @@ body > footer {
 	@include flex-grid-row-align(center);
 }
 
+body {
+	@include linear-gradient(to top, $s-green4, $s-green1);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
 secthead {
 	@include flex-grid-row($width: 100%);
 	font-size: 1em;
 	line-height: 1.4;
 	color: white;
 	font-weight: 300;
-	@include linear-gradient(to right, $med-blue-purple, $grad-purple);
+	@include linear-gradient(to right, $s-purp3, $s-purp5);
 	padding-left: 2em;
 	padding-top: 2em;
 	padding-bottom: 2em;
@@ -154,6 +160,9 @@ main > div > h4 {
 }
 
 main > article {
+	background-color: white;
+	outline-color: $s-purp5;
+	outline-style: ridge;	
 	@media #{$medium-up} {
 		@include flex-grid-column(8);
 		@include flex-grid-order(2);
@@ -163,6 +172,9 @@ main > article {
 
 }
 main > aside {
+	background-color: white;
+	outline-color: $s-purp5;
+	outline-style: ridge;
 	@media #{$medium-up} {
 		@include flex-grid-column(3);
 		@include flex-grid-order(0);
@@ -175,13 +187,43 @@ main > emp {
 	@include show-for(medium);
 	@include flex-grid-order(1);
 }
+main > p {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+main > shade {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	font-size: 2.5em;
+	font-weight: 400;
+	color: $s-purp4;
+	-webkit-text-fill-color: $s-purp3; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: $s-purp4;
+}
+
+main > table {
+	outline-style: solid;
+	border-color: black;
+}
 
 img {
 	max-width: 70%;
 }
 
+#name_main {
+	background-color: white;
+	outline-style: ridge;
+	outline-color: $s-purp3;
+	padding: 1em;
+}
+
 #name_main > img {
 	max-width: 30%;
+}
+
+#name_main > h3, #name_main > h4 {
+	color: $s-yell4;
 }
 
 .top-bar {
@@ -205,6 +247,8 @@ img {
 }
 
 p {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
 	font-family: DroidSerif;
 }
 
@@ -232,10 +276,10 @@ sidebox {
 	@include flex-grid-column(8,2);
 	font-family: DroidSerif;
 	color: $grad-purple;
-	background-color: $light-lav;
-	outline-color: $grad-purple;
+	background-color: $s-purp1;
+	outline-color: $s-purp5;
 	outline-style: ridge;
-	box-shadow: 0.8em 0.8em 0.4em $grad-purple;
+	box-shadow: 0.8em 0.8em 0.4em $s-purp5;
 	text-align: center;
 	padding-left: 1em;
 	padding-right: 1em;

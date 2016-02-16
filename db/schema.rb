@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210210448) do
+ActiveRecord::Schema.define(version: 20160216185559) do
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
@@ -80,10 +80,6 @@ ActiveRecord::Schema.define(version: 20160210210448) do
     t.string   "p_or_c"
     t.date     "gop_date"
     t.date     "dem_date"
-    t.integer  "gop_pledged"
-    t.integer  "gop_unpledged"
-    t.integer  "dem_pledged"
-    t.integer  "dem_unpledged"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "map_file_name"

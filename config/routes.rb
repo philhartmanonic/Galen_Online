@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :states
+  
+  resources :states do
+    collection { post :import }
+  end
+
   get 'resume/index'
   get 'posts/blog'
   get 'posts/all_blog'

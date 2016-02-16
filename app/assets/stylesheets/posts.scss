@@ -4,12 +4,14 @@
 
 @import "application";
 
+
 main > blogarticle {
 	@include flex-grid-row();
 	@include flex-grid-column(12);
 	font-family: DroidSerif;
-	outline-color: $light-lav;
+	outline-color: $s-purp3;
 	outline-style: ridge;
+	background-color: white;
 }
 
 blogarticle > bloghead {
@@ -19,7 +21,7 @@ blogarticle > bloghead {
 }
 
 bloghead > blogtitle {
-	color: $cyanish;
+	color: $s-yell5;
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
 	font-weight: 300;
 	margin-bottom: 0em;
@@ -30,25 +32,29 @@ bloghead > blogtitle {
 		font-size: 2.5em;
 		line-height: 110%;
 		@include flex-grid-column(8);
+		@include flex-grid-order(0);
 	}
 	font-size: 1.5em;
 	@include flex-grid-column-align(stretch);
-	@include flex-grid-row();
+	@include flex-grid-row(nest collapse);
 	@include flex-grid-order(1);
 	line-height: 1.5;
 }
 bloghead > score {
 	font-size: 0.8em;
 	line-height: 0;
-	color: $cyanish;
+	color: $s-purp5;
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
 	font-weight: 300;
 	padding-top: 0.7em;
 	padding-bottom: 0.7em;
 	text-align: center;
+	outline-color: $s-purp3;
+	outline-style: single;
 	@media #{$medium-up} {
 		@include flex-grid-column(4);
 		@include flex-grid-column-align(middle);
+		@include flex-grid-order(1);
 	}
 	@include flex-grid-column-align(stretch);
 	@include flex-grid-row();
@@ -56,13 +62,21 @@ bloghead > score {
 	@include flex-grid-order(0);
 }
 
-score > button {
+score > table > tbody > tr > td > button {
 	font-size: 0.8em;
+	background-color: $s-green1;
 }
 
-score > table {
+score > table > tbody {
 	line-height: 0;
 	margin-bottom: 0em;
+	border-style: solid;
+	border-color: $s-purp3;
+	background-color: $s-green1;
+}
+
+score > table > tbody > tr > td {
+	padding: 0.2em;
 }
 
 blogarticle > blogbody {
@@ -113,7 +127,8 @@ main > commentbox {
 	@include flex-grid-column(12);
 	@include flex-grid-column-align(middle);
 	font-family: DroidSerif;
-	outline-color: $light-lav;
+	background-color: white;
+	outline-color: $s-purp3;
 	outline-style: ridge;
 	padding-top: 0.7em;
 	padding-bottom: 0.7em;
@@ -129,7 +144,7 @@ commentbox > commenthead {
 	@include flex-grid-row();
 	@include flex-grid-column(12);
 	line-height: 0;
-	color: $cyanish;
+	color: $s-yell5;
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
 	font-weight: 300;
 	padding-top: 0.7em;
@@ -137,23 +152,36 @@ commentbox > commenthead {
 	text-align: center;
 }
 
-commentbox > commentbody {
-	@include flex-grid-row();
-	@include flex-grid-column(8);
+commenthing > commentbody {
 	font-family: DroidSerif;
 	padding-top: 1em;
-	border-top: medium groove $light-lav;
+	@media #{$medium-up} {
+		@include flex-grid-column(8);
+		@include flex-grid-order(0);
+	}
+	@include flex-grid-row(nest collapse);
+	@include flex-grid-order(1);
 }
 
-commentbox > commentvotes {
-	@include flex-grid-row();
-	@include flex-grid-column(4);
+commentbox > commenthing {
+	@include flex-grid-row(collapse, $width: 100%);
+	@include flex-grid-column(12);
+	border-top: medium groove $s-purp2;
+
+}
+commenthing > commentvotes {
 	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
-	color: $cyanish;
 	padding-top: 0.7em;
 	padding-bottom: 0.7em;
 	font-size: 0.8em;
-	border-top: medium groove $light-lav
+	@media #{$medium-up} {
+		@include flex-grid-column(4);
+		@include flex-grid-column-align(middle);
+		@include flex-grid-order(1);
+	}
+	@include flex-grid-row();
+	@include flex-grid-row-align(top);
+	@include flex-grid-order(0);
 }
 
 commentvotes > button {
@@ -172,6 +200,14 @@ commentbox > commentfoot {
 	padding-bottom: 1em;
 	font-size: 0.8em;
 	border-top: thin groove $light-lav;
+}
+
+commenthing > commentvotes > table > tbody {
+	line-height: 0;
+	margin-bottom: 0em;
+	border-style: solid;
+	border-color: $s-purp3;
+	background-color: $s-green1;
 }
 
 commentvotes > table > tbody > tr > td {

@@ -50,9 +50,8 @@
   </div>
   <div class="top-bar-left hide-for-medium">
     <ul class="vertical menu" data-accordion-menu>
-      <li><a style="font-weight: 600;" href="#">Galen Online!</a>
+      <li><a style="font-weight: 600;" href="#">Menu</a>
         <ul class="menu vertical nested">
-          <%= render 'shared/mob_nav_auth' %>
           <li><%= link_to "Home", "/" %></li>
           <% if current_user.nil? or current_user.role.nil? %>
           <% else %>
@@ -74,16 +73,16 @@
             <ul class="menu vertical nested">
               <li><%= link_to "About Me", welcome_about_path %></li>
               <li><%= link_to "Resume", resume_index_path %></li>
-              <li><a href="https://github.com/philhartmanonic">Github</a></li>
-            </ul>
-          </li>
-          <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
-          <li>
-            <a href="#">Portfolio</a>
-            <ul class="menu vertical nested">
-              <li><%= link_to "Blog", posts_blog_path %></li>
-              <li><%= link_to "Presidential Primaries", states_path %></li>
-              <li><a href="#">Social Tracking</a></li>
+              <li>
+                <a href="#">Portfolio</a>
+                <ul class="menu vertical nested">
+                  <li><%= link_to "Blog", posts_blog_path %></li>
+                  <li><a href="https://github.com/philhartmanonic">Github</a></li>
+                  <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
+                  <li><%= link_to "Presidential Primaries", states_path %></li>
+                  <li><a href="#">Social Tracking</a></li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li>
@@ -93,6 +92,8 @@
               <li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
             </ul>
           </li>
+            <%= render 'shared/mob_nav_auth' %>
+
         </ul>
       </li>
     </ul>

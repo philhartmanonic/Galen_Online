@@ -7,6 +7,15 @@ class StatesController < ApplicationController
     @states = State.all
   end
 
+  def import
+    State.import(params[:file])
+    redirect_to states_path, notice: "State Data imported!"
+  end
+
+  def calendar
+    @states = State.all
+  end
+
   # GET /states/1
   # GET /states/1.json
   def show
@@ -72,6 +81,6 @@ class StatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def state_params
-      params.require(:state).permit(:name, :p_or_c, :gop_date, :dem_date, :gop_pledged, :gop_unpledged, :dem_pledged, :dem_unpledged, :map)
+      params.require(:state).permit(:name, :p_or_c, :gop_date, :dem_date, :map)
     end
 end
