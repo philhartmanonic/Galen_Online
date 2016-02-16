@@ -197,7 +197,7 @@ main > shade {
 	font-size: 2.5em;
 	font-weight: 400;
 	color: $s-purp4;
-	-webkit-text-fill-color: $s-purp3; /* Will override color (regardless of order) */
+	-webkit-text-fill-color: $s-purp2; /* Will override color (regardless of order) */
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: $s-purp4;
 }
