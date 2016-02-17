@@ -1,22 +1,32 @@
 module ApplicationHelper
-	def markdown(text)
-	    options = {
-	      filter_html:     true,
-	      hard_wrap:       true, 
-	      link_attributes: { rel: 'nofollow', target: "_blank" },
-	      space_after_headers: true, 
-	      fenced_code_blocks: true
-	    }
 
-	    extensions = {
-	      autolink:           true,
-	      superscript:        true,
-	      disable_indented_code_blocks: true
-	    }
+  require 'redcarpet'
+  require 'rouge'
+  require 'rouge/plugins/redcarpet'
 
-	    renderer = Redcarpet::Render::HTML.new(options)
-	    markdown = Redcarpet::Markdown.new(renderer, extensions)
+  class HTML < Redcarpet::Render::HTML
+    include Rouge::Plugins::Redcarpet
+    def block_code(code, language)
+      Rouge.highlight(code, language || 'text', 'html')
+    end
+  end
 
-	    markdown.render(text).html_safe
-	end
+  class HTMLWithPants < Redcarpet::Render::HTML
+    include Redcarpet::Render::SmartyPants
+  end
+
+  def markdown(content)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
+      autolink:            true,
+      space_after_headers: true,
+      fenced_code_blocks:  true,
+      superscript:         true,
+      underline:           true,
+      highlight:           true,
+      footnotes:           true,
+      quote:               true,
+      tables:              true
+    })
+    @markdown.render(content).html_safe
+  end
 end
