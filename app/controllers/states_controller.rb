@@ -33,6 +33,10 @@ class StatesController < ApplicationController
     @states = State.all
   end
 
+  def calendar
+    @states = State.all
+  end
+
   # POST /states
   # POST /states.json
   def create

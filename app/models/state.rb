@@ -16,4 +16,16 @@ class State < ActiveRecord::Base
 	def formatted_gop_date
 		self.gop_date.strftime('%B %d')
 	end
+	
+	def both
+		self.gop_date == self.dem_date
+	end
+
+	def gop_own
+		self.both == false and self.gop_date.present?
+	end
+
+	def dem_own
+		self.both == false and self.dem_date.present?
+	end
 end

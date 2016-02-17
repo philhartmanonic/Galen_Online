@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  
+
   resources :states do
     collection { post :import }
   end
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'posts/all_blog'
   get 'welcome/welcome'
   get 'welcome/about'
+  get 'calendar', to: 'states#calendar'
 
   resources :posts do
     member do

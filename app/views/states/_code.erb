@@ -1,0 +1,17 @@
+<% @calendar_states = [] %>
+<% hash_id = 1 %>
+<% @states.each do |s| %>
+  <% if s.gop_own == true %>
+    <% @calendar_states << {id: hash_id, name: s.name, p_or_c: s.p_or_c, date: s.gop_date, party: 'Republican'} %>
+    <% hash_id += 1 %>
+  <% end %>
+  <% if s.dem_own == true %>
+    <% @calendar_states << {id: hash_id, name: s.name, p_or_c: s.p_or_c, date: s.dem_date, party: 'Democratic'} %>
+    <% hash_id += 1 %>
+  <% end %>
+  <% if s.both == true %>
+    <% @calendar_states << {id: hash_id, name: s.name, p_or_c: s.p_or_c, date: s.gop_date, party: 'Both'} %>
+    <% hash_id += 1 %>
+  <% end %>
+<% end %>
+<% @cs = @calendar_states.sort_by { |k| k[:date] } %>

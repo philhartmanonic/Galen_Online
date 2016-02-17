@@ -1,0 +1,27 @@
+<% render 'code' %>
+<main>
+	<h2>Primary Season Calendar</h2>
+	<fullarticle>
+	  <table>
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Type</th>
+	        <th>Party</th>
+	        <th>Date</th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	      <% @cs.each do |state| %>
+	        <tr>
+	          <td><%= state[:name] %></td>
+	          <td><%= state[:p_or_c] %></td>
+	          <td><%= state[:party] %></td>
+	          <td><%= state[:date] %></td>
+	        </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
+	</fullarticle>
+</main>

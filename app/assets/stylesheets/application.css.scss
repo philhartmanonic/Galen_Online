@@ -169,8 +169,15 @@ main > article {
 	}
 	@include flex-grid-column(12);
 	@include flex-grid-order(0);
-
 }
+
+main > fullarticle {
+	background-color: white;
+	outline-color: $s-purp5;
+	outline-style: ridge;
+	@include flex-grid-column(12);
+}
+
 main > aside {
 	background-color: white;
 	outline-color: $s-purp5;
