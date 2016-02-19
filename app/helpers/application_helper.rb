@@ -18,14 +18,19 @@ module ApplicationHelper
   def markdown(content)
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
       autolink:            true,
-      space_after_headers: true,
       fenced_code_blocks:  true,
       superscript:         true,
       underline:           true,
       highlight:           true,
       footnotes:           true,
       quote:               true,
-      tables:              true
+      tables:              true,
+      no_intra_emphasis: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
+      escape_html: true,
+      hard_wrap: true,
+      prettify: true
     })
     @markdown.render(content).html_safe
   end

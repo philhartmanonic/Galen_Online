@@ -86,9 +86,46 @@ blogarticle > blogbody {
 	line-height: 1;
 }
 
+blogbody > h1, blogbody > h2, blogbody > h3, blogbody > h4, blogbody > h5 {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+blogbody > h3 {
+	font-weight: 500;
+}
+
+blogbody > h5 {
+	font-weight: 500;
+}
+
+blogbody > .highlight:after {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+blogbody > pre {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	padding-bottom: 15px;
+	padding-top: 3px;
+}
+
+.highlight {
+	@include flex-grid-row($base: true);
+	@include flex-grid-column(12);
+	outline-style: solid;
+	outline-color: $s-purp3;
+	outline-width: thin;
+	border-style: solid;
+	border-color: $s-purp3;
+}
+
 blogbody > p {
 	@include flex-grid-row(nest);
 	@include flex-grid-column(12);
+	display: block;
+	clear: both;
 }
 
 blogbody > form {
