@@ -310,3 +310,11 @@ sidebox > h5 {
 a {
 	white-space: nowrap;
 }
+
+.ruby {
+	@extends .highlight;
+}
+
+.erb {
+	@extends .highlight;
+}

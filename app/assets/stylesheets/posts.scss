@@ -104,10 +104,10 @@ blogbody > .highlight:after {
 	@include flex-grid-column(12);
 }
 
-blogbody > pre {
-	@include flex-grid-row(nest);
+blogbody > .highlight {
+	@include flex-grid-row();
 	@include flex-grid-column(12);
-	padding-bottom: 15px;
+	margin-bottom: 15px;
 	padding-top: 3px;
 }
 
@@ -126,6 +126,10 @@ blogbody > p {
 	@include flex-grid-column(12);
 	display: block;
 	clear: both;
+}
+
+blogbody > code {
+	background-color: #49483e !important;
 }
 
 blogbody > form {

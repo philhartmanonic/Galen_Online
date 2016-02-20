@@ -18,4 +18,18 @@ class Post < ActiveRecord::Base
 	def formatted_created_time
 		self.created_at.strftime(" on %B %d, %Y at %I:%M %P")
 	end
+
+	private
+	
+	def to_html
+    Jekyll::Converters::Markdown::RedcarpetParser.new({
+      'highlighter' => 'rouge',
+      'redcarpet' => {
+        'extensions' => [
+          "no_intra_emphasis", "fenced_code_blocks", "autolink",
+          "strikethrough", "lax_spacing",  "superscript", "with_toc_data"
+        ]
+      }
+    }).convert(markdown)
+  end
 end

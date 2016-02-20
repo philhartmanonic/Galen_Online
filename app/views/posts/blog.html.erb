@@ -25,7 +25,8 @@
 				<%= p.formatted_created_time %>
 			</author>
 			<blogbody>
-				<%= markdown(p.body) %>
+				<%= markdown(truncate p.body, length: 1000) %>
+				<%= link_to 'Read More', p %>
 			</blogbody>
 			<blogfoot>
 				<%= link_to "View #{p.comments.count} Comments", post_path(p) %>
