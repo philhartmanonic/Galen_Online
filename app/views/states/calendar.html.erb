@@ -13,12 +13,13 @@
 	    </thead>
 
 	    <tbody>
-	      <% @cs.each do |state| %>
+	      <% @cs.each do |s| %>
+	      	<% @state = State.find_by(name: s[:name]) %>
 	        <tr>
-	          <td><%= state[:name] %></td>
-	          <td><%= state[:p_or_c] %></td>
-	          <td><%= state[:party] %></td>
-	          <td><%= state[:date] %></td>
+	          <td><%= link_to s[:name], @state %></td>
+	          <td><%= s[:p_or_c] %></td>
+	          <td><%= s[:party] %></td>
+	          <td><%= s[:date] %></td>
 	        </tr>
 	      <% end %>
 	    </tbody>

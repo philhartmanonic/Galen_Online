@@ -48,10 +48,12 @@ class State < ActiveRecord::Base
 				a = p.questions
 				b = {"Pollster": p.pollster, "Start Date": p.start_date, "End Date": p.end_date, "Results": []}
 				a.each do |q|
-					c = q.responses
-					c.each do |r|
-						if r[:party] == "Dem" and r[:topic] == "2016-president-dem-primary"
-							b[:Results].append([r[:choice], r[:value]])
+					if (q.name =~ /Senate/).nil? and (q.name =~ /Governor/).nil? and (q.name =~ / GE/).nil?
+						c = q.responses
+						c.each do |r|
+							if r[:party] == "Dem"
+								b[:Results].append([r[:choice], r[:value]])
+							end
 						end
 					end
 				end
@@ -74,10 +76,12 @@ class State < ActiveRecord::Base
 				a = p.questions
 				b = {"Pollster": p.pollster, "Start Date": p.start_date, "End Date": p.end_date, "Results": []}
 				a.each do |q|
-					c = q.responses
-					c.each do |r|
-						if r[:party] == "Rep" and r[:topic] == "2016-president-rep-primary"
-							b[:Results].append([r[:choice], r[:value]])
+					if (q.name =~ /Senate/).nil? and (q.name =~ /Governor/).nil? and (q.name =~ / GE/).nil?
+						c = q.responses
+						c.each do |r|
+							if r[:party] == "Rep"
+								b[:Results].append([r[:choice], r[:value]])
+							end
 						end
 					end
 				end

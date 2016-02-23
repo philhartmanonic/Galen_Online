@@ -2,8 +2,8 @@
   <shade><%= @state.name %></shade>
   <article>
     <p><strong>Primary or Caucus:</strong> <%= @state.p_or_c %></p>
-    <p><strong>Republican Date:</strong> <%= @state.gop_date %></p>
-    <p><strong>Democratic Date:</strong> <%= @state.dem_date %></p>
+    <p><strong>Republican Date:</strong> <%= @state.formatted_gop_date %></p>
+    <p><strong>Democratic Date:</strong> <%= @state.formatted_dem_date %></p>
   </article>
   <aside>
     <%= link_to (image_tag @state.map.url(:medium)), @state.map.url(:original) %>

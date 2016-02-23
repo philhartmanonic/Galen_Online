@@ -289,7 +289,8 @@ main {
 
 sidebox {
 	@include flex-grid-row();
-	@include flex-grid-column(8,2);
+	@include flex-grid-column(11);
+	@include flex-grid-row-align(spaced);
 	font-family: DroidSerif;
 	color: $grad-purple;
 	background-color: $s-purp1;
