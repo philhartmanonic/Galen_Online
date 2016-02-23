@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   
 
   scope '/admin' do
-    resources :users, :roles
+    resources :users
+    resources :candidates, :parties, :elections do
+      collection { post :import }
+    end
   end
 
   devise_for :users

@@ -4,6 +4,8 @@ class State < ActiveRecord::Base
 	include Pollster
 	has_attached_file :map, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :map, content_type: /\Aimage\/.*\Z/
+	has_many :elections
+	has_many :candidates, through: :elections
 
 	def self.import(file)
 		CSV.foreach(file.path, headers: true) do |row|
@@ -34,6 +36,26 @@ class State < ActiveRecord::Base
 
 	def dem_own
 		self.both == false and self.dem_date.present?
+	end
+
+	def dem_left
+		if self.dem_date - Date.today > 0
+			return (self.dem_date - Date.today).to_i
+		elsif self.dem_date == Date.today
+			return "Today"
+		else
+			return "Past"
+		end
+	end
+
+	def gop_left
+		if self.gop_date - Date.today > 0
+			return (self.gop_date - Date.today).to_i
+		elsif self.gop_date == Date.today
+			return "Today"
+		else
+			return "Past"
+		end
 	end
 
 	def dem_polls

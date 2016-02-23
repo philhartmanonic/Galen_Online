@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "application";
+@import "blink";
 
 @mixin word-wrap() {
   -ms-word-break: break-all;
@@ -13,7 +14,9 @@
 }
 
 next {
-	@include flex-grid-row($width: 95%);
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
 	padding-top: 1em;
 }
 
@@ -94,6 +97,27 @@ polla > date {
 
 polla > value {
 	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-size: 0.8em;
+}
+
+article > split {
+	@include flex-grid-row(nest);
+	@include flex-grid-row-align(spaced, stretch);
+}
+
+split > holder {
+	@include flex-grid-column(6);
+	@include flex-grid-column-align(stretch);
+}
+
+holder > paside {
+	@include flex-grid-row();
+	padding: 1em;
+}
+
+paside > result {
+	@include flex-grid-row(nest);
 	@include flex-grid-column(12);
 	font-size: 0.8em;
 }

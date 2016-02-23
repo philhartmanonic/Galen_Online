@@ -1,12 +1,56 @@
 <main>
   <shade><%= @state.name %></shade>
   <article>
-    <p><strong>Primary or Caucus:</strong> <%= @state.p_or_c %></p>
-    <p><strong>Republican Date:</strong> <%= @state.formatted_gop_date %></p>
-    <p><strong>Democratic Date:</strong> <%= @state.formatted_dem_date %></p>
+  	<split data-equalizer="split">
+  		<holder>
+	    	<paside>
+	    		<h4><%= "Democratic #{@state.p_or_c}" %></h4>
+	    		<% if @state.dem_left == "Today" %>
+	    			<blink>TODAY!!!</blink>
+	    		<% elsif @state.dem_left == "Past" %>
+	    			<p><h5>Results</h5></p>
+	    			<% @grouped_elections.each do |k, v| %>
+	    				<% if k[0] == @state.id and k[1] == 2 %>
+	    					<% v.each do |e| %>
+	    						<% if e.percent >= 5 %>
+	    							<result><%= "#{Candidate.find_by(id: e.candidate_id).full_name}: #{e.percent}%  Delegates: #{e.regs}" %></result>
+	    						<% end %>
+	    					<% end %>
+	    				<% end %>
+	    			<% end %>
+	    		<% else %>
+	    			<%= "There are #{@state.dem_left} days until the #{@state.name} Democratic #{@state.p_or_c}" %>
+	    		<% end %>
+	    	</paside>
+	    </holder>
+    	<holder>
+	    	<paside>
+	    		<h4><%= "Republican #{@state.p_or_c}" %></h4>
+	    		<% if @state.gop_left == "Today" %>
+	    			<blink>TODAY!!!</blink>
+	    		<% elsif @state.gop_left == "Past" %>
+	    			<p><h5>Results</h5></p>
+	    			<% @grouped_elections.each do |k, v| %>
+	    				<% if k[0] == @state.id and k[1] == 1 %>
+	    					<% v.each do |e| %>
+	    						<% if e.percent >= 5 %>
+	    							<result><%= "#{Candidate.find_by(id: e.candidate_id).full_name}: #{e.percent}%  Delegates: #{e.regs}" %></result>
+	    						<% end %>
+	    					<% end %>
+	    				<% end %>
+	    			<% end %>
+	    		<% else %>
+	    			<%= "There are #{@state.gop_left} days until the #{@state.name} Republican #{@state.p_or_c}" %>
+	    		<% end %>
+	    	</paside>
+	    </holder>
+    </split>
   </article>
   <aside>
-    <%= link_to (image_tag @state.map.url(:medium)), @state.map.url(:original) %>
+  	<holder>
+    <line><%= "Primary or Caucus: #{@state.p_or_c}" %></line>
+    <line><%= "Republican Date: #{@state.formatted_gop_date}" %></line>
+    <line><%= "Democratic Date: #{@state.formatted_dem_date}" %></line>
   </aside>
 </main>
 <next>

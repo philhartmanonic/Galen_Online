@@ -102,7 +102,9 @@
 body > header,
 body > footer,
 main {
-	@include flex-grid-row($width: 95%);
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
 	padding-top: 1em;
 }
 
@@ -191,15 +193,27 @@ main > aside {
 	background-color: white;
 	outline-color: $s-purp5;
 	outline-style: ridge;
+	@include flex-grid-column-align(stretch);
 	@media #{$medium-up} {
-		@include flex-grid-column(3);
+		@include flex-grid-column(4);
 		@include flex-grid-order(0);
 	}
 	@include flex-grid-column(12);
 	@include flex-grid-order(1);
 }
+
+aside > holder {
+	@include flex-grid-row(nest);
+	@include flex-grid-row-align(justify, stretch);
+	padding: 1em;
+}
+
+aside > holder > line {
+	@include flex-grid-column(12);
+}
+
 main > emp {
-	@include flex-grid-column(1);
+	@include flex-grid-column(0);
 	@include show-for(medium);
 	@include flex-grid-order(1);
 }

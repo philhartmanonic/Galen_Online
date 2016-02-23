@@ -21,6 +21,8 @@ class StatesController < ApplicationController
   def show
     @states = State.all
     @state = State.find(params[:id])
+    @elections = Election.all
+    @grouped_elections = @elections.order("percent desc").group_by { |i| [i.state_id, i.party_id] }
   end
 
   # GET /states/new

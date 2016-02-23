@@ -1,0 +1,38 @@
+<main>
+  <shade>Elections</shade>
+  <% @grouped_elections.each do |k, v| %>
+  <table>
+    <caption><%= "#{State.find_by(id: k[0]).name} - #{Party.find_by(id: k[1]).name}" %></caption>
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Vote %</th>
+        <th>Regular Delegates</th>
+        <th>Super Delegates</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% v.each do |e| %>
+        <tr>
+          <td><%= Candidate.find_by(id: e.candidate_id).full_name %></td>
+          <td><%= e.percent %></td>
+          <td><%= e.regs %></td>
+          <td><%= e.supers %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+  <div class="small-12 columns" style="background-color: white; outline-style: solid; outline-color: black; padding: 1em;">
+    <div class="row" style="padding-bottom: 0.7em;">
+      <h4>Import Elections</h4>
+    </div>
+    <div class="row">
+      <%= form_tag import_elections_path, multipart: true do %>
+      <%= file_field_tag :file %>
+    </div>
+    <div class="row" style="font-size: 0.8em;">
+      <%= submit_tag "Import CSV" %>
+    </div>
+  <% end %>
+</main>
