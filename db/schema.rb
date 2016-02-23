@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216185559) do
+ActiveRecord::Schema.define(version: 20160222182213) do
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20160216185559) do
   add_index "bands_users", ["band_id"], name: "index_bands_users_on_band_id"
   add_index "bands_users", ["user_id"], name: "index_bands_users_on_user_id"
 
+  create_table "candidates", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "pollster_slug"
+    t.integer  "party_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "candidates", ["party_id"], name: "index_candidates_on_party_id"
+
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "upvotes"
@@ -47,6 +58,12 @@ ActiveRecord::Schema.define(version: 20160216185559) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "parties", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pics", force: :cascade do |t|
     t.datetime "created_at",           null: false
@@ -86,6 +103,8 @@ ActiveRecord::Schema.define(version: 20160216185559) do
     t.string   "map_content_type"
     t.integer  "map_file_size"
     t.datetime "map_updated_at"
+    t.string   "dem_poll_slug"
+    t.string   "gop_poll_slug"
   end
 
   create_table "users", force: :cascade do |t|

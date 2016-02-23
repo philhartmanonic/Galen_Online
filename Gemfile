@@ -27,6 +27,7 @@ gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'redcarpet'
 gem 'rouge'
+gem 'pollster', '~> 0.2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 

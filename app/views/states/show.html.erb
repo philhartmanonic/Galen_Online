@@ -9,5 +9,46 @@
     <%= link_to (image_tag @state.map.url(:medium)), @state.map.url(:original) %>
   </aside>
 </main>
+<next>
+	<pollbox>
+	    <p><h3>Recent Polls:</h3></p>
+	    <polld>
+	    <shade>Democratic:</shade>
+	    	<polls>
+	    		<% if @state.dem_polls[0] == "Message" %>
+	    			<heads><%= @state.dem_polls[1] %></heads>
+	    		<% else %>
+			    	<% @state.dem_polls.each do |p| %>
+				    	<polla>
+				    		<heads><%= p[:Pollster] %></heads>
+				    		<date><%= p[:"Start Date"].strftime("%m/%d/%y") %> - <%= p[:"End Date"].strftime("%m/%d/%y") %></date>
+				    		<% p[:Results].each do |r| %>
+				    			<value><%= r[0] %>: <%= r[1] %></value>
+				    		<% end %>
+				    	</polla>
+			    	<% end %>
+			    <% end %>
+	    	</polls>
+		</polld>
+		<pollr>
+			<shade>Republican:</shade>
+	    	<polls>
+	    		<% if @state.gop_polls[0] == "Message" %>
+	    			<heads><%= @state.gop_polls[1] %></heads>
+	    		<% else %>
+			    	<% @state.gop_polls.each do |p| %>
+				    	<polla>
+				    		<heads><%= p[:Pollster] %></heads>
+				    		<date><%= p[:"Start Date"].strftime("%m/%d/%y") %> - <%= p[:"End Date"].strftime("%m/%d/%y") %></date>
+				    		<% p[:Results].each do |r| %>
+				    			<value><%= r[0] %>: <%= r[1] %></value>
+				    		<% end %>
+				    	</polla>
+			    	<% end %>
+			    <% end %>
+	    	</polls>
+		</pollr>
+	</pollbox>
+</next>
 <br>
 <footer><%= link_to "Back", states_path, {style: "margin-right:8px"} %>  |  <%= link_to "Edit #{@state.name}", edit_state_path(@state), {style: "margin-left: 8px"} %></footer>

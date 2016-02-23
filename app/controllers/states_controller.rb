@@ -20,6 +20,7 @@ class StatesController < ApplicationController
   # GET /states/1.json
   def show
     @states = State.all
+    @state = State.find(params[:id])
   end
 
   # GET /states/new
