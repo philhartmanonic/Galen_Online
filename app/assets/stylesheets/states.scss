@@ -121,3 +121,7 @@ paside > result {
 	@include flex-grid-column(12);
 	font-size: 0.8em;
 }
+
+table {
+	overflow: auto;
+}

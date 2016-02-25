@@ -280,6 +280,8 @@ p {
 	@include flex-grid-row(nest);
 	@include flex-grid-column(12);
 	font-family: DroidSerif;
+	display: block;
+	clear: both;
 }
 
 line {
@@ -333,6 +335,7 @@ sidebox > h5 {
 
 a {
 	white-space: nowrap;
+	display: inline block;
 }
 
 .ruby {
