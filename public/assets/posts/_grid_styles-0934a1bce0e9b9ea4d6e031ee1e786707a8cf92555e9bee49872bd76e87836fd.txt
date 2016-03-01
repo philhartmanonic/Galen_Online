@@ -1,0 +1,14 @@
+@import "application/grid_styles",
+"mixins";
+
+button {
+	@include small_text_green();
+}
+
+tbody {
+	@include score_table_style();
+}
+
+td {
+	padding: 0.2em;
+}
