@@ -1,98 +1,167 @@
-<main>
-  <shade><%= @state.name %></shade>
-  <article>
-  	<split>
-  		<holder>
-	    	<paside>
-	    		<h4><%= "Democratic #{@state.p_or_c}" %></h4>
-	    		<% if @state.dem_left == "Today" %>
-	    			<blink>TODAY!!!</blink>
-	    		<% elsif @state.dem_left == "Past" %>
-	    			<p><h5>Results</h5></p>
-	    			<% @grouped_elections.each do |k, v| %>
-	    				<% if k[0] == @state.id and k[1] == 2 %>
-	    					<% v.each do |e| %>
-	    						<% if e.percent >= 5 %>
-	    							<result><%= "#{Candidate.find_by(id: e.candidate_id).full_name}: #{e.percent}%  Delegates: #{e.regs}" %></result>
-	    						<% end %>
-	    					<% end %>
-	    				<% end %>
-	    			<% end %>
-	    		<% else %>
-	    			<%= "There are #{@state.dem_left} days until the #{@state.name} Democratic #{@state.p_or_c}" %>
-	    		<% end %>
-	    	</paside>
-	    </holder>
-    	<holder>
-	    	<paside>
-	    		<h4><%= "Republican #{@state.p_or_c}" %></h4>
-	    		<% if @state.gop_left == "Today" %>
-	    			<blink>TODAY!!!</blink>
-	    		<% elsif @state.gop_left == "Past" %>
-	    			<p><h5>Results</h5></p>
-	    			<% @grouped_elections.each do |k, v| %>
-	    				<% if k[0] == @state.id and k[1] == 1 %>
-	    					<% v.each do |e| %>
-	    						<% if e.percent >= 5 %>
-	    							<result><%= "#{Candidate.find_by(id: e.candidate_id).full_name}: #{e.percent}%  Delegates: #{e.regs}" %></result>
-	    						<% end %>
-	    					<% end %>
-	    				<% end %>
-	    			<% end %>
-	    		<% else %>
-	    			<%= "There are #{@state.gop_left} days until the #{@state.name} Republican #{@state.p_or_c}" %>
-	    		<% end %>
-	    	</paside>
-	    </holder>
-    </split>
-  </article>
-  <aside>
-  	<holder>
-    <line><%= "Primary or Caucus: #{@state.p_or_c}" %></line>
-    <line><%= "Republican Date: #{@state.formatted_gop_date}" %></line>
-    <line><%= "Democratic Date: #{@state.formatted_dem_date}" %></line>
-  </aside>
-</main>
-<next>
-	<pollbox>
-	    <p><h3>Recent Polls:</h3></p>
-	    <polld>
-	    <shade>Democratic:</shade>
-	    	<polls>
-	    		<% if @state.dem_polls[0] == "Message" %>
-	    			<heads><%= @state.dem_polls[1] %></heads>
-	    		<% else %>
-			    	<% @state.dem_polls.each do |p| %>
-				    	<polla>
-				    		<heads><%= p[:Pollster] %></heads>
-				    		<date><%= p[:"Start Date"].strftime("%m/%d/%y") %> - <%= p[:"End Date"].strftime("%m/%d/%y") %></date>
-				    		<% p[:Results].each do |r| %>
-				    			<value><%= r[0] %>: <%= r[1] %></value>
-				    		<% end %>
-				    	</polla>
-			    	<% end %>
-			    <% end %>
-	    	</polls>
-		</polld>
-		<pollr>
-			<shade>Republican:</shade>
-	    	<polls>
-	    		<% if @state.gop_polls[0] == "Message" %>
-	    			<heads><%= @state.gop_polls[1] %></heads>
-	    		<% else %>
-			    	<% @state.gop_polls.each do |p| %>
-				    	<polla>
-				    		<heads><%= p[:Pollster] %></heads>
-				    		<date><%= p[:"Start Date"].strftime("%m/%d/%y") %> - <%= p[:"End Date"].strftime("%m/%d/%y") %></date>
-				    		<% p[:Results].each do |r| %>
-				    			<value><%= r[0] %>: <%= r[1] %></value>
-				    		<% end %>
-				    	</polla>
-			    	<% end %>
-			    <% end %>
-	    	</polls>
-		</pollr>
-	</pollbox>
-</next>
-<br>
-<footer><%= link_to "Back", states_path, {style: "margin-right:8px"} %>  |  <%= link_to "Edit #{@state.name}", edit_state_path(@state), {style: "margin-left: 8px"} %></footer>
+<%= render 'shared/election_head' %>
+<bodysub class="altsub">
+	<content class="outlined main election-box">
+		<nocontent class="nosides">
+			<title class="election-subhead"><%= @state.name %></title>
+			<rthird class="nosides">
+			  	<nocontent class="nosides">
+			  		<ul class="accordion" data-accordion data-allow-all-closed="true">
+				  		<li class="accordion-item is-active" data-accordion-item>
+			    			<a href="#" class="accordion-title">Details</a>
+					    	<div class="accordion-content" data-tab-content>
+							    <p class="election-text"><%= "Primary or Caucus: #{@state.p_or_c}" %></p>
+							    <p class="election-text"><%= "Republican Date: #{@state.formatted_gop_date}" %></p>
+							    <p class="election-text"><%= "Democratic Date: #{@state.formatted_dem_date}" %></p>
+							</div>
+						</li>
+					</ul>
+		  		</nocontent>
+		  	</rthird>
+
+		  	<rthird class="nosides">
+	  			<nocontent class="nosides">
+		  			<ul class="accordion" data-accordion data-allow-all-closed="true">
+		  				<li class="accordion-item is-active" data-accordion-item>
+		    				<a href="#" class="accordion-title"><%= "Democratic #{@state.p_or_c}" %></a>
+				    		<div class="accordion-content" data-tab-content>
+					    		<% if @state.dem_left == "Today" %>
+					    			<p class="election-text">TODAY!!!</p>
+					    		<% elsif @state.dem_left == "Past" %>
+					    			<% @grouped_elections.each do |k, v| %>
+					    				<% if k[0] == @state.id and k[1] == 2 %>
+					    				<table class="election-text">
+					    					<caption>Democratic Results</caption>
+					    					<% v.each do |e| %>
+					    						<% if e.percent >= 5 %>
+													<tr>
+					    								<td><%= Candidate.find_by(id: e.candidate_id).full_name %></td>
+					    								<td><%= e.percent %></td>
+					    								<td><%= e.regs %></td>
+					    							</tr>
+					    						<% end %>
+					    					<% end %>
+					    				</table>
+					    				<% end %>
+					    			<% end %>
+					    		<% else %>
+					    			<p class="election-text"><%= "There are #{@state.dem_left} days until the #{@state.name} Democratic #{@state.p_or_c}" %></p>
+					    		<% end %>
+					    	</div>
+				    	</li>
+				    </ul>
+				</nocontent>
+			</rthird>
+			<rthird class="nosides">
+				<nocontent class="nosides">
+		    		<ul class="accordion" data-accordion data-allow-all-closed="true">
+		  				<li class="accordion-item is-active" data-accordion-item>
+		    				<a href="#" class="accordion-title"><%= "Republican #{@state.p_or_c}" %></a>
+				    		<div class="accordion-content" data-tab-content>
+					    		<% if @state.gop_left == "Today" %>
+					    			<p class="election-text">TODAY!!!</p>
+					    		<% elsif @state.gop_left == "Past" %>
+					    			<% @grouped_elections.each do |k, v| %>
+					    				<% if k[0] == @state.id and k[1] == 1 %>
+					    				<table class="election-text" style="border: none;">
+					    					<caption>Republican Results</caption>
+					    					<% v.each do |e| %>
+					    						<% if e.percent >= 5 %>
+					    							<tr>
+					    								<td><%= Candidate.find_by(id: e.candidate_id).full_name %></td>
+					    								<td><%= e.percent %></td>
+					    								<td><%= e.regs %></td>
+					    							</tr>
+					    						<% end %>
+					    					<% end %>
+					    				</table>
+					    				<% end %>
+					    			<% end %>
+					    		<% else %>
+					    			<p class="election-text"><%= "There are #{@state.gop_left} days until the #{@state.name} Republican #{@state.p_or_c}" %></p>
+					    		<% end %>
+					    	</div>
+					    </li>
+					</ul>
+				</nocontent>
+			</rthird>
+		</nocontent>
+	</content>
+	<subcontent class="outlined main election-box">
+		<portal>
+			<content>
+			    <title class="election-subhead">Recent Polls</title>
+			    <rsplit class="nosides">
+			    	<content class="nosides">
+			    		<ul class="accordion" data-accordion data-allow-all-closed="true">
+				  			<li class="accordion-item is-active" data-accordion-item>
+			    				<a href="#" class="accordion-title">Democratic</a>
+				    			<div class="accordion-content" data-tab-content>
+							    	<content class="nosides">
+							    		<% if @state.dem_polls[0] == "Message" %>
+							    			<portal class="small-title election-text"><%= @state.dem_polls[1] %></portal>
+							    		<% else %>
+									    	<% @state.dem_polls.each do |p| %>
+										    	<split>
+										    		<content class="outlined nosides" style="margin-bottom: 10px">
+										    			<table style="border: none;">
+										    				<tr>
+										    					<td><p class="small-title election-text" style="margin: 0;"><%= p[:Pollster] %></p>
+											    				<p class="small-meta election-text" style="margin: 0;"><%= p[:"Start Date"].strftime("%m/%d/%y") %> - <%= p[:"End Date"].strftime("%m/%d/%y") %></p></td>
+											    			</tr>
+													    	<% p[:Results].each do |r| %>
+													    		<tr>
+													    			<td class="small-line election-text"><%= r[0] %>: <%= r[1] %></td>
+													    		</tr>
+													    	<% end %>
+													    </table>
+													</portal>
+										    	</split>
+									    	<% end %>
+									    <% end %>
+							    	</content>
+							    </div>
+							</li>
+						</ul>
+				    </content>
+				</rsplit>
+				<rsplit>
+					<content class="nosides">
+			    		<ul class="accordion" data-accordion data-allow-all-closed="true">
+				  			<li class="accordion-item is-active" data-accordion-item>
+			    				<a href="#" class="accordion-title">Republican</a>
+				    			<div class="accordion-content" data-tab-content>
+							    	<content class="nosides">
+							    		<% if @state.gop_polls[0] == "Message" %>
+							    			<portal class="small-title election-text"><%= @state.gop_polls[1] %></portal>
+							    		<% else %>
+									    	<% @state.gop_polls.each do |p| %>
+										    	<split>
+										    		<content class="outlined nosides" style="margin-bottom: 10px;">
+										    			<table style="border: none;">
+										    				<tr>
+										    					<td><p class="small-title election-text" style="margin: 0;"><%= p[:Pollster] %></p>
+											    				<p class="small-meta election-text" style="margin: 0;"><%= p[:"Start Date"].strftime("%m/%d/%y") %> - <%= p[:"End Date"].strftime("%m/%d/%y") %></p></td>
+											    			</tr>
+													    	<% p[:Results].each do |r| %>
+													    		<tr>
+													    			<td class="small-line election-text"><%= r[0] %>: <%= r[1] %></td>
+													    		</tr>
+													    	<% end %>
+													    </table>
+													</portal>
+										    	</split>
+									    	<% end %>
+									    <% end %>
+							    	</content>
+							    </div>
+							</li>
+						</ul>
+				    </content>
+				    </content>
+				</rsplit>
+			</portal>
+		</subcontent>
+		<br>
+		<content class="election-text"><%= link_to "Back", electiondashboard_path, {style: "text-decoration: none; color: white;"} %></footer>
+	</content>
+</bodysub>

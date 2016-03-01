@@ -1,0 +1,26 @@
+<%= render 'shared/election_head' %>
+<bodysub class="altsub">
+	<main>
+		<content class="outlined main">
+			<portal>
+				<content>
+					<rasidel>
+						<%= image_tag @candidate.profile.url(:medium) %>
+					</rasidel>
+					<rbigr>
+						<submiddle>
+							<name><%= @candidate.full_name %></name>
+							<hr>
+							<p class="election-text"><%= "#{@candidate.total} delegates" %></p>
+							<% if @candidate.needs < 1 %>
+								<p class="election-text"><%= "#{@candidate.full_name} has won the #{@candidate.party.name} nomination" %></p>
+							<% else %>
+								<p class="election-text"><%= "#{@candidate.full_name} needs #{@candidate.needs} delegates to win the #{@candidate.party.name} nomination" %></p>
+							<% end %>
+						</submiddle>
+					</rbigr>
+				</content>
+			</portal>
+		</content>
+	</main>
+</bodysub>

@@ -1,36 +1,57 @@
-<header><h1>The Daily Galen</h1></header>
-<main>
-	<% @recents.each do |p| %>
-		<blogarticle>
-			<bloghead>
-				<blogtitle>
-					<%= p.title.strip %>
-				</blogtitle>
-				<score>
-					<table>
-						<tr>
-							<td><%= button_to '-1', downvote_post_path(p), method: :post %></td>
-							<td><%= p.score %></td>
-							<td><%= button_to '+1', upvote_post_path(p), method: :post %></td>
-						</tr>
-					</table>
-				</score>
-			</bloghead>
-			<author>
-				<% if p.user.nil? %>
-				By Unkown
-				<% else %>
-				By <%= p.user.username %>
-				<% end %>
-				<%= p.formatted_created_time %>
-			</author>
-			<blogbody>
-				<%= markdown(truncate p.body, length: 1000) %>
-				<%= link_to 'Read More', p %>
-			</blogbody>
-			<blogfoot>
-				<%= link_to "View #{p.comments.count} Comments", post_path(p) %>
-			</blogfoot>
-		</blogarticle>
-	<% end %>
-</main>
+<content class="blogtitle">The Daily Galen</content>
+<content class="blogtitle">
+	<split class="special-menu">
+		<%= link_to "GalenHome", "/", class: "land-link" %>
+	</split>
+	<split class="special-menu">
+		<%= link_to "Blog", posts_blog_path, class: "land-link" %>
+	</split>
+</content>
+<bodysub>
+	<main>
+		<% @recents.each do |p| %>
+			<content class="outlined blog">
+				<portal>
+					<rbigl>
+						<portal class="article-title">
+							<%= p.title.strip %>
+						</portal>
+					</rbigl>
+					<rasider>
+						<right>
+							<table class="voting">
+								<tr>
+									<td class="upordown"><%= button_to '-1', downvote_post_path(p), method: :post, class: "vote" %></td>
+									<td class="score upordown"><%= p.score %></td>
+									<td class="upordown"><%= button_to '+1', upvote_post_path(p), method: :post, class: "vote" %></td>
+								</tr>
+							</table>
+						</right>
+					</rasider>
+				</portal>
+				<content>
+					<portal class="small-meta">
+						<% if p.user.nil? %>
+						By Unkown
+						<% else %>
+						By <%= p.user.username %>
+						<% end %>
+						<%= p.formatted_created_time %>
+					</portal>
+				</content>
+				<content>
+					<portal class="blogbody">
+						<%= markdown(truncate p.body, length: 1000) %>
+						<%= link_to 'Read More', p %>
+					</portal>
+				</content>
+				<hr>
+				<content>
+					<portal class="small-meta">
+						<%= link_to "View #{p.comments.count} Comments", post_path(p) %>
+					</portal>
+				</content>
+			</content>
+		<% end %>
+	</main>
+</bodysub>

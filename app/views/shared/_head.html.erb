@@ -1,4 +1,11 @@
-<secthead>
-	<h1>GALEN ONLINE!</h1><br>
-	<h4>Welcome to the home of all things <br class="show-for-small-only">Galen W Burghardt related!</h4>
-</secthead>
+<portal class="secthead show-for-medium">
+  <content>
+    <portal>
+      <%= image_tag "logo.png", align: "center" %>
+    </portal>
+  </content>
+</portal>
+<%= render 'shared/topmenu' %>
+<portal class="secthead hide-for-medium">
+  <content><%= image_tag "logo.png", align: "center" %></content>
+</portal>

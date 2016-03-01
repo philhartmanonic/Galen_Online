@@ -1,38 +1,37 @@
-<main>
-	<aside>
-		<br>
-		<h3 style="text-align: center;">My Projects</h3>
-		<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-use-m-u-i="false">
-	        <ul class="orbit-container">
-	          <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
-	          <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
-	          <li class="is-active orbit-slide">
-	          	<br>
-	            <sidebox>
-	            	<h5 style="text-align: center;"><%= link_to "The Daily Galen", posts_blog_path %></h5>
-	            	<p>A personal, markup-enabled blog, with custom views and abilities for Readers, Bloggers, and Administrators</p>
-	            </sidebox>
-	            <br>
-	          </li>
-	          <li class="orbit-slide">
-	          	<br>
-	            <sidebox>
-	            	<h5 style="text-align: center;"><%= link_to "Presidential Primaries", calendar_path %></h5>
-	            	<p>A database of state primary/caucus information</p>
-	            </sidebox>
-	            <br>
-	          </li>
-	        </ul>
-	        <nav class="orbit-bullets">
-	         <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
-	         <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-	       </nav>
-      </div>
-	</aside>
-	<article>
-		<br>
-		<h1 style="text-align: center;">Welcome to Galen Online</h1><br>
-		<p>This is the online home of the personal projects of Galen W Burghardt.  I am a web developer living in Evanston, IL, just north of Chicago.  I've built this site full-stack from scratch, using Rails, Foundation 6 (so CSS and SASS), PostgreSQL, and it's hosted on AWS using Elastic Beanstalk and RDS.</p>
-		<p>Please check out some of my projects, my resume, my code samples, etc.  I'm currently on the hunt for my next full-time gig, so if you're working on something cool that I can help you out with, or if you'd just like to connect, feel free to <a href="mailto:galen.w.burghardt@gmail.com">get in touch!</a></p>
-	</article>
-</main>
+<landingcontainer>
+	<div class="off-canvas-wrapper">
+		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+			<div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+				<main class="logobox">
+					<thing class="logo">
+						<%= image_tag 'logo.png', align: 'center' %>
+					</thing>
+				</main>
+				<thing class="logo">
+					<portal class="landing-menu">
+						<ul class="landing-list">
+							<li><%= link_to "What's going on", welcome_about_path, class: "land-link" %></li>
+							<li><a class="land-link" href="https://github.com/philhartmanonic/Galen_Online">Source code</a></li>
+							<li><%= link_to "Primaries", electiondashboard_path, class: "land-link" %></li>
+							<li><%= link_to "Blog", posts_blog_path, class: "land-link" %></li>
+							<% a = rand(1..2) %>
+							<% if a == 1 %>
+								<li><%= link_to "Random app", electiondashboard_path, class: "land-link" %></li>
+							<% elsif a == 2 %>
+								<li><%= link_to "Random app", posts_blog_path, class: "land-link" %></li>
+							<% end %>
+						</ul>
+					</ul>
+				</thing>
+			</div>
+			<div class="off-canvas-content landing-main" data-off-canvas-content>
+				<middle>
+					<thing>
+						<title class="landtitle">Welcome to Galen Online</title>
+						<button type="button" class="button landbutton" data-toggle="offCanvas">See What's Inside</button>
+					</thing>
+				</middle>
+			</div>
+		</div>
+	</div>
+</landingcontainer>

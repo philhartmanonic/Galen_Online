@@ -1,0 +1,142 @@
+<%= render 'shared/election_head' %>
+<bodysub class="altsub">
+	<content>
+		<subcontent class="outlined main">
+			<portal>
+				<electionholder>
+					<rsplit class="blogbody">
+						<h1>Democrats</h1>
+						<table style="border: none; border-collapse: collapse;">
+							<thead>
+								<tr>
+									<th colspan="2" style="padding-right: 0;"></th>
+									<th>Total Delegates</th>
+									<th>Regular Delegates</th>
+									<th>Superdelegates</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @dems.each do |c| %>
+								<tr>
+									<td style="padding-left: 0; padding-right: 0; padding-top: 0.3em; padding-bottom: 0.3em;"><%= image_tag c.profile.url(:thumb), style: "min-width: 5em;" %></td>
+									<td><%= link_to c.full_name, c, style: "text-decoration: none;" %></td>
+									<td><%= c.total %></td>
+									<td><%= c.regulars %></td>
+									<td><%= c.supers %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</rsplit>
+					<rsplit class="blogbody">
+						<h1>Republicans</h1>
+						<table style="border: none; border-collapse: collapse;">
+							<thead>
+								<tr>
+									<th colspan="2" style="padding-right: 0;"></th>
+									<th>Delegates</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @reps.each do |c| %>
+								<tr>
+									<td style="padding-left: 0; padding-right: 0; padding-top: 0.3em; padding-bottom: 0.3em;"><%= image_tag c.profile.url(:thumb), style: "min-width: 5em;" %></td>
+									<td><%= link_to c.full_name, c, style: "text-decoration: none;" %></td>
+									<td><%= c.total %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</rsplit>
+				</electionholder>
+				<electionholder>
+					<rsplit class="blogbody">
+						<table style="border: none;">
+							<caption>Upcoming Elections</caption>
+							<tbody>
+								<% @demstates.each do |s| %>
+									<tr>
+										<td><%= link_to s.name, s, style: "text-decoration: none;" %></td>
+										<td><% if s.dem_date.present? %><%= s.dem_date.strftime("%m-%d-%y") %><% end %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</rsplit>
+					<rsplit class="blogbody">
+						<br>
+						<table style="border: none;">
+							<caption>Upcoming Elections</caption>
+							<tbody>
+								<% @repstates.each do |s| %>
+									<tr>
+										<td><%= link_to s.name, s, style: "text-decoration: none;" %></td>
+										<td><%= s.gop_date.strftime("%m-%d-%y") %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</rsplit>
+				</electionholder>
+				<electionholder>
+					<rsplit class="blogbody">
+						<electionholder class="electionhead">Democratic Election Results</electionholder>
+						<% @dem_elections.each do |k, v| %>
+						<table style="border: none;">
+							<caption><%= "#{State.find_by(id: k[0]).name} #{State.find_by(id: k[0]).p_or_c}" %></caption>
+							<thead>
+								<tr>
+									<th>Candidate</th>
+									<th>Total Delegates</th>
+									<th>Percent</th>
+									<th>Regular Delegates</th>
+									<th>Super Delegates</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% v.each do |e| %>
+								<tr>
+									<td><%= Candidate.find_by(id: e.candidate_id).full_name %></td>
+									<td><%= e.regs + e.supers %></td>
+									<td><%= e.percent %></td>
+									<td><%= e.regs %></td>
+									<td><%= e.supers %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+						<% end %>
+					</rsplit>
+					<rsplit class="blogbody">
+						<electionholder class="electionhead">Republican Election Results</electionholder>
+						<% @gop_elections.each do |k, v| %>
+						<table style="border: none;">
+							<caption><%= "#{State.find_by(id: k[0]).name} #{State.find_by(id: k[0]).p_or_c}" %></caption>
+							<thead>
+								<tr>
+									<th>Candidate</th>
+									<th>Percent</th>
+									<th>Delegates</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% v.each do |e| %>
+								<tr>
+									<td><%= Candidate.find_by(id: e.candidate_id).full_name %></td>
+									<td><%= e.percent %></td>
+									<td><%= e.regs %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+						<% end %>
+					</rsplit>
+				</electionholder>
+			</portal>
+		</subcontent>
+	</content>
+</bodysub>
+
+
+
+

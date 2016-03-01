@@ -1,51 +1,54 @@
 <div class="top-bar">
   <div class="top-bar-left show-for-medium">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text"><%= link_to "Galen Online!", "/" %></li>
-      <% if current_user.nil? or current_user.role.nil? %>
-      <% else %>
-        <% if current_user.role.name === "Admin" %>
-        <li><a href="#">Admin</a>
+    <submiddle>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+          <a href="#">Portfolio</a>
           <ul class="menu vertical">
-            <li><%= link_to "Blog", posts_path %></li>
-            <li><%= link_to "Users", users_path %></li>
-            <li><%= link_to "Roles", roles_path %></li>
+            <li><%= link_to "Blog", posts_blog_path %></li>
+            <li><%= link_to "Presidential Primaries", electiondashboard_path %></li>
           </ul>
         </li>
-        <% end %>
-        <% if current_user.role.name === "Blogger" %>
-        <li><%= link_to "Blogger", posts_path %></li>
-        <% end %>
-      <% end %>
-      <li>
-        <a href="#">About</a>
-        <ul class="menu vertical">
-          <li><%= link_to "About Me", welcome_about_path %></li>
-          <li><%= link_to "Resume", resume_index_path %></li>
-          <li><a href="https://github.com/philhartmanonic">Github</a></li>
-        </ul>
-      </li>
-      <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
-      <li>
-        <a href="#">Portfolio</a>
-        <ul class="menu vertical">
-          <li><%= link_to "Blog", posts_blog_path %></li>
-          <li><%= link_to "Presidential Primaries", calendar_path %></li>
-          <li><a href="#">Social Tracking</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Music</a>
-        <ul class="menu vertical">
-          <li><a href="http://teatsunami.bandcamp.com/">Tea Tsunami</a></li>
-          <li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
-        </ul>
-      </li>
-    </ul>
+        <li>
+          <a href="#">About</a>
+          <ul class="menu vertical">
+            <li><%= link_to "About GalenOnline", welcome_about_path %></li>
+            <li><a href="https://github.com/philhartmanonic">Github</a></li>
+            <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Music</a>
+          <ul class="menu vertical">
+            <li><a href="http://teatsunami.bandcamp.com/">Tea Tsunami</a></li>
+            <li><a href="https://www.reverbnation.com/galenwarnerburghardt">Solo</a></li>
+          </ul>
+        </li>
+      </ul>
+    </submiddle>
   </div>
   <div class="top-bar-right show-for-medium">
     <ul class="dropdown menu" data-dropdown-menu>
-      <%= render 'shared/nav_links_for_auth' %>
+      <% if current_user.nil? or current_user.role.nil? %>
+        <% else %>
+          <% if current_user.role.name === "Admin" %>
+          <li><a class="menu-text" href="#">Admin</a>
+            <ul class="menu vertical">
+              <li><%= link_to "Blog", posts_path, class: "menu-text" %></li>
+              <li><%= link_to "Users", users_path, class: "menu-text" %></li>
+              <li><%= link_to "Roles", roles_path, class: "menu-text" %></li>
+            </ul>
+          </li>
+          <% end %>
+          <% if current_user.role.name === "Blogger" %>
+          <li><%= link_to "Blogger", posts_path %></li>
+          <% end %>
+        <% end %>
+      <li><a class="menu-text" href="#">Manage your account</a>
+        <ul class="menu vertical">
+          <%= render 'shared/nav_links_for_auth' %>
+        </ul>
+      </li>
     </ul>
   </div>
   <div class="top-bar-left hide-for-medium">
@@ -79,7 +82,7 @@
                   <li><%= link_to "Blog", posts_blog_path %></li>
                   <li><a href="https://github.com/philhartmanonic">Github</a></li>
                   <li><a href="https://github.com/philhartmanonic/Galen_Online">Source Code</a></li>
-                  <li><%= link_to "Presidential Primaries", calendar_path %></li>
+                  <li><%= link_to "Presidential Primaries", electiondashboard_path %></li>
                   <li><a href="#">Social Tracking</a></li>
                 </ul>
               </li>

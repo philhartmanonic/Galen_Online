@@ -1,0 +1,18 @@
+@font-face {
+	font-family: 'Fanwood';
+	src:font-url('Fanwood-webfont.eot');
+	src:font-url('Fanwood-webfont.eot?iefix') format('eot'),
+		font-url('Fanwood-webfont.woff') format('woff'),
+		font-url('Fanwood-webfont.ttf') format('truetype'),
+		font-url('Fanwood-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+	font-family: 'Fanwood-Italic';
+	src:font-url('Fanwood-Italic-webfont.eot');
+	src:font-url('Fanwood-Italic-webfont.eot?iefix') format('eot'),
+		font-url('Fanwood-Italic-webfont.woff') format('woff'),
+		font-url('Fanwood-Italic-webfont.ttf') format('truetype'),
+		font-url('Fanwood-Italic-webfont.svg#webfont') format('svg');
+	font-style: italic, oblique;
+}

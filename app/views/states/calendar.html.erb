@@ -1,28 +1,36 @@
 <% render 'code' %>
-<main>
-	<h2>Primary Season Calendar</h2>
-	<fullarticle>
-	  <table>
-	    <thead>
-	      <tr>
-	        <th>Name</th>
-	        <th>Type</th>
-	        <th>Party</th>
-	        <th>Date</th>
-	      </tr>
-	    </thead>
+<%= render 'shared/election_head' %>
+<bodysub class="altsub">
+	<content>
+		<subcontent class="outlined main election-box">
+			<portal>
+				<content>
+					<title class="election-subhead">Primary Season Calendar</title>
+					<table class="election-text" style="border: none;">
+				    	<thead>
+				      		<tr>
+				        		<th>Name</th>
+				        		<th>Date</th>
+				        		<th>Party</th>
+				        		<th>Type</th>
+				      		</tr>
+				    	</thead>
 
-	    <tbody>
-	      <% @cs.each do |s| %>
-	      	<% @state = State.find_by(name: s[:name]) %>
-	        <tr>
-	          <td><%= link_to s[:name], @state %></td>
-	          <td><%= s[:p_or_c] %></td>
-	          <td><%= s[:party] %></td>
-	          <td><%= s[:date] %></td>
-	        </tr>
-	      <% end %>
-	    </tbody>
-	  </table>
-	</fullarticle>
-</main>
+				    	<tbody>
+				      		<% @cs.each do |s| %>
+			      				<% @state = State.find_by(name: s[:name]) %>
+			        			<tr>
+			        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], @state %></td>
+			        				<td style="min-width: 5em;"><%= s[:date].strftime("%m-%d-%y") %></td>
+			        				<td><%= s[:party] %></td>
+			        				<td><%= s[:p_or_c] %></td>
+			        			</tr>
+			      			<% end %>
+				    	</tbody>
+					</table>
+				</content>
+			</portal>
+		</subcontent>
+	</content>
+	<%= render 'shared/alerts' %>
+</bodysub>

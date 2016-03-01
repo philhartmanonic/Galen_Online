@@ -1,0 +1,32 @@
+@import "application/semantic_grid",
+"mixins";
+
+main > blogarticle {
+	@include unnested_twelve();
+	@include white_purple_ridge();
+	@include droid();
+}
+
+blogarticle > bloghead {
+	@include justified_holder();
+	@include post_header();
+}
+
+bloghead > blogtitle {
+	@include responsive_title(2.5, 1.5);
+	@include responsive_box(8, 0, 1);
+	@include helvetica();
+	@include posthead_style();
+}
+
+bloghead > score {
+	@include responsive_box(4, 1, 0);
+	@include helvetica();
+	@include score_style();
+	@include light_padding();
+}
+
+blogarticle > blogbody {
+	@include column_twelve();
+
+}

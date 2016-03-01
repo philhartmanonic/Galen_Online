@@ -1,0 +1,396 @@
+@import "settings",
+"foundation",
+"foundation_and_overrides",
+"main/mixins";
+
+.container,
+body > footer,
+body > main {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+	height: 100%;
+	max-width: 100vw;
+}
+
+content {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+}
+
+subcontent {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+}
+
+nocontent {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+subnocontent {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+portal {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12, 0);
+	@include flex-grid-row-align(justify, stretch);
+	overflow: auto;
+}
+
+RbigL {
+	@include responsive_box(8, 0, 1);
+	@include responsive_title(2.5, 1.5)
+}
+
+RasideR {
+	@include responsive_box(4, 1, 0);
+}
+
+RbigR {
+	@include responsive_box(8, 1, 1);
+	@include responsive_title(2.5, 1.5);
+}
+
+RasideL {
+	@include responsive_box(4, 0, 0);
+}
+
+bigR {
+	@include flex-grid-column(8);
+	@include flex-grid-order(1);
+	overflow: auto;
+}
+
+bigL {
+	@include flex-grid-column(8);
+	@include flex-grid-order(0);
+}
+
+asideL {
+	@include flex-grid-column(4);
+	@include flex-grid-order(0);
+}
+
+asideR {
+	@include flex-grid-column(4);
+	@include flex-grid-order(1);
+}
+
+split {
+	@include flex-grid-column(6);
+}
+
+rsplit {
+	@media #{$medium-up} {
+		@include flex-grid-column(6);
+		@include flex-grid-column-align(top);
+	}
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+}
+
+.floating-purple {
+	@include flex-grid-row();
+	@include flex-grid-column(11);
+	@include flex-grid-row-align(spaced, middle);
+	@include floating-purp();
+	margin: 0;
+}
+
+.mainbox {
+	min-height: 77.5vh;
+	min-width: 87.5vw;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.main {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	max-width: 87.5vw;
+}
+
+.main > p {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+.orbit {
+	min-height: 50vh;
+	margin: 0;
+}
+
+.orbit-container {
+	min-height: 40vh;
+	padding: 16px;
+	@include flex-grid-column-align(middle);
+}
+
+bodysub {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+	min-height: 100vh;
+	margin: 0;
+}
+
+landingcontainer {
+	@include flex-grid-row();
+	padding: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+}
+
+.landing-main {
+	min-height: 100vh;
+}
+
+.logobox {
+	@include flex-grid-row(nest);
+	@include flex-grid-row-align(spaced, top);
+}
+
+.logo {
+	@include flex-grid-row-align(spaced, middle);
+}
+
+.off-canvas-wrapper-inner {
+	min-width: 100vw;
+	min-height: 100vh;
+}
+
+.position-left {
+	min-height: 100vh;
+}
+
+middle {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, middle);
+	min-height: 100vh;
+}
+
+submiddle {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, middle);
+}
+
+submiddle > p {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	padding-top: 1em;
+}
+
+name {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+title {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced);
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+thing {
+	@include flex-grid-row();
+	@include flex-grid-row-align(spaced);
+}
+
+.landing-menu {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+}
+
+.blog {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+}
+
+.bloghead {
+	margin-top: 1em;
+}
+
+shell {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12, 0);
+	@include flex-grid-row-align(justify, stretch);
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+.blogbody {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.blogbody > p,
+.blogbody > h1,
+.blogbody > h2,
+.blogbody > h3,
+.blogbody > h4,
+.blogbody > h5 {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+.blogbody > code {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	padding: 1em;
+	margin: 1em;
+}
+
+.voting {
+	margin: 0;
+	width: 9em;
+}
+
+right {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(right, stretch);
+}
+
+.upordown {
+	padding: 3px;
+}
+
+.main > p,
+.blogbody > p {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	display: block;
+	clear: both;
+}
+
+third {
+	@include flex-grid-column(4);
+	@include flex-grid-column-align(middle);
+}
+
+rthird {
+	@media #{$medium-up} {
+		@include flex-grid-column(4);
+		@include flex-grid-column-align(top);
+	}
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, top);
+}
+
+electionholder {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+}
+
+.election-title {
+	@media #{$medium-up} {
+		font-size: 4em;
+	}
+	font-size: 2.5em;
+	text-align: center;
+}
+
+.special-menu {
+	@media #{$medium-up} {
+		font-size: 0.35em;
+		padding-top: 0.3em;
+		padding-bottom: 0.3em;
+	}
+	font-size: 0.35em;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+}
+
+.election-box {
+	max-height: 87.5vh;
+	overflow: auto;
+}
+
+.election-subhead {
+	@media #{$medium-up} {
+		font-size: 2.5em;
+	}
+	font-size: 1.7em;
+}
+
+.election-small-subhead {
+	@media #{$medium-up} {
+		font-size: 1.7em;
+	}
+	font-size: 1.2em;
+}
+
+.accordion {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, top);
+	width: 100%;	
+}
+
+.accordion-item {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, top);
+	width: 100%;
+}
+
+.accordion-title {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, stretch);
+	padding: 0;
+	@media #{$medium-up} {
+		font-size: 1.7em;
+	}
+	font-size: 1.2em;
+}
+
+.accordion-content {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(spaced, top);
+}
+
+.zero {
+	@include flex-grid-order(0);
+}
+
+.one {
+	@include flex-grid-order(1);
+}
+
+.two {
+	@include flex-grid-order(2);
+}
+
+.three {
+	@include flex-grid-order(3);
+}
+
+.nosides {
+	padding-left: 0;
+	padding-right: 0;
+}

@@ -1,31 +1,38 @@
-<main>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>ID</th>
-      </tr>
-    </thead>
+<%= render 'shared/head' %>
+<bodysub>
+  <content>
+    <main class="outlined">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
 
-    <tbody>
-      <% @candidates.each do |c| %>
-        <tr>
-          <td><%= c.full_name %></td>
-          <td><%= c.id %></td>
-        </tr>
+        <tbody>
+          <% @candidates.each do |c| %>
+            <tr>
+              <td><%= link_to c.full_name, c %></td>
+              <td><%= c.id %></td>
+              <td><%= link_to "Edit", edit_candidate_path(c) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="small-12 columns" style="background-color: white; outline-style: solid; outline-color: black; padding: 1em;">
+        <div class="row" style="padding-bottom: 0.7em;">
+          <h4>Import Candidates</h4>
+        </div>
+        <div class="row">
+          <%= form_tag import_candidates_path, multipart: true do %>
+          <%= file_field_tag :file %>
+        </div>
+        <div class="row" style="font-size: 0.8em;">
+          <%= submit_tag "Import CSV" %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-  <div class="small-12 columns" style="background-color: white; outline-style: solid; outline-color: black; padding: 1em;">
-    <div class="row" style="padding-bottom: 0.7em;">
-      <h4>Import Candidates</h4>
-    </div>
-    <div class="row">
-      <%= form_tag import_candidates_path, multipart: true do %>
-      <%= file_field_tag :file %>
-    </div>
-    <div class="row" style="font-size: 0.8em;">
-      <%= submit_tag "Import CSV" %>
-    </div>
-  <% end %>
-</main>
+    </main>
+  </content>
+</bodysub>

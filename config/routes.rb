@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'welcome/welcome'
   get 'welcome/about'
   get 'calendar', to: 'states#calendar'
+  get 'electiondashboard', to: 'parties#dashboard'
 
   resources :posts do
     member do

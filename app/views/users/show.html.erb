@@ -1,4 +1,6 @@
-<main>
+<%= render 'shared/head' %>
+
+<main class="outlined main">
 	<h2><%= @user.username %></h2>
 	<line><key>Email:</key> <val><%= @user.email %></val></line>
 	<line><key>Created At:</key>  <val><%= @user.created_at %></val></line>

@@ -1,0 +1,36 @@
+<main class="mainbox">
+	<RasideL class="outlined">
+		<main>
+			<content class="main"><h3 class="centered">My Projects</h3></content>
+			<content class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-use-m-u-i="false">
+		        <ul class="orbit-container">
+		        	<button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+		        	<button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+		        	<li class="is-active orbit-slide">
+			            <content class="floating-purple main">
+			            	<h5 style="text-align: center;"><%= link_to "The Daily Galen", posts_blog_path %></h5>
+			            	<p>Markup-enabled blog with syntax highlighting, comments, and voting</p>
+			            </content>
+		        	</li>
+		        	<li class="orbit-slide">
+			            <content class="floating-purple main">
+			            	<h5 style="text-align: center;"><%= link_to "Presidential Primaries", calendar_path %></h5>
+			            	<p>A database of state primary/caucus information</p>
+			            </content>
+		        	</li>
+		        </ul>
+		        <nav class="orbit-bullets">
+		        	<button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+		        	<button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+		       </nav>
+	    	</content>
+	    </main>
+	</RasideL>
+	<RbigR class="outlined">
+		<main>
+			<content class="main centered"><h3>Welcome to Galen Online</h3></content>
+			<p>This is the online home of the personal projects of Galen W Burghardt.  I am a web developer living in Evanston, IL, just north of Chicago.  I've built this site full-stack from scratch, using Rails, Foundation 6 (so CSS and SASS), PostgreSQL, and it's hosted on AWS using Elastic Beanstalk and RDS.</p>
+			<p>Please check out some of my projects, my resume, my code samples, etc.  I'm currently on the hunt for my next full-time gig, so if you're working on something cool that I can help you out with, or if you'd just like to connect, feel free to <a href="mailto:galen.w.burghardt@gmail.com">get in touch!</a></p>
+		</main>
+	</RbigR>
+</main>

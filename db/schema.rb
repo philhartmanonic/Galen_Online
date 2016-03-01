@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223185314) do
+ActiveRecord::Schema.define(version: 20160229201116) do
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
@@ -40,8 +40,12 @@ ActiveRecord::Schema.define(version: 20160223185314) do
     t.string   "last_name"
     t.string   "pollster_slug"
     t.integer  "party_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "profile_file_name"
+    t.string   "profile_content_type"
+    t.integer  "profile_file_size"
+    t.datetime "profile_updated_at"
   end
 
   add_index "candidates", ["party_id"], name: "index_candidates_on_party_id"
@@ -77,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160223185314) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "win_number"
   end
 
   create_table "pics", force: :cascade do |t|

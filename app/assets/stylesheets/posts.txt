@@ -1,0 +1,233 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+blogarticle > bloghead {
+	
+}
+
+bloghead > blogtitle {
+	
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	
+	margin-bottom: 0em;
+	margin-top: 0em;
+	padding-top: 8.96px;
+	padding-bottom: 8.96px;
+	@media #{$medium-up} {
+		font-size: 2.5em;
+		line-height: 110%;
+		@include flex-grid-column(8);
+		@include flex-grid-order(0);
+	}
+	font-size: 1.5em;
+	@include flex-grid-column-align(stretch);
+	@include flex-grid-row(nest collapse);
+	@include flex-grid-order(1);
+	line-height: 1.5;
+}
+
+
+bloghead > score {
+	
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	
+	
+	
+	@media #{$medium-up} {
+		@include flex-grid-column(4);
+		@include flex-grid-column-align(middle);
+		@include flex-grid-order(1);
+	}
+	@include flex-grid-column-align(stretch);
+	@include flex-grid-row();
+	@include flex-grid-row-align(center);
+	@include flex-grid-order(0);
+}
+
+
+
+
+score > table > tbody > tr > td {
+	padding: 0.2em;
+}
+
+blogarticle > blogbody {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	padding-bottom: 1em;
+	line-height: 1;
+}
+
+blogbody > h1, blogbody > h2, blogbody > h3, blogbody > h4, blogbody > h5 {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+blogbody > h3 {
+	font-weight: 500;
+}
+
+blogbody > h5 {
+	font-weight: 500;
+}
+
+blogbody > .highlight:after {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+}
+
+blogbody > .highlight {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	margin-bottom: 15px;
+	padding-top: 3px;
+}
+
+.highlight {
+	@include flex-grid-row($base: true);
+	@include flex-grid-column(12);
+	outline-style: solid;
+	outline-color: $s-purp3;
+	outline-width: thin;
+	border-style: solid;
+	border-color: $s-purp3;
+}
+
+blogbody > p {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	display: block;
+	clear: both;
+}
+
+blogbody > code {
+	background-color: #49483e !important;
+}
+
+blogbody > form {
+	width: 100%;
+}
+
+blogarticle > author {
+	@include flex-grid-row(nest);
+	@include flex-grid-column(12);
+	padding-bottom: 2em;
+	font-size: 0.8em;
+	padding-left: 10px;
+}
+
+author > p {
+	@include flex-grid-row();
+	@inclide flex-grid-column(12);
+}
+
+blogarticle > blogfoot {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-size: 0.8em;
+	padding-bottom: 1em;
+	padding-top: 1em;
+	border-top: thin groove $light-lav;
+}
+
+blogfoot > a {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+main > commentbox {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-column-align(middle);
+	font-family: DroidSerif;
+	background-color: white;
+	outline-color: $s-purp3;
+	outline-style: ridge;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	@media #{$medium-up} {
+		font-size: 1em;
+		line-height: 1em;
+	}
+	font-size: 0.8em;
+	line-height: 0.8em;
+}
+
+commentbox > commenthead {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	line-height: 0;
+	color: $s-yell5;
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	text-align: center;
+}
+
+commenthing > commentbody {
+	font-family: DroidSerif;
+	padding-top: 1em;
+	@media #{$medium-up} {
+		@include flex-grid-column(8);
+		@include flex-grid-order(0);
+	}
+	@include flex-grid-row(nest collapse);
+	@include flex-grid-order(1);
+}
+
+commentbox > commenthing {
+	@include flex-grid-row(collapse, $width: 100%);
+	@include flex-grid-column(12);
+	border-top: medium groove $s-purp2;
+
+}
+commenthing > commentvotes {
+	font-family: 'Helvetica-Neue', Helvetica, sans-serif;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+	font-size: 0.8em;
+	@media #{$medium-up} {
+		@include flex-grid-column(4);
+		@include flex-grid-column-align(middle);
+		@include flex-grid-order(1);
+	}
+	@include flex-grid-row();
+	@include flex-grid-row-align(top);
+	@include flex-grid-order(0);
+}
+
+commentvotes > button {
+	font-size: 0.8em;
+}
+
+commentvotes > table {
+	margin-bottom: 0em;
+}
+
+commentbox > commentfoot {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	font-family: DroidSerif;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+	font-size: 0.8em;
+	border-top: thin groove $light-lav;
+}
+
+commenthing > commentvotes > table > tbody {
+	line-height: 0;
+	margin-bottom: 0em;
+	border-style: solid;
+	border-color: $s-purp3;
+	background-color: $s-green1;
+}
+
+commentvotes > table > tbody > tr > td {
+	padding: 0.2em;
+}
+*/

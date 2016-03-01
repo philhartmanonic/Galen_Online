@@ -1,54 +1,115 @@
-<main>
-	<portfolio>
-		<titles>
-			<ul class="tabs vertical" id="about-me-tabs" data-tabs>
-				<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Site Features</a></li>
-				<li class="tabs-title"><a href="#panel2">Blog</a></li>
-				<li class="tabs-title"><a href="#panel3">Presidential Primaries</a></li>
-				<li class="tabs-title"><a href="#panel4">About</a></li>
-			</ul>
-		</titles>
-		<box>
-			<content class="tabs-content vertical" data-tabs-content="about-me-tabs">
-				<item class="tabs-panel is-active" id="panel1">
-					<h3>Site Features</h3>
-					<p>There are currently 2 main apps on Galen Online, <%= link_to "the blog", posts_blog_path %>, and <%= link_to "the Presidential Primaries", calendar_path %>.  There are a number of other items around (such as this page), but those are less interesting.  Here are some of the details of the site as a whole and its implementation.</p>
-					<h5>Front End</h5>
-					<p>The front end is built in ERB and Sass on top of the <a href="http://foundation.zurb.com/sites/docs/">Foundation 6</a> framework.  I've used Foundation's <a href="http://foundation.zurb.com/sites/docs/flex-grid.html">Flex-Grid</a> to build out some site-wide and model-specific semantic tags in Sass.  The color scheme is a triad I mapped out using <a href="http://paletton.com/">Paletton</a>, defining 5 shades of each color in Sass.  I tried to work in purple and yellow because purple is my wife's favorite color, and my son's is yellow.</p>
-					<p>I've used a few cool things from the Foundation framework throughout the site.  The menu bar on medium and large screens is their dropdown menu bar, and for mobile I use a vertical accordion menu.  The page you're on right now is an example of their tabs container, and the animated box on the Welcome page uses their Orbit container.  Beyond that, I use a couple of mixins.  The gradients are generated through the mixin <a href="http://www.sitepoint.com/building-linear-gradient-mixin-sass/">described here</a>, and I also use a mixin to keep the lines looking right when something weird is going on.</p>
-					<h5>Back End</h5>
-					<p>I use <a href="https://github.com/plataformatec/devise">Devise</a> for user authentication and <a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a> for authorization.  I built a custom user controller and model in order to facilitate a user dashboard for administrators.  Right now there are 3 different types of user, Admins, Bloggers, and Regulars, where admins can do everything, bloggers can manage their posts and write new ones, and regulars can consume the content.</p>
-					<h5>Ops</h5>
-					<p>This site is hosted on an AWS EC2 instance, using ElasticBeanstalk for the app and an RDS PostgreSQL instance for the database.  To keep myself honest about sticking with ActiveRecord I use SQLite as the database in development.  I maintain a duplicate environment on AWS for testing deployments before they go live.</p>
-					<p>I've also added a couple of CNAME subdomain forwards.  <a href="http://github.galen.online">github.galen.online</a> forwards to my Github page, and <a href="http://blog.galen.online">blog.galen.online</a> forwards to the blog.</p> 
-				</item>
-				<item class="tabs-panel" id="panel2">
-					<h3><a href="http://blog.galen.online">The Blog</a></h3>
-					<p>I've built a markdown-enabled blog with code syntax highlighting, using Redcarpet for the markdown and Rouge and Monokai for the syntax.</p>  
-					<p>There are three main views for this blog - the blog, which has the first 1,000 characters of the 5 most recent posts, the post view, which has the specific post and whatever comments have been left, and the Admin/Blogger management dashboard.</p>  
-					<p>You can upvote/downvote posts and comments using a polymorphic vote model, and comments are sorted by their net vote score.  The admin/blogger management dashboard allows for the creation, editing, and deletion of posts.  Whether you can access this page and what you see on this page is determined by the role associated with your account - if you're an admin you can do anything, if you're a blogger you can manage your own posts and create new ones.</p>
-				</item>
-				<item class="tabs-panel" id="panel3">
-					<h3><a href="http://www.galen.online/calendar">Presidential Primaries</a></h3>
-					<p>This is an app built to provide information around the 2016 presidential primary elections.  It's built primarily around a State model, with three ancillary models as well (Party, Candidate, and Election).</p>  
-					<p>Its central view right now is a calendar of all primaries, caucuses, and conventions.  The calendar may seem simple, but creating it was actually fairly harrowing, as it involved <a href="http://www.galen.online/posts/2">hacking a way to do a self full outer join</a>, which is a type of join that isn't supported by ActiveRecord.  The short explanation is I created instance methods that identified whether each record would be included by an inner join, left outer join, or right outer join, and then wrote an erb partial that labeled them appropriately and added them to an array of hashes.</p>
-					<p>Each state has a view which shows a few details about its primary election (when it happens, is it a primary or a caucus) and either how many days until each party votes or the results of the election if that party has already voted.  <a href="http://www.galen.online/posts/4">Here's a blog post about how I did that last part</a>  After that, it provides a collection of polls on that election for each party, taking data in from the <a href="http://elections.huffingtonpost.com/pollster/api">Pollster API</a> and parsing it down into the relevent metadata and results data I wanted to display.  <a href="http://www.galen.online/posts/3">Here's a blog post</a> about how I got the data, sliced and diced it, and presented it in the beautiful form it's in today.</p>
-				</item>
-				<item class="tabs-panel" id="panel4">
-					<h3>So who is this "Galen" character anyway?</h3>
-					<%= image_tag "bbg.jpg", align: "left", hspace: "20", width: "200" %>
-					<p>I'm a father, web developer, musician, retired punk rocker, and I get oddly excited when given the opportunity to talk about the Jungian philosophy on psychology and psychoanalysis.</p>
-					<p>As a web developer, I specialize in Rails, Python, and Data Modeling.  I'm in the process of getting up to speed with all of these JS frameworks, as that seems to be the way the wind is blowing.</p>
-					<p>I got into development because of the charming guy in the picture.</p>
-					<p><h4>Some back story</h4></p>
-					<p>I’ve been working in Business Development Consulting, Marketing, and Sales Operations for years.  It was alright, I was happy to be working and I loved a lot of the people I was working with, but I was always jealous of the brilliant developers, data architects, and solution architects that were all around me.  I loved how they were tackling big problems, and had this tactile relationship with their work that simply isn’t available in Marketing.</p>
+<%= render 'shared/head' %>
+<bodysub>
+	<main>
+		<main>
+			<content class="show-for-medium">
+				<portal>
+				<asideL>
+					<ul class="tabs vertical" id="about-me-tabs" data-tabs>
+						<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Site Features</a></li>
+						<li class="tabs-title"><a href="#panel2">Blog</a></li>
+						<li class="tabs-title"><a href="#panel3">Presidential Primaries</a></li>
+						<li class="tabs-title"><a href="#panel4">About</a></li>
+					</ul>
+				</asideL>
+				<bigR>
+					<portal class="tabs-content vertical item" data-tabs-content="about-me-tabs">
+						<content class="tabs-panel is-active item main" id="panel1">
+							<h3>Site Features</h3>
+							<p>There are currently 2 main apps on Galen Online, <%= link_to "the blog", posts_blog_path %>, and <%= link_to "the Presidential Primaries", calendar_path %>.  There are a number of other items around (such as this page), but those are less interesting.  Here are some of the details of the site as a whole and its implementation.</p>
+							<h5>Front End</h5>
+							<p>The front end is built in ERB and Sass on top of the <a href="http://foundation.zurb.com/sites/docs/">Foundation 6</a> framework.  I've used Foundation's <a href="http://foundation.zurb.com/sites/docs/flex-grid.html">Flex-Grid</a> to build out some site-wide and model-specific semantic tags in Sass.  The color scheme is a triad I mapped out using <a href="http://paletton.com/">Paletton</a>, defining 5 shades of each color in Sass.  I tried to work in purple and yellow because purple is my wife's favorite color, and my son's is yellow.</p>
+							<p>I've used a few cool things from the Foundation framework throughout the site.  The menu bar on medium and large screens is their dropdown menu bar, and for mobile I use a vertical accordion menu.  The page you're on right now is an example of their tabs container, and the animated box on the Welcome page uses their Orbit container.  Beyond that, I use a couple of mixins.  The gradients are generated through the mixin <a href="http://www.sitepoint.com/building-linear-gradient-mixin-sass/">described here</a>, and I also use a mixin to keep the lines looking right when something weird is going on.</p>
+							<h5>Back End</h5>
+							<p>I use <a href="https://github.com/plataformatec/devise">Devise</a> for user authentication and <a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a> for authorization.  I built a custom user controller and model in order to facilitate a user dashboard for administrators.  Right now there are 3 different types of user, Admins, Bloggers, and Regulars, where admins can do everything, bloggers can manage their posts and write new ones, and regulars can consume the content.</p>
+							<h5>Ops</h5>
+							<p>This site is hosted on an AWS EC2 instance, using ElasticBeanstalk for the app and an RDS PostgreSQL instance for the database.  To keep myself honest about sticking with ActiveRecord I use SQLite as the database in development.  I maintain a duplicate environment on AWS for testing deployments before they go live.</p>
+							<p>I've also added a couple of CNAME subdomain forwards.  <a href="http://github.galen.online">github.galen.online</a> forwards to my Github page, and <a href="http://blog.galen.online">blog.galen.online</a> forwards to the blog.</p> 
+						</content>
+						<content class="tabs-panel item main" id="panel2">
+							<h3><a href="http://blog.galen.online">The Blog</a></h3>
+							<p>I've built a markdown-enabled blog with code syntax highlighting, using Redcarpet for the markdown and Rouge and Monokai for the syntax.</p>  
+							<p>There are three main views for this blog - the blog, which has the first 1,000 characters of the 5 most recent posts, the post view, which has the specific post and whatever comments have been left, and the Admin/Blogger management dashboard.</p>  
+							<p>You can upvote/downvote posts and comments using a polymorphic vote model, and comments are sorted by their net vote score.  The admin/blogger management dashboard allows for the creation, editing, and deletion of posts.  Whether you can access this page and what you see on this page is determined by the role associated with your account - if you're an admin you can do anything, if you're a blogger you can manage your own posts and create new ones.</p>
+						</content>
+						<content class="tabs-panel item main" id="panel3">
+							<h3><a href="http://www.galen.online/calendar">Presidential Primaries</a></h3>
+							<p>This is an app built to provide information around the 2016 presidential primary elections.  It's built primarily around a State model, with three ancillary models as well (Party, Candidate, and Election).</p>  
+							<p>Its central view right now is a calendar of all primaries, caucuses, and conventions.  The calendar may seem simple, but creating it was actually fairly harrowing, as it involved <a href="http://www.galen.online/posts/2">hacking a way to do a self full outer join</a>, which is a type of join that isn't supported by ActiveRecord.  The short explanation is I created instance methods that identified whether each record would be included by an inner join, left outer join, or right outer join, and then wrote an erb partial that labeled them appropriately and added them to an array of hashes.</p>
+							<p>Each state has a view which shows a few details about its primary election (when it happens, is it a primary or a caucus) and either how many days until each party votes or the results of the election if that party has already voted.  <a href="http://www.galen.online/posts/4">Here's a blog post about how I did that last part</a>  After that, it provides a collection of polls on that election for each party, taking data in from the <a href="http://elections.huffingtonpost.com/pollster/api">Pollster API</a> and parsing it down into the relevent metadata and results data I wanted to display.  <a href="http://www.galen.online/posts/3">Here's a blog post</a> about how I got the data, sliced and diced it, and presented it in the beautiful form it's in today.</p>
+						</content>
+						<content class="tabs-panel item main" id="panel4">
+							<h3>So who is this "Galen" character anyway?</h3>
+							<%= image_tag "bbg.jpg", align: "left", hspace: "20", width: "200" %>
+							<p>I'm a father, web developer, musician, retired punk rocker, and I get oddly excited when given the opportunity to talk about the Jungian philosophy on psychology and psychoanalysis.</p>
+							<p>As a web developer, I specialize in Rails, Python, and Data Modeling.  I'm in the process of getting up to speed with all of these JS frameworks, as that seems to be the way the wind is blowing.</p>
+							<p>I got into development because of the charming guy in the picture.</p>
+							<p><h4>Some back story</h4></p>
+							<p>I’ve been working in Business Development Consulting, Marketing, and Sales Operations for years.  It was alright, I was happy to be working and I loved a lot of the people I was working with, but I was always jealous of the brilliant developers, data architects, and solution architects that were all around me.  I loved how they were tackling big problems, and had this tactile relationship with their work that simply isn’t available in Marketing.</p>
 
-					<p>That’s when this dude came around, and it ceased to be a matter of comfort.  I needed to set an example for him.  I need him to know that there’s a reason I have to leave him every day, that I’m doing work that I’m passionate about and proud of.  I need him to grow up knowing work is hard, but it’s worth it.</p>
+							<p>That’s when this dude came around, and it ceased to be a matter of comfort.  I needed to set an example for him.  I need him to know that there’s a reason I have to leave him every day, that I’m doing work that I’m passionate about and proud of.  I need him to grow up knowing work is hard, but it’s worth it.</p>
 
-					<p>At this point, I had been working with Python and SQL for a year or two, mainly self-directed, but with a few projects at work.  I decided it was time to dive in with both feet, so I left my job and enrolled in the Startup Institute Chicago.  If you’re unfamiliar, SIC is an organization built around preparing people with the hard and soft skills necessary to succeed and thrive in the startup ecosystem.</p>
+							<p>At this point, I had been working with Python and SQL for a year or two, mainly self-directed, but with a few projects at work.  I decided it was time to dive in with both feet, so I left my job and enrolled in the Startup Institute Chicago.  If you’re unfamiliar, SIC is an organization built around preparing people with the hard and soft skills necessary to succeed and thrive in the startup ecosystem.</p>
 
-					<p>I am currently looking to join a team that fundamentally embraces challenge – challenging work, challenging ourselves, and challenging each other to be better.  I want to have fun at work, and I’ve learned the key to that it’s never easy and it always has a purpose</p>
-				</item>
+							<p>I am currently looking to join a team that fundamentally embraces challenge – challenging work, challenging ourselves, and challenging each other to be better.  I want to have fun at work, and I’ve learned the key to that it’s never easy and it always has a purpose</p>
+						</content>
+					</portal>
+				</bigR>
+				</portal>
 			</content>
-		</box>
-	</portfolio>
+			<content class="hide-for-medium">
+				<RasideL>
+					<ul class="tabs" id="about-me-small-tabs" data-tabs>
+						<li class="tabs-title is-active"><a href="#panel1s" aria-selected="true">Site Features</a></li>
+						<li class="tabs-title"><a href="#panel2s">Blog</a></li>
+						<li class="tabs-title"><a href="#panel3s">Presidential Primaries</a></li>
+						<li class="tabs-title"><a href="#panel4s">About</a></li>
+					</ul>
+				</RasideL>
+				<RbigR>
+					<portal class="tabs-content item" data-tabs-content="about-me-small-tabs">
+						<content class="tabs-panel is-active item" id="panel1s">
+							<h3>Site Features</h3>
+							<p>There are currently 2 main apps on Galen Online, <%= link_to "the blog", posts_blog_path %>, and <%= link_to "the Presidential Primaries", calendar_path %>.  There are a number of other items around (such as this page), but those are less interesting.  Here are some of the details of the site as a whole and its implementation.</p>
+							<h5>Front End</h5>
+							<p>The front end is built in ERB and Sass on top of the <a href="http://foundation.zurb.com/sites/docs/">Foundation 6</a> framework.  I've used Foundation's <a href="http://foundation.zurb.com/sites/docs/flex-grid.html">Flex-Grid</a> to build out some site-wide and model-specific semantic tags in Sass.  The color scheme is a triad I mapped out using <a href="http://paletton.com/">Paletton</a>, defining 5 shades of each color in Sass.  I tried to work in purple and yellow because purple is my wife's favorite color, and my son's is yellow.</p>
+							<p>I've used a few cool things from the Foundation framework throughout the site.  The menu bar on medium and large screens is their dropdown menu bar, and for mobile I use a vertical accordion menu.  The page you're on right now is an example of their tabs container, and the animated box on the Welcome page uses their Orbit container.  Beyond that, I use a couple of mixins.  The gradients are generated through the mixin <a href="http://www.sitepoint.com/building-linear-gradient-mixin-sass/">described here</a>, and I also use a mixin to keep the lines looking right when something weird is going on.</p>
+							<h5>Back End</h5>
+							<p>I use <a href="https://github.com/plataformatec/devise">Devise</a> for user authentication and <a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a> for authorization.  I built a custom user controller and model in order to facilitate a user dashboard for administrators.  Right now there are 3 different types of user, Admins, Bloggers, and Regulars, where admins can do everything, bloggers can manage their posts and write new ones, and regulars can consume the content.</p>
+							<h5>Ops</h5>
+							<p>This site is hosted on an AWS EC2 instance, using ElasticBeanstalk for the app and an RDS PostgreSQL instance for the database.  To keep myself honest about sticking with ActiveRecord I use SQLite as the database in development.  I maintain a duplicate environment on AWS for testing deployments before they go live.</p>
+							<p>I've also added a couple of CNAME subdomain forwards.  <a href="http://github.galen.online">github.galen.online</a> forwards to my Github page, and <a href="http://blog.galen.online">blog.galen.online</a> forwards to the blog.</p> 
+						</content>
+						<content class="tabs-panel item" id="panel2s">
+							<h3><a href="http://blog.galen.online">The Blog</a></h3>
+							<p>I've built a markdown-enabled blog with code syntax highlighting, using Redcarpet for the markdown and Rouge and Monokai for the syntax.</p>  
+							<p>There are three main views for this blog - the blog, which has the first 1,000 characters of the 5 most recent posts, the post view, which has the specific post and whatever comments have been left, and the Admin/Blogger management dashboard.</p>  
+							<p>You can upvote/downvote posts and comments using a polymorphic vote model, and comments are sorted by their net vote score.  The admin/blogger management dashboard allows for the creation, editing, and deletion of posts.  Whether you can access this page and what you see on this page is determined by the role associated with your account - if you're an admin you can do anything, if you're a blogger you can manage your own posts and create new ones.</p>
+						</content>
+						<content class="tabs-panel item" id="panel3s">
+							<h3><a href="http://www.galen.online/calendar">Presidential Primaries</a></h3>
+							<p>This is an app built to provide information around the 2016 presidential primary elections.  It's built primarily around a State model, with three ancillary models as well (Party, Candidate, and Election).</p>  
+							<p>Its central view right now is a calendar of all primaries, caucuses, and conventions.  The calendar may seem simple, but creating it was actually fairly harrowing, as it involved <a href="http://www.galen.online/posts/2">hacking a way to do a self full outer join</a>, which is a type of join that isn't supported by ActiveRecord.  The short explanation is I created instance methods that identified whether each record would be included by an inner join, left outer join, or right outer join, and then wrote an erb partial that labeled them appropriately and added them to an array of hashes.</p>
+							<p>Each state has a view which shows a few details about its primary election (when it happens, is it a primary or a caucus) and either how many days until each party votes or the results of the election if that party has already voted.  <a href="http://www.galen.online/posts/4">Here's a blog post about how I did that last part</a>  After that, it provides a collection of polls on that election for each party, taking data in from the <a href="http://elections.huffingtonpost.com/pollster/api">Pollster API</a> and parsing it down into the relevent metadata and results data I wanted to display.  <a href="http://www.galen.online/posts/3">Here's a blog post</a> about how I got the data, sliced and diced it, and presented it in the beautiful form it's in today.</p>
+						</content>
+						<content class="tabs-panel item" id="panel4s">
+							<h3>So who is this "Galen" character anyway?</h3>
+							<%= image_tag "bbg.jpg", align: "left", hspace: "20", width: "200" %>
+							<p>I'm a father, web developer, musician, retired punk rocker, and I get oddly excited when given the opportunity to talk about the Jungian philosophy on psychology and psychoanalysis.</p>
+							<p>As a web developer, I specialize in Rails, Python, and Data Modeling.  I'm in the process of getting up to speed with all of these JS frameworks, as that seems to be the way the wind is blowing.</p>
+							<p>I got into development because of the charming guy in the picture.</p>
+							<p><h4>Some back story</h4></p>
+							<p>I’ve been working in Business Development Consulting, Marketing, and Sales Operations for years.  It was alright, I was happy to be working and I loved a lot of the people I was working with, but I was always jealous of the brilliant developers, data architects, and solution architects that were all around me.  I loved how they were tackling big problems, and had this tactile relationship with their work that simply isn’t available in Marketing.</p>
+
+							<p>That’s when this dude came around, and it ceased to be a matter of comfort.  I needed to set an example for him.  I need him to know that there’s a reason I have to leave him every day, that I’m doing work that I’m passionate about and proud of.  I need him to grow up knowing work is hard, but it’s worth it.</p>
+
+							<p>At this point, I had been working with Python and SQL for a year or two, mainly self-directed, but with a few projects at work.  I decided it was time to dive in with both feet, so I left my job and enrolled in the Startup Institute Chicago.  If you’re unfamiliar, SIC is an organization built around preparing people with the hard and soft skills necessary to succeed and thrive in the startup ecosystem.</p>
+
+							<p>I am currently looking to join a team that fundamentally embraces challenge – challenging work, challenging ourselves, and challenging each other to be better.  I want to have fun at work, and I’ve learned the key to that it’s never easy and it always has a purpose</p>
+						</content>
+					</portal>
+				</RbigR>
+			</content>
+		</main>
+	</main>
+</bodysub>

@@ -82,8 +82,8 @@ class State < ActiveRecord::Base
 				b[:Results].sort_by! {|k| k[1] * -1}
 				poll_data.append(b)
 			end
-			pd = poll_data.sort_by {|k| k[:end_date]}
-			return pd
+			poll_data.sort_by! {|k| [Date.today - k[:"End Date"]]}
+			return poll_data
 		end
 	end
 	def gop_polls
@@ -110,8 +110,8 @@ class State < ActiveRecord::Base
 				b[:Results].sort_by! {|k| k[1] * -1}
 				poll_data.append(b)
 			end
-			pd = poll_data.sort_by {|k| k[:end_date]}
-			return pd
+			poll_data.sort_by! {|k| [Date.today - k[:"End Date"]]}
+			return poll_data
 		end
 	end
 end

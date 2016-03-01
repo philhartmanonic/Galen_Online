@@ -2,6 +2,7 @@ require 'csv'
 class Party < ActiveRecord::Base
 	has_many :candidates
 	has_many :elections
+	has_many :states, through: :elections
 
 	def self.import(file)
 		CSV.foreach(file.path, headers: true) do |row|

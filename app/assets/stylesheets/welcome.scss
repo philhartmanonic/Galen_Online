@@ -1,48 +1,8 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "application";
-
-main > portfolio {
-	@include flex-grid-row();
-	@include flex-grid-row-align(spaced, stretch);
-	@include flex-grid-column(12);
-}
-
-
-portfolio > titles {
-	@include flex-grid-column(3,0);
-	backgroud-color: white !important;
-}
-
-titles > ul {
-	@include tabs-container;
-	@include tabs-container-vertical;
-	overflow: auto;
-}
-
-titles > ul > li {
-	@include tabs-title;
-	white-space: nowrap;
-}
-
-portfolio > box {
-	@include flex-grid-column(9,0);
-}
-
-box > content {
-	@include flex-grid-row();
-	@include tabs-content;
-	@include tabs-content-vertical;
-}
-
-content > item {
-	@include tabs-panel;
-	font-size: 0.9em;
-	font-family: DroidSerif
-}
-
-img {
-	float: left;
-	margin: 0 0 1em 1em;
-}
+/*
+*= require_foundation_and_overrides
+*= require_tree
+*= require_self
+*/

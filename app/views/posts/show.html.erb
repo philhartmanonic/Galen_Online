@@ -1,61 +1,82 @@
-<main>
-	<blogarticle>
-		<bloghead>
-			<blogtitle>
-				<%= @post.title.strip %>
-			</blogtitle>
-			<score>
-				<table>
-					<tr>
-						<td align="center"><%= button_to '-1', downvote_post_path(@post), method: :post %></th>
-						<td align="center"><%= @post.score %></th>
-						<td align="center"><%= button_to '+1', upvote_post_path(@post), method: :post %></th>
-					</tr>
-				</table>
-			</score>
-		</bloghead>
-		<author>
-			<% if @post.user.nil? %>
-			By Unkown
-			<% else %>
-			By <%= @post.user.username %>
-			<% end %>
-		</author>
-		<blogbody>
-			<%= markdown(@post.body) %>
-		</blogbody>
-		<blogfoot>
-			<% if user_signed_in? %>
-			<div class="small-12 columns" style="padding-left: 0em;">Add a comment</div>
-			<%= form_for ([Comment.new]) do |f| %>
-				<div class="small-12 columns" style="padding-left: 0em;"><%= f.text_area :body %></div>
-				<div class="small-12 columns" style="padding-left: 0em;"><%= f.submit %></div>
-			<% end %>
-			<% else %>
-				<div class="small-12 columns" stlye="padding-left: 0em;">You need to <%= link_to 'Sign in', new_user_session_path %> to comment.  <%= link_to 'Sign up', new_user_registration_path %>.</div>
-			<% end %>
-		</blogfoot>
-	</blogarticle>
-	<commentbox>
-		<commenthead><%= @comments.count %> comments</commenthead>
+<content class="blogtitle">The Daily Galen</content>
+<content class="blogtitle">
+	<split class="special-menu">
+		<%= link_to "GalenHome", "/", class: "land-link" %>
+	</split>
+	<split class="special-menu">
+		<%= link_to "Blog", posts_blog_path, class: "land-link" %>
+	</split>
+</content>
+<bodysub>
+	<main>
+		<content class="outlined blog">
+			<portal>
+				<rbigl>
+					<portal class="article-title"><%= @post.title.strip %></portal>
+				</rbigl>
+				<rasider>
+					<right>
+						<table class="voting">
+							<tr>
+								<td class="upordown"><%= button_to '-1', downvote_post_path(@post), method: :post %></th>
+								<td class="score upordown"><%= @post.score %></th>
+								<td class="upordown"><%= button_to '+1', upvote_post_path(@post), method: :post %></th>
+							</tr>
+						</table>
+					</right>
+				</rasider>
+			</portal>
+			<content>
+				<portal class="small-meta">
+					<% if @post.user.nil? %>
+					By Unkown
+					<% else %>
+					By <%= @post.user.username %>
+					<% end %>
+				</portal>
+			</content>
+			<content>
+				<portal class="blogbody">
+					<%= markdown(@post.body) %>
+				</portal>
+			</content>
+			<main class="blogfoot">
+				<% if user_signed_in? %>
+				<shell>Add a comment</shell>
+				<%= form_for ([Comment.new]) do |f| %>
+					<shell><%= f.text_area :body %></shell>
+					<shell><%= f.submit %></shell>
+				<% end %>
+				<% else %>
+					<shell>You need to <%= link_to 'Sign in', new_user_session_path %> to comment.  <%= link_to 'Sign up', new_user_registration_path %>.</shell>
+				<% end %>
+			</content>
+		</content>
+		<hr>
+		<title class="commenthead"><%= @comments.count %> comments</title>
 		<% @comments.each do |c| %>
-			<commenthing>
-				<commentbody id="comment_<%= c.id %>">
-					<%= markdown(c.body) %>
-				</commentbody>
-				<commentvotes>
-					<table>
-						<tr>
-							<td align="center"><%= button_to '-1', "/posts/#{c.post_id}/comments/#{c.id}/downvote", method: :post %></td>
-							<td align="center"><%= c.score %></td>
-							<td align="center"><%= button_to '+1', "/posts/#{c.post_id}/comments/#{c.id}/upvote", method: :post %></td>
-						</tr>
-					</table>
-				</commentvotes>
-			</commenthing>
-			<commentfoot>
-				<div class="flex-grid-column(12)">Posted by <strong><%= c.user.username %></strong><%= c.formatted_created_time %></div>
-			</commentfoot>
+			<content class="outlined blog">
+				<portal>
+					<rbigl id="comment_<%= c.id %>">
+						<portal>
+							<%= markdown(c.body) %>
+						</portal>
+					</rbigl>
+					<rasider>
+						<right>
+							<table class="voting">
+								<tr>
+									<td class="upordown"><%= button_to '-1', "/posts/#{c.post_id}/comments/#{c.id}/downvote", method: :post %></td>
+									<td class="score upordown"><%= c.score %></td>
+									<td class="upordown"><%= button_to '+1', "/posts/#{c.post_id}/comments/#{c.id}/upvote", method: :post %></td>
+								</tr>
+							</table>
+						</right>
+					</rasider>
+				</portal>
+				<hr>
+				<portal class="small-meta"><%= "Posted by #{c.user.username} at #{c.formatted_created_time}" %></portal>
+			</content>
 		<% end %>
-	</commentbox>
-</main>
+	</main>
+</bodysub>
