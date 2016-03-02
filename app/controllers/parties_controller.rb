@@ -17,7 +17,7 @@ class PartiesController < ApplicationController
         @demstates = State.where("dem_date < ?", Date.today + 14).where("dem_date >= ?", Date.today).order("dem_date asc")
         @repstates = State.where("gop_date < ?", Date.today + 14).where("gop_date >= ?", Date.today).order("gop_date asc")
         @grouped_elections = @elections.order("percent desc").group_by { |i| [i.state_id, i.party_id]}
-        @dem_elections = @grouped_elections.select {|k, v| k[1] == 2 }.sort_by{|k, v| [State.find_by(id: k[0]).dem_date] }
+        @dem_elections = @grouped_elections.select {|k, v| k[1] == 2 and State.find_by(k[0]).dem_date <= Date.today }.sort_by{|k, v| [State.find_by(id: k[0]).dem_date] }
         @gop_elections = @grouped_elections.select {|k, v| k[1] == 1 }.sort_by{|k, v| [State.find_by(id: k[0]).gop_date] }
     end
 
