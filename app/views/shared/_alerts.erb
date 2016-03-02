@@ -1,2 +1,10 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if notice.present? or alert.present? %>
+	<content class="alerts">
+		<% if notice.present? %>
+			<content class="notice"><%= notice %></content>
+		<% end %>
+		<% if alert.present? %>
+			<content class="alert"><%= alert %></content>
+		<% end %>
+	</content>
+<% end %>

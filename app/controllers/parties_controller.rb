@@ -1,4 +1,7 @@
 class PartiesController < ApplicationController
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource :except => [:dashboard]
+
 	def import
     	Party.import(params[:file])
     	redirect_to states_path, notice: "Party Data imported!"

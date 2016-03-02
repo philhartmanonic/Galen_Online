@@ -1,4 +1,7 @@
 class ElectionsController < ApplicationController
+    before_action :set_election, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource
+    
 	def import
     	Election.import(params[:file])
     	redirect_to elections_path, notice: "Election Data imported!"

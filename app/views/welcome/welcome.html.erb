@@ -21,7 +21,14 @@
 								<li><%= link_to "Random app", posts_blog_path, class: "land-link" %></li>
 							<% end %>
 						</ul>
-					</ul>
+						<% if user_signed_in? %>
+						<% else %>
+						<ul class="landing-list">
+							<li><%= link_to 'Sign in', new_user_session_path, class: "land-link" %></li>
+  							<li><%= link_to 'Sign up', new_user_registration_path, class: "land-link" %></li>
+  						</ul>
+						<% end %>
+					</portal>
 				</thing>
 			</div>
 			<div class="off-canvas-content landing-main" data-off-canvas-content>
@@ -29,6 +36,7 @@
 					<thing>
 						<title class="landtitle">Welcome to Galen Online</title>
 						<button type="button" class="button landbutton" data-toggle="offCanvas">See What's Inside</button>
+						<%= render 'shared/alerts' %>
 					</thing>
 				</middle>
 			</div>

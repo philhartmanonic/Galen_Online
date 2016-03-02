@@ -1,4 +1,7 @@
 class CandidatesController < ApplicationController
+    before_action :set_candidate, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource :except => [:show]
+
 	def import
     	Candidate.import(params[:file])
     	redirect_to candidates_path, notice: "Candidate Data imported!"

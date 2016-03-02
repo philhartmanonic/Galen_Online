@@ -3,6 +3,7 @@
   <table>
     <thead>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Type</th>
         <th>GOP Date</th>
@@ -14,6 +15,7 @@
     <tbody>
       <% @states.each do |state| %>
         <tr>
+          <td><%= state.id %></td>
           <td><%= state.name %></td>
           <td><%= state.p_or_c %></td>
           <td>

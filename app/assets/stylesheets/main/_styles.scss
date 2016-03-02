@@ -133,6 +133,10 @@ a {
 .secthead {
 	@include linear-gradient(to right, $s-purp3, $s-purp5);
 	margin: 0;
+	font-size: 4em;
+	font-family: Aaargh;
+	color: white;
+	padding-bottom: 16px;
 }
 
 rbigr {
@@ -400,4 +404,16 @@ table {
 
 .accordion {
 	padding: 0;
+}
+
+.alerts {
+	font-size: 16px;
+	font-weight: bold;
+	background-color: black;
+	color: white;
+	font-family: Fanwood;
+	outline-style: double;
+	outline-color: red;
+	padding: 16px;
+	text-align: center;
 }

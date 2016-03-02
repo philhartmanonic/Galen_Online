@@ -17,8 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'foundation-rails'
-gem 'paperclip', '~> 4.3'
-gem 'aws-sdk', '~> 1.6'
+gem 'paperclip'
+gem 'aws-sdk', '>= 2.0.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
