@@ -36,7 +36,9 @@ class Candidate < ActiveRecord::Base
 		self.elections.load
 		if self.party.name == "Democratic"
 			self.elections.each do |e|
-				d += e.supers
+				if State.where(id: e.state_id).empty? == false
+					d += e.supers
+				end
 			end
 		end
 		return d

@@ -9,7 +9,7 @@ class ElectionsController < ApplicationController
 
     def index
         @elections = Election.all
-        @grouped_elections = @elections.order("percent desc").group_by { |i| [i.state_id, i.party_id]}
+        @grouped_elections = @elections.select{|i| State.where(id: i.state_id).empty? == false}.sort_by{|i| i.percent * -1}.group_by { |i| [i.state_id, i.party_id]}
         @states = State.all
         @parties = Party.all
     end
