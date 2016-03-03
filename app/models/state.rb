@@ -114,4 +114,72 @@ class State < ActiveRecord::Base
 			return poll_data
 		end
 	end
+
+	def dem_winner
+		if self.dem_date.nil? == false and self.dem_date <= Date.today and Election.where('state_id = ? AND party_id = ?', self.id, 2).empty? == false 
+			a = self.elections
+			b = ['', 0, 0]
+			a.each do |e|
+				if e.party_id = 2
+					if b[1] < e.percent or (b[1] == e.percent and b[2] < e.regs)
+						b = [Candidate.find_by(id: e.candidate_id).last_name, e.percent, e.regs]
+					end
+				end
+			end
+			return "#{b[0]}: #{b[1].to_s}%, #{b[2].to_s} delegates"
+		else
+			a = self.dem_polls.select {|i| i.nil? == false and ((i.kind_of?(Array)) or (i.kind_of?(Hash) and i[:Results][0].nil? == false))}.first
+			i = 1
+
+			if a.nil?
+				return "No polls in this state"
+			end
+
+			while a.kind_of?(Hash) and a[:Results][0].nil?
+				a = self.dem_polls.select[i]
+				i += 1
+			end
+	
+			if a.kind_of?(Hash)
+				b = [a[:Results][0][0], a[:Results][0][1]]
+				done = true
+				return "(Poll) #{b[0]}: #{b[1].to_s}%"
+			else
+				return "No polls in this state"
+			end
+		end
+	end
+
+	def gop_winner
+		if self.gop_date <= Date.today and Election.where('state_id = ? AND party_id = ?', self.id, 1).empty? == false 
+			a = self.elections.where(party_id: 1)
+			b = ['', 0, 0]
+			a.each do |e|
+				if b[1] < e.percent or (b[1] == e.percent and b[2] < e.regs)
+					b = [Candidate.find_by(id: e.candidate_id).last_name, e.percent, e.regs]
+				end
+			end
+			return "#{b[0]}: #{b[1].to_s}%, #{b[2].to_s} delegates"
+		else
+			a = self.gop_polls.select {|i| i.nil? == false and ((i.kind_of?(Array)) or (i.kind_of?(Hash) and i[:Results][0].nil? == false))}.first
+			i = 1
+
+			if a.nil?
+				return "No polls in this state"
+			end
+
+			while a.kind_of?(Hash) and a[:Results][0].nil?
+				a = self.gop_polls.select[i]
+				i += 1
+			end
+	
+			if a.kind_of?(Hash)
+				b = [a[:Results][0][0], a[:Results][0][1]]
+				done = true
+				return "(Poll) #{b[0]}: #{b[1].to_s}%"
+			else
+				return "No polls in this state"
+			end
+		end
+	end
 end

@@ -14,4 +14,4 @@
     <% hash_id += 1 %>
   <% end %>
 <% end %>
-<% @cs = @calendar_states.sort_by { |k| k[:date] } %>
+<% @cs = @calendar_states.sort_by { |k| k[:date] }.group_by {|k| k[:date].strftime('%B')} %>

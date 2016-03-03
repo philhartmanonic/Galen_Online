@@ -7,24 +7,32 @@
 				<content>
 					<title class="election-subhead">Primary Season Calendar</title>
 					<table class="election-text" style="border: none;">
-				    	<thead>
+				    	<thead class="election-text" style="text-align: center;">
 				      		<tr>
 				        		<th>Name</th>
 				        		<th>Date</th>
 				        		<th>Party</th>
 				        		<th>Type</th>
+				        		<th>GOP Winner/Leader</th>
+				        		<th>Dem Winner/Leader</th>
 				      		</tr>
 				    	</thead>
-
 				    	<tbody>
-				      		<% @cs.each do |s| %>
-			      				<% @state = State.find_by(name: s[:name]) %>
-			        			<tr>
-			        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], @state %></td>
-			        				<td style="min-width: 5em;"><%= s[:date].strftime("%m-%d-%y") %></td>
-			        				<td><%= s[:party] %></td>
-			        				<td><%= s[:p_or_c] %></td>
-			        			</tr>
+				      		<% @cs.each do |k, v| %>
+  								<tr class="election-text">
+  									<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
+    							</tr>
+				      			<% v.each do |s| %>
+				      				<% @state = State.find_by(name: s[:name]) %>
+				        			<tr>
+				        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], @state %></td>
+				        				<td style="min-width: 7em;"><%= s[:date].strftime("%m-%d-%y") %></td>
+				        				<td><%= s[:party] %></td>
+				        				<td><%= s[:p_or_c] %></td>
+				        				<td style="max-width: 25vw; overflow: auto;"><%= @state.gop_winner %></td>
+				        				<td style="max-width: 25vw; overflow: auto;"><%= @state.dem_winner %></td>
+				        			</tr>
+				        		<% end %>
 			      			<% end %>
 				    	</tbody>
 					</table>
