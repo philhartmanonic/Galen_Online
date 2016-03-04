@@ -59,3 +59,9 @@ group :production do
 	gem 'pg', '~> 0.18.1'
 end
 
+source 'https://rails-assets.org' do
+	gem 'rails-assets-angular-ui-grid'
+	gem 'rails-assets-restangular'
+	gem 'rails-assets-ng-rails-csrf'
+	gem 'rails-assets-ngModal'
+end

@@ -6,13 +6,38 @@ module ApplicationHelper
 
   class HTML < Redcarpet::Render::HTML
     include Rouge::Plugins::Redcarpet
+    def autolink(link, link_type)
+      case link_type
+        when :url then url_link(link)
+        when :email then email_link(link)
+      end
+    end
+    def url_link(link)
+      case link
+        when /^https:\/\/www.youtube/ then youtube_link(link)
+        when /^https:\/\/youtu.be/ then youtube_link(link)
+        else 
+          normal_link(link)
+      end
+    end
+    def youtube_link(link)
+      parameters_start = link.index('?')
+      video_id = link[15..(parameters_start ? parameters_start-1 : -1)]
+      "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"//www.youtube.com/embed/#{video_id}?rel=0\" frameborder=\"0\" allowfullscreen></iframe>"
+    end
+    def normal_link(link)
+      "<a href=\"#{link}\">#{link}</a>"
+    end
+    def email_link(email)
+      "<a href=\"mailto:#{email}\">#{email}</a>"
+    end
   end
 
   def markdown(text)
     render_options = {
       filter_html:     true,
       hard_wrap:       true, 
-      link_attributes: { rel: 'nofollow' }
+      link_attributes: { rel: 'nofollow' }      
     }
     renderer = HTML.new(render_options)
 
@@ -24,6 +49,7 @@ module ApplicationHelper
       strikethrough:      true,
       superscript:        true
     }
+
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 end

@@ -19,9 +19,9 @@
 				    	</thead>
 				    	<tbody>
 				      		<% @cs.each do |k, v| %>
-  								<tr class="election-text">
-  									<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
-    							</tr>
+									<tr class="election-text">
+										<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
+								</tr>
 				      			<% v.each do |s| %>
 				      				<% @state = State.find_by(name: s[:name]) %>
 				        			<tr>
