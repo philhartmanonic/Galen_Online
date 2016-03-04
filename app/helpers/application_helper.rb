@@ -21,9 +21,15 @@ module ApplicationHelper
       end
     end
     def youtube_link(link)
-      parameters_start = link.index('?')
-      video_id = link[15..(parameters_start ? parameters_start-1 : -1)]
-      "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"//www.youtube.com/embed/#{video_id}?rel=0\" frameborder=\"0\" allowfullscreen></iframe>"
+      if link.include? ("/youtu.be")
+        divide = link.split("youtu.be")
+        video_id = divide[0]
+      elsif link.include? ("www.youtube.com")
+        start = link[32..-1]
+        divide = start.split("&")
+        video_id = divide[0]
+      end
+      "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
     end
     def normal_link(link)
       "<a href=\"#{link}\">#{link}</a>"
