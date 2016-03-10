@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
 	accepts_nested_attributes_for :comments
 	accepts_nested_attributes_for :votes
 	accepts_nested_attributes_for :user
+	has_attached_file :main_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+	validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\Z/
 
 	def score
 		return self.votes.where(up: true).count - self.votes.where(up: false).count
@@ -16,7 +18,7 @@ class Post < ActiveRecord::Base
 	end
 
 	def formatted_created_time
-		self.created_at.strftime(" on %B %d, %Y at %I:%M %P")
+		self.created_at.strftime("%B %d, %Y at %l:%M %P")
 	end
 
 	private

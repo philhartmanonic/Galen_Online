@@ -27,6 +27,23 @@ class PartiesController < ApplicationController
         r = []
         gop_u.each {|k, v| r.append(v.last.updated_at.to_time())}
         @gop_updated = r.max.strftime('%l:%M %P, %m-%d-%y')
+        dates = []
+        @states.each do |s|
+            if s.dem_date.present?
+                dates << s.dem_date
+            end
+            if s.gop_date.present?
+                dates << s.gop_date
+            end
+        end
+        def is_election?(dates)
+            if dates.include? Date.today
+                return true
+            else
+                return false
+            end
+        end
+        @electionday = is_election(dates)
     end
 
 	private

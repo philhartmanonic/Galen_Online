@@ -19,6 +19,46 @@
     -webkit-text-stroke-color: $s-purp4;
 }
 
+.summary > info > .title {
+	font-family: Aaargh;
+	font-weight: bold;
+	color: black;
+	font-size: 2em;
+	line-height: 1.1;
+	text-align: center;
+}
+
+.summary > info > start {
+	font-family: Fanwood;
+	color: black;
+	font-size: 1em;
+}
+
+.title {
+	font-family: Aaargh;
+	font-weight: bold;
+	color: black;
+	font-size: 2em;
+	text-align: center;
+}
+
+blogabout {
+	border: thin solid black;
+}
+
+blogabout > .head {
+	background-color: black;
+	color: white;
+	font-family: Aaargh;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+blogabout > .body {
+	font-family: Fanwood;
+	font-size: 14px;
+}
+
 .line {
 	@include droid();
 }
@@ -36,8 +76,9 @@
 }
 
 .small-meta {
-	@include helvetica();
-	font-size: 0.7em;
+	font-family: Fanwood;
+	font-size: 0.9em;
+	line-height: 1.2;
 	font-weight: 300;
 }
 
@@ -212,11 +253,11 @@ name {
 }
 
 .land-link:link {
-	color: white;
+	color: black;
 }
 
 .land-link:visited {
-	color: $s-green1;
+	color: black;
 }
 
 .landing-list {
@@ -237,6 +278,10 @@ title {
 	line-height: 1.5;
 }
 
+.blog {
+	border-bottom: thin solid $medium-gray;
+}
+
 .article-title {
 	font-family: Aaargh;
 	color: $s-purp3;
@@ -244,15 +289,16 @@ title {
 }
 
 .blogtitle {
-	font-family: carbontype;
+	font-family: Fanwood;
 	font-size: 4em;
 	color: white;
-	@include linear-gradient(to right, black, black, $s-purp3);
+	@include linear-gradient(to right, $medium-gray, white, $medium-gray);
+	padding-top: 16px;
+	padding-bottom: 16px;
 }
 
-.blogbody {
+.blogbody > p {
 	font-family: Fanwood;
-	font-size: 0.9em;
 }
 
 .blogbody > h1 {

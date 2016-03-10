@@ -1,82 +1,84 @@
-<content class="blogtitle">The Daily Galen</content>
 <content class="blogtitle">
-	<split class="special-menu">
+	<lowthird class="special-menu">
 		<%= link_to "GalenHome", "/", class: "land-link" %>
-	</split>
-	<split class="special-menu">
+	</lowthird>
+	<lowthird>
+		<%= image_tag "GalenOnlineLogo-medium.png" %>
+	</lowthird>
+	<lowthird class="special-menu">
 		<%= link_to "Blog", posts_blog_path, class: "land-link" %>
-	</split>
+	</lowthird>
 </content>
-<bodysub>
-	<main>
-		<content class="outlined blog">
-			<portal>
-				<rbigl>
-					<portal class="article-title"><%= @post.title.strip %></portal>
-				</rbigl>
-				<rasider>
-					<right>
+<content class="box nosides">
+	<content class="blog nosides">
+		<portal class="blog-container">
+			<content>
+				<%= link_to @post.title, @post, class: "title" %>
+				<info>
+					<start class="small-meta">
+						<mincontent>
+							<% if @last.user.nil? %>
+							By Unkown
+							<% else %>
+							By <%= @last.user.username %>
+							<% end %>
+						</mincontent>
+						<mincontent>
+							<%= @last.formatted_created_time %>
+						</mincontent>
 						<table class="voting">
 							<tr>
-								<td class="upordown"><%= button_to '-1', downvote_post_path(@post), method: :post %></th>
-								<td class="score upordown"><%= @post.score %></th>
-								<td class="upordown"><%= button_to '+1', upvote_post_path(@post), method: :post %></th>
+								<td class="upordown"><%= button_to '-1', "/posts/#{@post.id}/downvote", method: :post %></td>
+								<td class="score upordown"><%= @post.score %></td>
+								<td class="upordown"><%= button_to '+1', "/posts/#{@post.id}/upvote", method: :post %></td>
 							</tr>
 						</table>
-					</right>
-				</rasider>
+					</start>
+				</info>
+			</content>
+		</portal>
+		<portal class="blog-image" style="background-image: url('<%= @last.main_image %>'); background-size: cover;"></portal>
+		<content>
+			<portal class="blogbody">
+				<%= markdown(@last.body) %>
 			</portal>
-			<content>
-				<portal class="small-meta">
-					<% if @post.user.nil? %>
-					By Unkown
-					<% else %>
-					By <%= @post.user.username %>
-					<% end %>
-				</portal>
-			</content>
-			<content>
-				<portal class="blogbody">
-					<%= markdown(@post.body) %>
-				</portal>
-			</content>
-			<main class="blogfoot">
-				<% if user_signed_in? %>
-				<shell>Add a comment</shell>
-				<%= form_for ([Comment.new]) do |f| %>
-					<shell><%= f.text_area :body %></shell>
-					<shell><%= f.submit %></shell>
-				<% end %>
-				<% else %>
-					<shell>You need to <%= link_to 'Sign in', new_user_session_path %> to comment.  <%= link_to 'Sign up', new_user_registration_path %>.</shell>
-				<% end %>
-			</content>
 		</content>
-		<hr>
-		<title class="commenthead"><%= @comments.count %> comments</title>
-		<% @comments.each do |c| %>
-			<content class="outlined blog">
+		<content class="blogfoot">
+			<% if user_signed_in? %>
+			<shell>Add a comment</shell>
+			<%= form_for ([Comment.new]) do |f| %>
+				<shell><%= f.text_area :body %></shell>
+				<shell><%= f.submit %></shell>
+			<% end %>
+			<% else %>
+				<shell>You need to <%= link_to 'Sign in', new_user_session_path %> to comment.  <%= link_to 'Sign up', new_user_registration_path %>.</shell>
+			<% end %>
+		</content>
+	</content>
+</content>
+<hr>
+<title class="commenthead"><%= @comments.count %> comments</title>
+<% @comments.each do |c| %>
+	<content class="outlined blog">
+		<portal>
+			<rbigl id="comment_<%= c.id %>">
 				<portal>
-					<rbigl id="comment_<%= c.id %>">
-						<portal>
-							<%= markdown(c.body) %>
-						</portal>
-					</rbigl>
-					<rasider>
-						<right>
-							<table class="voting">
-								<tr>
-									<td class="upordown"><%= button_to '-1', "/posts/#{c.post_id}/comments/#{c.id}/downvote", method: :post %></td>
-									<td class="score upordown"><%= c.score %></td>
-									<td class="upordown"><%= button_to '+1', "/posts/#{c.post_id}/comments/#{c.id}/upvote", method: :post %></td>
-								</tr>
-							</table>
-						</right>
-					</rasider>
+					<%= markdown(c.body) %>
 				</portal>
-				<hr>
-				<portal class="small-meta"><%= "Posted by #{c.user.username} at #{c.formatted_created_time}" %></portal>
-			</content>
-		<% end %>
-	</main>
-</bodysub>
+			</rbigl>
+			<rasider>
+				<right>
+					<table class="voting">
+						<tr>
+							<td class="upordown"><%= button_to '-1', "/posts/#{c.post_id}/comments/#{c.id}/downvote", method: :post %></td>
+							<td class="score upordown"><%= c.score %></td>
+							<td class="upordown"><%= button_to '+1', "/posts/#{c.post_id}/comments/#{c.id}/upvote", method: :post %></td>
+						</tr>
+					</table>
+				</right>
+			</rasider>
+		</portal>
+		<hr>
+		<portal class="small-meta"><%= "Posted by #{c.user.username} at #{c.formatted_created_time}" %></portal>
+	</content>
+<% end %>

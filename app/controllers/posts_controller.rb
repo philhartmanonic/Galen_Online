@@ -12,15 +12,17 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @recents = Post.order("created_at desc").limit(5)
+    @recents = Post.order("created_at desc").limit(4).offset(1)
+    @last = Post.last
     @posts = Post.all
     @comments = Comment.where(post_id: @post.id).sort_by{|p| -p.score}
     @post = Post.find(params[:id])
   end
 
   def blog
-    @recents = Post.order("created_at desc").limit(5)
-    @posts = Post.includes(:comments).all
+    @recents = Post.order("created_at desc").limit(4).offset(1)
+    @last = Post.last
+    @posts = Post.all
   end
 
   def all_blog
@@ -104,6 +106,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :user_id, user_attributes: [:id, :email, :username], comments_attributes: [:body, :score], votes_attributes: [:up])
+      params.require(:post).permit(:title, :body, :user_id, :main_image, user_attributes: [:id, :email, :username], comments_attributes: [:body, :score], votes_attributes: [:up])
     end
 end

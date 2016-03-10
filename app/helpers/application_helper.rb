@@ -22,14 +22,14 @@ module ApplicationHelper
     end
     def youtube_link(link)
       if link.include? ("/youtu.be")
-        divide = link.split("youtu.be")
-        video_id = divide[0]
+        divide = link.split("youtu.be/")
+        video_id = divide[1]
       elsif link.include? ("www.youtube.com")
         start = link[32..-1]
         divide = start.split("&")
         video_id = divide[0]
       end
-      "<iframe class=\"youtube\" width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
+      "<iframe class=\"youtube\" src=\"https://www.youtube.com/embed/#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
     end
     def normal_link(link)
       "<a href=\"#{link}\">#{link}</a>"

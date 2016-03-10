@@ -1,57 +1,85 @@
-<content class="blogtitle">The Daily Galen</content>
 <content class="blogtitle">
-	<split class="special-menu">
+	<lowthird class="special-menu">
 		<%= link_to "GalenHome", "/", class: "land-link" %>
-	</split>
-	<split class="special-menu">
+	</lowthird>
+	<lowthird>
+		<%= image_tag "GalenOnlineLogo-medium.png" %>
+	</lowthird>
+	<lowthird class="special-menu">
 		<%= link_to "Blog", posts_blog_path, class: "land-link" %>
-	</split>
+	</lowthird>
 </content>
-<bodysub>
-	<main>
-		<% @recents.each do |p| %>
-			<content class="outlined blog">
-				<portal>
-					<rbigl>
-						<portal class="article-title">
-							<%= p.title.strip %>
-						</portal>
-					</rbigl>
-					<rasider>
-						<right>
-							<table class="voting">
-								<tr>
-									<td class="upordown"><%= button_to '-1', downvote_post_path(p), method: :post, class: "vote" %></td>
-									<td class="score upordown"><%= p.score %></td>
-									<td class="upordown"><%= button_to '+1', upvote_post_path(p), method: :post, class: "vote" %></td>
-								</tr>
-							</table>
-						</right>
-					</rasider>
+<content class="box nosides">
+	<RbigL class="right-line nosides">
+		<content class="blog nosides">
+			<portal class="blog-container">
+				<content>
+					<%= link_to @last.title, @last, class: "title" %>
+					<info>
+						<start class="small-meta">
+							<mincontent>
+								<% if @last.user.nil? %>
+								By Unkown
+								<% else %>
+								By <%= @last.user.username %>
+								<% end %>
+							</mincontent>
+							<mincontent>
+								<%= @last.formatted_created_time %>
+							</mincontent>
+						</start>
+					</info>
+				</content>
+			</portal>
+			<portal class="blog-image" style="background-image: url('<%= @last.main_image %>'); background-size: cover;"></portal>
+			<content>
+				<portal class="blogbody">
+					<%= markdown(truncate(@last.body, length: 400)) %>
 				</portal>
-				<content>
-					<portal class="small-meta">
-						<% if p.user.nil? %>
-						By Unkown
-						<% else %>
-						By <%= p.user.username %>
-						<% end %>
-						<%= p.formatted_created_time %>
-					</portal>
-				</content>
-				<content>
-					<portal class="blogbody">
-						<%= markdown(truncate p.body, length: 1000) %>
-						<%= link_to 'Read More', p %>
-					</portal>
-				</content>
-				<hr>
-				<content>
-					<portal class="small-meta">
-						<%= link_to "View #{p.comments.count} Comments", post_path(p) %>
-					</portal>
-				</content>
 			</content>
-		<% end %>
-	</main>
-</bodysub>
+			<content>
+				<%= link_to "Read more", @last %>
+			</content>
+		</content>
+		<content>
+			<portal class="blog-container">
+				<content class="blog">
+					<portal class="blog-container">
+						<content class="title">Recent Posts</content>
+					</portal>
+				</content>
+				<% @recents.each do |p| %>
+					<content class="blog">
+						<portal class="blog-container">
+							<card class="summary" style="background-image: url('<%= p.main_image %>'); background-size: cover;">
+								<info>
+									<%= link_to p.title, p, class: "title" %>
+									<start class="small-meta">
+										<mincontent>
+											<% if p.user.nil? %>
+											By Unkown
+											<% else %>
+											By <%= p.user.username %>
+											<% end %>
+										</mincontent>
+										<mincontent>
+											<%= p.formatted_created_time %>
+										</mincontent>
+									</start>
+								</info>
+							</card>
+						</portal>
+					</content>
+				<% end %>
+			</portal>
+		</content>
+	</rbigl>
+	<RasideR>
+		<mincontent>
+			<blogabout class="nosides">
+				<content class="head">About</content>
+				<content class="body"><div style="width: 100%;"><%= image_tag "bbg.jpg", style: "max-width: 50%; max-height: 125px; float: left; margin-right: 16px;" %>Galen is a web developer based in Chicago, as well as a father, retired punk rocker, and a geek about history and the philosophy of psychoanalysis.</div></content>
+			</blogabout>
+		</mincontent>
+	</rasider>
+</content>
