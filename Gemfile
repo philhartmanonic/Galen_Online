@@ -31,6 +31,7 @@ gem 'pollster', '~> 0.2.3'
 gem 'twitter'
 gem 'omniauth-twitter'
 gem 'unf_ext', '>= 0.0.7.2'
+gem 'fog'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry-rails', group: :development

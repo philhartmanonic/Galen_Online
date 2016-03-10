@@ -76,10 +76,19 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
   config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_host_name => 's3-us-west-2.amazonaws.com',
-    :bucket => 'elasticbeanstalk-us-west-2-762356920553'
-  }
+  :storage => :fog,
+  :fog_credentials => {
+    :provider => 'AWS',
+    :aws_access_key_id => ENV['AWS_ACCESS_KEY_ID']
+    :aws_secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  },
+  :fog_directory => 'elasticbeanstalk-us-west-2-762356920553',
+  :path => "app/images/:class/:attachment/:id_partition/:style/:filename",
+  :fog_public => false,
+  :default_url => "/assets/missing.jpg"
+}
+
 
 end
