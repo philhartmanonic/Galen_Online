@@ -40,7 +40,7 @@
 		<portal class="blog-image" style="background-image: url('<%= @last.main_image %>'); background-size: cover;"></portal>
 		<content>
 			<portal class="blogbody">
-				<%= markdown(@last.body) %>
+				<%= markdown(@post.body) %>
 			</portal>
 		</content>
 		<content class="blogfoot">
