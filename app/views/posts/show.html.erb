@@ -17,14 +17,14 @@
 				<info>
 					<start class="small-meta">
 						<mincontent>
-							<% if @last.user.nil? %>
+							<% if @post.user.nil? %>
 							By Unkown
 							<% else %>
-							By <%= @last.user.username %>
+							By <%= @post.user.username %>
 							<% end %>
 						</mincontent>
 						<mincontent>
-							<%= @last.formatted_created_time %>
+							<%= @post.formatted_created_time %>
 						</mincontent>
 						<table class="voting">
 							<tr>
