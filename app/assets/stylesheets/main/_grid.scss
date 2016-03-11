@@ -591,3 +591,9 @@ electionholder {
 	margin-top: 16px;
 	margin-bottom: 16px;
 }
+
+.pagination {
+	@include flex-grid-row();
+	@include flex-grid-column(12);
+	@include flex-grid-row-align(center, middle);
+}

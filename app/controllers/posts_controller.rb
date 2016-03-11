@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def all_blog
-    @posts = Post.order("created_at desc")
+    @posts = Post.paginate(page: params[:page], per_page: 5).order("created_at desc")
   end
 
   # GET /posts/new
