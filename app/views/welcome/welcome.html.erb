@@ -10,22 +10,22 @@
 				<thing class="logo">
 					<portal class="landing-menu">
 						<ul class="landing-list">
-							<li><%= link_to "What's going on", welcome_about_path, class: "land-link" %></li>
-							<li><a class="land-link" href="https://github.com/philhartmanonic/Galen_Online">Source code</a></li>
-							<li><%= link_to "Primaries", electiondashboard_path, class: "land-link" %></li>
-							<li><%= link_to "Blog", posts_blog_path, class: "land-link" %></li>
+							<li><%= link_to "What's going on", welcome_about_path, class: "land-link-white" %></li>
+							<li><a class="land-link-white" href="https://github.com/philhartmanonic/Galen_Online">Source code</a></li>
+							<li><%= link_to "Primaries", electiondashboard_path, class: "land-link-white" %></li>
+							<li><%= link_to "Blog", posts_blog_path, class: "land-link-white" %></li>
 							<% a = rand(1..2) %>
 							<% if a == 1 %>
-								<li><%= link_to "Random app", electiondashboard_path, class: "land-link" %></li>
+								<li><%= link_to "Random app", electiondashboard_path, class: "land-link-white" %></li>
 							<% elsif a == 2 %>
-								<li><%= link_to "Random app", posts_blog_path, class: "land-link" %></li>
+								<li><%= link_to "Random app", posts_blog_path, class: "land-link-white" %></li>
 							<% end %>
 						</ul>
 						<% if user_signed_in? %>
 						<% else %>
 						<ul class="landing-list">
-							<li><%= link_to 'Sign in', new_user_session_path, class: "land-link" %></li>
-  							<li><%= link_to 'Sign up', new_user_registration_path, class: "land-link" %></li>
+							<li><%= link_to 'Sign in', new_user_session_path, class: "land-link-white" %></li>
+  							<li><%= link_to 'Sign up', new_user_registration_path, class: "land-link-white" %></li>
   						</ul>
 						<% end %>
 					</portal>
