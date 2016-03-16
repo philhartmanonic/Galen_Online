@@ -50,6 +50,9 @@ GEM
       debug_inspector (>= 0.0.1)
     buftok (0.2.0)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (8.2.1)
     cancancan (1.13.1)
     climate_control (0.0.3)
@@ -354,6 +357,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    uniform_notifier (1.9.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -369,6 +373,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (< 2.0.0)
+  bullet
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.1.0)

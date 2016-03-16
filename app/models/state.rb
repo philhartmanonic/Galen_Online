@@ -19,7 +19,11 @@ class State < ActiveRecord::Base
 	end
 
 	def formatted_dem_date
-		self.dem_date.strftime('%B %d')
+		if self.dem_date.nil?
+			"No date set"
+		else
+			self.dem_date.strftime('%B %d')
+		end
 	end
 
 	def formatted_gop_date
@@ -92,6 +96,34 @@ class State < ActiveRecord::Base
 			end
 		end
 	end
+	def dem_latest
+		begin
+			poll = Pollster::Poll.where(chart: self.dem_poll_slug).first
+		rescue Exception
+			return ["Message", "There are no Democratic polls for this state"]
+		else
+			a = poll.questions
+			b = {"Pollster": poll.pollster, "Start Date": poll.start_date, "End Date": poll.end_date, "Results": []}
+			a.each do |q|
+				if (q.name =~ /Senate/).nil? and (q.name =~ /Gubernatorial/).nil? and (q.name =~ /Governor/).nil? and (q.name =~ / GE/).nil?
+					c = q.responses
+					c.each do |r|
+						if r[:party] == "Dem"
+							b[:Results].append([r[:choice], r[:value]])
+						end
+					end
+				end
+			end
+			if b[:Results].empty? == false
+				b[:Results].sort_by! {|k| k[1] * -1}
+				return b
+			else
+				return ["Message", "There are no Democratic polls for this state"]
+			end
+		end
+	end
+
+
 	def gop_polls
 		begin
 			polls = Pollster::Chart.find(self.gop_poll_slug).polls
@@ -122,6 +154,33 @@ class State < ActiveRecord::Base
 				return poll_data
 			else
 				return ["Message", "There are no Republican polls for this state"]
+			end
+		end
+	end
+
+	def gop_latest
+		begin
+			poll = Pollster::Poll.where(chart: self.gop_poll_slug).first
+		rescue Exception
+			return ["Message", "There are no Democratic polls for this state"]
+		else
+			a = poll.questions
+			b = {"Pollster": poll.pollster, "Start Date": poll.start_date, "End Date": poll.end_date, "Results": []}
+			a.each do |q|
+				if (q.name =~ /Senate/).nil? and (q.name =~ /Gubernatorial/).nil? and (q.name =~ /Governor/).nil? and (q.name =~ / GE/).nil?
+					c = q.responses
+					c.each do |r|
+						if r[:party] == "Rep"
+							b[:Results].append([r[:choice], r[:value]])
+						end
+					end
+				end
+			end
+			if b[:Results].empty? == false
+				b[:Results].sort_by! {|k| k[1] * -1}
+				return b
+			else
+				return ["Message", "There are no Democratic polls for this state"]
 			end
 		end
 	end
