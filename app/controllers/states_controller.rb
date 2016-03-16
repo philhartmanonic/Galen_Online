@@ -38,6 +38,45 @@ class StatesController < ApplicationController
 
   def calendar
     @states = State.all
+    dem_states = State.includes(:elections).where("elections.party_id = 2").references(:elections)
+    gop_states = State.includes(:elections).where("elections.party_id = 1").references(:elections)
+    @calendar_states = []
+    dem_winners = {}
+    gop_winners = {}
+    dem_states.each do |s|
+      if s.dem_date.nil? == false and s.dem_date <= Date.today and s.elections.empty? == false
+        a = s.elections.first
+        dem_winners[s.id] = "#{a.candidate.last_name}: #{a.percent}%, #{a.regs} delegates"
+      elsif s.dem_polls.first.kind_of?(Hash)
+        a = s.dem_polls.first[:Results].first
+        dem_winners[s.id] = "(Poll) #{a[0]}: #{a[1]}"
+      else
+        dem_winners[s.id] = "No data"
+      end
+    end
+    gop_states.each do |s|
+      if s.gop_date.nil? == false and s.gop_date <= Date.today and s.elections.empty? == false
+        a = s.elections.first
+        gop_winners[s.id] = "#{a.candidate.last_name}: #{a.percent}%, #{a.regs} delegates"
+      elsif s.gop_polls.first.kind_of?(Hash)
+        a = s.gop_polls.first[:Results].first
+        gop_winners[s.id] = "(Poll) #{a[0]}: #{a[1]}"
+      else
+        gop_winners[s.id] = "No data"
+      end
+    end 
+    @states.each do |s|
+      if s.gop_own == true
+        @calendar_states << {state: s, name: s.name, date: s.gop_date, type: s.p_or_c, gop: gop_winners[s.id], dem: dem_winners[s.id], party: 'Republican'}
+      end
+      if s.dem_own == true
+        @calendar_states << {state: s, name: s.name, date: s.dem_date, type: s.p_or_c, gop: gop_winners[s.id], dem: dem_winners[s.id], party: 'Democratic'}
+      end
+      if s.both == true
+        @calendar_states << {state: s, name: s.name, date: s.gop_date, type: s.p_or_c, gop: gop_winners[s.id], dem: dem_winners[s.id], party: 'Both'}
+      end
+    end
+    @cs = @calendar_states.sort_by { |k| k[:date] }.group_by {|k| k[:date].strftime('%B')}
   end
 
   # POST /states

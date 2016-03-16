@@ -1,4 +1,3 @@
-<% render 'code' %>
 <%= render 'shared/election_head' %>
 <bodysub class="altsub">
 	<content>
@@ -19,18 +18,17 @@
 				    	</thead>
 				    	<tbody>
 				      		<% @cs.each do |k, v| %>
-									<tr class="election-text">
-										<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
+								<tr class="election-text">
+									<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
 								</tr>
 				      			<% v.each do |s| %>
-				      				<% @state = State.find_by(name: s[:name]) %>
 				        			<tr>
-				        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], @state %></td>
+				        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], s[:state] %></td>
 				        				<td style="min-width: 7em;"><%= s[:date].strftime("%m-%d-%y") %></td>
 				        				<td><%= s[:party] %></td>
-				        				<td><%= s[:p_or_c] %></td>
-				        				<td style="max-width: 25vw; overflow: auto;"><%= @state.gop_winner %></td>
-				        				<td style="max-width: 25vw; overflow: auto;"><%= @state.dem_winner %></td>
+				        				<td><%= s[:type] %></td>
+				        				<td style="max-width: 25vw; overflow: auto;"><%= s[:gop] %></td>
+				        				<td style="max-width: 25vw; overflow: auto;"><%= s[:dem] %></td>
 				        			</tr>
 				        		<% end %>
 			      			<% end %>

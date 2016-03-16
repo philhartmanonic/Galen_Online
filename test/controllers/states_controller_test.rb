@@ -46,4 +46,16 @@ class StatesControllerTest < ActionController::TestCase
 
     assert_redirected_to states_path
   end
+
+  test "should return @dem_winners values" do
+    get :calendar
+    assert_not_nil @dem_winners["58"]
+  end
+
+  test "should return values for all states" do
+    get :calendar
+    @calendar_states.each do |k, v|
+      assert_not_nil @calendar_states[k]
+    end
+  end
 end

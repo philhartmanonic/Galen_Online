@@ -43,7 +43,7 @@ class PartiesController < ApplicationController
                 return false
             end
         end
-        @electionday = is_election(dates)
+        @electionday = is_election?(dates)
     end
 
 	private
