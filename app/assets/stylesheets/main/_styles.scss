@@ -479,3 +479,54 @@ table {
 .youtube {
 	align: center;
 }
+
+.america-one {
+	background-color: $light-red;
+}
+
+.america-two {
+	background-color: $light-blue;
+}
+
+.in-menu {
+	outline-style: ridge;
+	outline-color: black;
+	@include linear-gradient(to top right, $medium-gray, white);
+	color: black;
+	text-align: center;
+	font-family: Fanwood;
+	font-size: 1.1em;
+	padding: 0.3em;
+}
+
+.inside-menu {
+	@include flex-grid-row();
+	@include flex-grid-row-align(spaced);
+}
+
+.quote {
+	font-size: 1.3em;
+	font-family: Fanwood;
+	font-style: italic;
+}
+
+.source {
+	font-size: 1.1em;
+	font-family: Aaargh;
+	text-align: right;
+}
+
+quotebox {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.election-banner {
+	background-image: image-url("america.jpg");
+	background-size: cover;
+	width: 120vw;
+	height: 100px;
+}

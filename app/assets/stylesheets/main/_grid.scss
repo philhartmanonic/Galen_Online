@@ -489,9 +489,11 @@ rthird {
 }
 
 electionholder {
-	@include flex-grid-row(nest);
+	@include flex-grid-row();
 	@include flex-grid-column(12);
 	@include flex-grid-row-align(spaced, stretch);
+	padding-bottom: 1em;
+	padding-top: 1em;
 }
 
 .election-title {
@@ -597,3 +599,4 @@ electionholder {
 	@include flex-grid-column(12);
 	@include flex-grid-row-align(center, middle);
 }
+
