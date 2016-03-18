@@ -45,12 +45,12 @@ class StatesController < ApplicationController
     gop_winners = {}
     dem_states.each do |s|
       if s.dem_date <= Date.today
-        a = s.elections.first
+        a = s.elections.sort_by {|k| [-k.percent, -k.regs]}.first
         dem_winners[s.id] = "#{a.candidate.last_name}: #{a.percent}%, #{a.regs} delegates"
       end
     end
     gop_states.each do |s|
-      a = s.elections.first
+      a = s.elections.sort_by {|k| [-k.percent, -k.regs]}.first
       gop_winners[s.id] = "#{a.candidate.last_name}: #{a.percent}%, #{a.regs} delegates"
     end 
     @states.each do |s|
