@@ -1,13 +1,4 @@
-<content class="blogtitle">
-	<content class="show-for-medium"><%= image_tag "GalenOnlineLogo-medium.png" %></content>
-	<content class="hide-for-medium"><%= image_tag "GalenOnlineLogo-small.png" %></content>
-	<split class="special-menu">
-		<%= link_to "GalenHome", "/", class: "land-link" %>
-	</split>
-	<split class="special-menu">
-		<%= link_to "Blog", posts_blog_path, class: "land-link", style: "width: 100%;" %>
-	</split>
-</content>
+<%= render 'bloghead' %>
 <content class="box nosides">
 	<RbigL class="right-line nosides">
 		<content class="blog nosides">

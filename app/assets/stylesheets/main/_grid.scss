@@ -178,6 +178,10 @@ card {
 	padding-bottom: 4px;
 }
 
+.title > a {
+	white-space: normal;
+}
+
 .summary > info > .title {
 	@include flex-grid-row();
 	@include flex-grid-column(12);

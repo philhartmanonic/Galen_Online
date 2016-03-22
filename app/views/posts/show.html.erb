@@ -1,42 +1,30 @@
-<content class="blogtitle">
-	<lowthird class="special-menu">
-		<%= link_to "GalenHome", "/", class: "land-link" %>
-	</lowthird>
-	<lowthird>
-		<%= image_tag "GalenOnlineLogo-medium.png" %>
-	</lowthird>
-	<lowthird class="special-menu">
-		<%= link_to "Blog", posts_blog_path, class: "land-link" %>
-	</lowthird>
-</content>
+<%= render 'bloghead' %>
 <content class="box nosides">
 	<content class="blog nosides">
-		<portal class="blog-container">
-			<content>
-				<%= link_to @post.title, @post, class: "title" %>
-				<info>
-					<start class="small-meta">
-						<mincontent>
-							<% if @post.user.nil? %>
-							By Unkown
-							<% else %>
-							By <%= @post.user.username %>
-							<% end %>
-						</mincontent>
-						<mincontent>
-							<%= @post.formatted_created_time %>
-						</mincontent>
-						<table class="voting">
-							<tr>
-								<td class="upordown"><%= button_to '-1', "/posts/#{@post.id}/downvote", method: :post %></td>
-								<td class="score upordown"><%= @post.score %></td>
-								<td class="upordown"><%= button_to '+1', "/posts/#{@post.id}/upvote", method: :post %></td>
-							</tr>
-						</table>
-					</start>
-				</info>
-			</content>
-		</portal>
+		<content class="blog-container">
+			<content class="title"><%= link_to @post.title, @post %></content>
+			<info>
+				<start class="small-meta">
+					<mincontent>
+						<% if @post.user.nil? %>
+						By Unkown
+						<% else %>
+						By <%= @post.user.username %>
+						<% end %>
+					</mincontent>
+					<mincontent>
+						<%= @post.formatted_created_time %>
+					</mincontent>
+					<table class="voting">
+						<tr>
+							<td class="upordown"><%= button_to '-1', "/posts/#{@post.id}/downvote", method: :post %></td>
+							<td class="score upordown"><%= @post.score %></td>
+							<td class="upordown"><%= button_to '+1', "/posts/#{@post.id}/upvote", method: :post %></td>
+						</tr>
+					</table>
+				</start>
+			</info>
+		</content>
 		<portal class="blog-image" style="background-image: url('<%= @post.main_image %>'); background-size: cover;"></portal>
 		<content>
 			<portal class="blogbody">
