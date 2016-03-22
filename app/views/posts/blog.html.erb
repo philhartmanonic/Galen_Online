@@ -2,25 +2,23 @@
 <content class="box nosides">
 	<RbigL class="right-line nosides">
 		<content class="blog nosides">
-			<portal class="blog-container">
-				<content>
-					<%= link_to @last.title, @last, class: "title" %>
-					<info>
-						<start class="small-meta">
-							<mincontent>
-								<% if @last.user.nil? %>
-								By Unkown
-								<% else %>
-								By <%= @last.user.username %>
-								<% end %>
-							</mincontent>
-							<mincontent>
-								<%= @last.formatted_created_time %>
-							</mincontent>
-						</start>
-					</info>
-				</content>
-			</portal>
+			<content class="blog-container">
+				<content class="title"><%= link_to @last.title, @last %></content>
+				<info>
+					<start class="small-meta">
+						<mincontent>
+							<% if @last.user.nil? %>
+							By Unkown
+							<% else %>
+							By <%= @last.user.username %>
+							<% end %>
+						</mincontent>
+						<mincontent>
+							<%= @last.formatted_created_time %>
+						</mincontent>
+					</start>
+				</info>
+			</content>
 			<portal class="blog-image" style="background-image: url('<%= @last.main_image %>'); background-size: cover;"></portal>
 			<content>
 				<portal class="blogbody">
