@@ -1,13 +1,12 @@
 <content class="blogtitle">
-	<lowthird class="special-menu">
+	<content class="show-for-medium"><%= image_tag "GalenOnlineLogo-medium.png" %></content>
+	<content class="hide-for-medium"><%= image_tag "GalenOnlineLogo-small.png" %></content>
+	<split class="special-menu">
 		<%= link_to "GalenHome", "/", class: "land-link" %>
-	</lowthird>
-	<lowthird>
-		<%= image_tag "GalenOnlineLogo-medium.png" %>
-	</lowthird>
-	<lowthird class="special-menu">
-		<%= link_to "Blog", posts_blog_path, class: "land-link" %>
-	</lowthird>
+	</split>
+	<split class="special-menu">
+		<%= link_to "Blog", posts_blog_path, class: "land-link", style: "width: 100%;" %>
+	</split>
 </content>
 <content class="box nosides">
 	<RbigL class="right-line nosides">

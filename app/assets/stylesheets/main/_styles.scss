@@ -432,6 +432,7 @@ table {
 
 .election-text {
 	font-family: Fanwood;
+
 }
 
 .accordion-title {
@@ -502,6 +503,8 @@ table {
 .inside-menu {
 	@include flex-grid-row();
 	@include flex-grid-row-align(spaced);
+	line-height: 1.5;
+	margin-top: 1em;
 }
 
 .quote {

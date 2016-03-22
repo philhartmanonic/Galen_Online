@@ -229,10 +229,12 @@ start > p > .youtube {
 blogabout {
 	@include flex-grid-row(nest collapse);
 	@include flex-grid-column(12);
-	margin-top: 150px;
 	padding-left: 0px;
 	padding-right: 0px;
 	width: 100%;
+	@media #{$medium-up} {
+		margin-top: 150px;
+	}
 }
 
 blogabout > .head {
@@ -370,6 +372,10 @@ title {
 	@include flex-grid-row-align(spaced);
 	padding-top: 1em;
 	padding-bottom: 1em;
+}
+
+title > a {
+	white-space: normal;
 }
 
 .blog-image > img {
@@ -510,9 +516,8 @@ electionholder {
 		padding-top: 0.3em;
 		padding-bottom: 0.3em;
 	}
-	font-size: 0.35em;
+	font-size: 0.25em;
 	padding-top: 0.3em;
-	padding-bottom: 0.3em;
 }
 
 .election-box {
@@ -615,4 +620,16 @@ quotebox {
 	@include flex-grid-row();
 	@include flex-grid-column(12);
 	@include flex-grid-row-align(spaced);
+}
+
+.name {
+	max-width: 18vw;
+}
+
+.name > a {
+	white-space: normal;
+}
+
+.dem-table {
+	max-width: 18vw;
 }
