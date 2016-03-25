@@ -339,6 +339,23 @@ title {
 	white-space: nowrap;
 }
 
+.blogbody > p > img {
+	min-width: 50%;
+	max-width: 70%;
+	max-height: 400px;
+	width: auto;
+	height: auto;
+}
+
+.blogbody > ul {
+	font-family: Fanwood;
+	font-size: 16px;
+}
+
+.blogbody > ul > li > ul {
+	list-style-type: circle;
+}
+
 .voting {
 	font-family: Aaargh;
 	font-size: 0.8em;
