@@ -1,40 +1,34 @@
 <%= render 'shared/election_head' %>
 <content>
-	<subcontent class="main election-box">
-		<portal>
-			<content>
-				<title class="election-subhead">Primary Season Calendar</title>
-				<table class="election-text" style="border: none;">
-			    	<thead class="election-text" style="text-align: center;">
-			      		<tr>
-			        		<th>Name</th>
-			        		<th>Date</th>
-			        		<th>Party</th>
-			        		<th>Type</th>
-			        		<th>GOP Winner/Leader</th>
-			        		<th>Dem Winner/Leader</th>
-			      		</tr>
-			    	</thead>
-			    	<tbody>
-			      		<% @cs.each do |k, v| %>
-							<tr class="election-text">
-								<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
-							</tr>
-			      			<% v.each do |s| %>
-			        			<tr>
-			        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], s[:state] %></td>
-			        				<td style="min-width: 7em;"><%= s[:date].strftime("%m-%d-%y") %></td>
-			        				<td><%= s[:party] %></td>
-			        				<td><%= s[:type] %></td>
-			        				<td style="max-width: 25vw; overflow: auto;"><%= s[:gop] %></td>
-			        				<td style="max-width: 25vw; overflow: auto;"><%= s[:dem] %></td>
-			        			</tr>
-			        		<% end %>
-		      			<% end %>
-			    	</tbody>
-				</table>
-			</content>
-		</portal>
-	</subcontent>
+	<title class="election-subhead">Primary Season Calendar</title>
+	<table class="election-text" style="border: none;">
+    	<thead class="election-text" style="text-align: center;">
+      		<tr>
+        		<th>Name</th>
+        		<th>Date</th>
+        		<th>Party</th>
+        		<th>Type</th>
+        		<th>GOP Winner/Leader</th>
+        		<th>Dem Winner/Leader</th>
+      		</tr>
+    	</thead>
+    	<tbody>
+      		<% @cs.each do |k, v| %>
+				<tr class="election-text">
+					<td colspan = "6" style="text-align: center; font-weight: bold;"><%= k %></td>
+				</tr>
+      			<% v.each do |s| %>
+        			<tr>
+        				<td style="max-width: 25vw; overflow: auto;"><%= link_to s[:name], s[:state] %></td>
+        				<td style="min-width: 7em;"><%= s[:date].strftime("%m-%d-%y") %></td>
+        				<td><%= s[:party] %></td>
+        				<td><%= s[:type] %></td>
+        				<td style="max-width: 25vw; overflow: auto;"><%= s[:gop] %></td>
+        				<td style="max-width: 25vw; overflow: auto;"><%= s[:dem] %></td>
+        			</tr>
+        		<% end %>
+  			<% end %>
+    	</tbody>
+	</table>
 </content>
 <%= render 'shared/alerts' %>
