@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+  require "base64"
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource :except => [:blog, :show]
+  load_and_authorize_resource :except => [:blog, :show, :callbacks, :all_blog]
 
   # GET /posts
   # GET /posts.json
@@ -23,6 +24,26 @@ class PostsController < ApplicationController
     @recents = Post.order("created_at desc").limit(4).offset(1)
     @last = Post.last
     @posts = Post.all
+    refresh = HTTParty.post("https://accounts.spotify.com/api/token", headers: {"Authorization" => "Basic " + Rails.application.secrets.spotify_auth}, body: {"grant_type" => "refresh_token", "refresh_token" => Rails.application.secrets.spotify_token})
+    token = refresh["access_token"]
+    raw_recent = HTTParty.get('https://api.spotify.com/v1/me/top/artists?limit=5&time_range=short_term', headers: {"Authorization" => "Bearer " + token})
+    recent_bands = []
+    raw_recent["items"].each {|b| recent_bands << {id: b["id"], name: b["name"], genres: b["genres"], picture: b["images"][-1]["url"], picture2: b["images"][-2]["url"], popularity: b["popularity"]}}
+    @recent_bands = recent_bands.sort_by {|b| (b[:popularity] * -1)}
+    raw_all = HTTParty.get('https://api.spotify.com/v1/me/top/artists?limit=5&time_range=long_term', headers: {"Authorization" => "Bearer " + token})
+    all_bands = []
+    raw_all["items"].each {|b| all_bands << {id: b["id"], name: b["name"], genres: b["genres"], picture: b["images"][-1]["url"], popularity: b["popularity"]}}
+    @all_bands = all_bands.sort_by {|b| (b[:popularity] * -1)}
+  end
+
+  def callbacks
+    if params['code'].present?
+      a = params['code']
+      puts request.env['omniauth.auth']
+    end
+    if params['access_token'].present?
+      @dostuff = params['access_token'] + ' ' + params["token_type"] + ' ' + params['expires_in'].to_s + ' ' + params["refresh_token"]
+    end
   end
 
   def all_blog

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'welcome/about'
   get 'calendar', to: 'states#calendar'
   get 'electiondashboard', to: 'parties#dashboard'
+  get 'auth/spotify/callback', to: 'posts#callbacks'
+  get 'callbacks', to: 'posts#callbacks'
 
   resources :posts do
     member do
@@ -37,6 +39,15 @@ Rails.application.routes.draw do
 
   resources :resumes
   root 'welcome#welcome'
+
+  namespace :api do
+    namespace :v1 do
+      get 'calendar', to: 'states#calendar'
+      get 'electiondashboard', to: 'parties#dashboard'
+      resources :states, only: [:index, :show]
+      resources :candidates, only: [:index, :show]
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

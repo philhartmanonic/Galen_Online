@@ -24,5 +24,7 @@ module Blog
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.active_job.queue_adapter = :sidekiq
+    config.react.addons = true
+    RSpotify::authenticate(Rails.application.secrets.spotify_client_id, Rails.application.secrets.spotify_client_secret)
   end
 end

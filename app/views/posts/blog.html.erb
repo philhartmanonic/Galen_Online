@@ -1,9 +1,9 @@
 <%= render 'bloghead' %>
-<content class="box nosides">
+<mincontent class="box nosides">
 	<RbigL class="right-line nosides">
-		<content class="blog nosides">
-			<content class="blog-container">
-				<content class="title"><%= link_to @last.title, @last %></content>
+		<mincontent class="blog nosides">
+			<remin class="blog-container">
+				<mincontent class="title"><%= link_to @last.title, @last %></mincontent>
 				<info>
 					<start class="small-meta">
 						<mincontent>
@@ -18,26 +18,26 @@
 						</mincontent>
 					</start>
 				</info>
-			</content>
+			</remin>
 			<portal class="blog-image" style="background-image: url('<%= @last.main_image %>'); background-size: cover;"></portal>
-			<content>
+			<mincontent>
 				<portal class="blogbody">
 					<%= markdown(truncate(@last.body, length: 400)) %>
 				</portal>
-			</content>
-			<content>
+			</mincontent>
+			<mincontent>
 				<%= link_to "Read more", @last %>
-			</content>
-		</content>
-		<content>
+			</mincontent>
+		</mincontent>
+		<mincontent>
 			<portal class="blog-container">
-				<content class="blog">
+				<mincontent class="blog">
 					<portal class="blog-container">
-						<content class="title">Recent Posts</content>
+						<mincontent class="title">Recent Posts</mincontent>
 					</portal>
-				</content>
+				</mincontent>
 				<% @recents.each do |p| %>
-					<content class="blog">
+					<mincontent class="blog">
 						<portal class="blog-container">
 							<card class="summary" style="background-image: url('<%= p.main_image %>'); background-size: cover;">
 								<info>
@@ -57,18 +57,19 @@
 								</info>
 							</card>
 						</portal>
-					</content>
+					</mincontent>
 				<% end %>
 			</portal>
 			<%= link_to "Previous Posts", posts_all_blog_path %>
-		</content>
+		</mincontent>
 	</rbigl>
 	<RasideR>
 		<mincontent>
 			<blogabout class="nosides">
-				<content class="head">About</content>
-				<content class="body"><div style="width: 100%;"><%= image_tag "bbg.jpg", style: "max-width: 50%; max-height: 125px; float: left; margin-right: 16px;" %>Galen is a web developer based in Chicago, as well as a father, retired punk rocker, and a geek about history and the philosophy of psychoanalysis.</div></content>
+				<mincontent class="head">About</mincontent>
+				<mincontent class="body"><div style="width: 100%;"><%= image_tag "bbg.jpg", style: "max-width: 50%; max-height: 125px; float: left; margin-right: 16px;" %>Galen is a web developer based in Chicago, as well as a father, retired punk rocker, and a geek about history and the philosophy of psychoanalysis.</div></mincontent>
 			</blogabout>
+			<%= react_component 'Bands', recent_bands: @recent_bands, all_bands: @all_bands %>
 		</mincontent>
 	</rasider>
-</content>
+</mincontent>
