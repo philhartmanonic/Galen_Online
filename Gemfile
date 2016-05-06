@@ -31,7 +31,6 @@ gem 'pollster', '~> 0.2.3'
 gem 'twitter'
 gem 'omniauth-twitter'
 gem 'unf_ext', '>= 0.0.7.2'
-gem 'fog'
 gem 'will_paginate', '~> 3.0.6'
 gem 'httparty'
 gem 'react-rails'
@@ -69,11 +68,4 @@ end
 group :production do
 	#use PostgreSQL as the database for Active Record
 	gem 'pg', '~> 0.18.1'
-end
-
-source 'https://rails-assets.org' do
-	gem 'rails-assets-angular-ui-grid'
-	gem 'rails-assets-restangular'
-	gem 'rails-assets-ng-rails-csrf'
-	gem 'rails-assets-ngModal'
 end
