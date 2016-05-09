@@ -3,9 +3,9 @@ GIT
   revision: d5833e8e1b51668042495dd236a9503f56b868c6
   specs:
     active_model_serializers (0.10.0.rc4)
-      actionpack (>= 4.0)
-      activemodel (>= 4.0)
-      railties (>= 4.0)
+      actionpack (>= 4.2.5.1)
+      activemodel (>= 4.2.5.1)
+      railties (>= 4.2.5.1)
 
 GEM
   remote: https://rubygems.org/
