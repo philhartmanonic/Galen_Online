@@ -110,7 +110,7 @@ class StatesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to states_url, notice: 'State was successfully destroyed.' }
       format.json { head :no_content }
-    endt
+    end
   end
 
   private
