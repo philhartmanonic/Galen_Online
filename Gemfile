@@ -36,7 +36,7 @@ gem 'httparty'
 gem 'react-rails'
 gem 'rspotify'
 gem 'omniauth'
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'active_model_serializers'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
