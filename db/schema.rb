@@ -13,28 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160308193956) do
 
-  create_table "bands", force: :cascade do |t|
-    t.string   "name"
-    t.string   "fb_id"
-    t.string   "fb_name"
-    t.integer  "likes_count"
-    t.integer  "ta_count"
-    t.string   "pic_url"
-    t.integer  "follower_count"
-    t.integer  "following_count"
-    t.integer  "tweets"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "bands_users", id: false, force: :cascade do |t|
-    t.integer "band_id"
-    t.integer "user_id"
-  end
-
-  add_index "bands_users", ["band_id"], name: "index_bands_users_on_band_id"
-  add_index "bands_users", ["user_id"], name: "index_bands_users_on_user_id"
-
   create_table "candidates", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -82,16 +60,6 @@ ActiveRecord::Schema.define(version: 20160308193956) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "win_number"
-  end
-
-  create_table "pics", force: :cascade do |t|
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
-    t.integer  "post_id"
   end
 
   create_table "posts", force: :cascade do |t|
