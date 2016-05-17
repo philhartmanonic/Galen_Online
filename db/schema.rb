@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308193956) do
+ActiveRecord::Schema.define(version: 20160513231415) do
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "spotify_uri"
+    t.string   "spotify_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "artists_genres", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "artists_genres", ["artist_id"], name: "index_artists_genres_on_artist_id"
+  add_index "artists_genres", ["genre_id"], name: "index_artists_genres_on_genre_id"
 
   create_table "candidates", force: :cascade do |t|
     t.string   "first_name"
@@ -55,12 +73,36 @@ ActiveRecord::Schema.define(version: 20160308193956) do
   add_index "elections", ["candidate_id"], name: "index_elections_on_candidate_id"
   add_index "elections", ["state_id"], name: "index_elections_on_state_id"
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "parties", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "win_number"
   end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "href"
+    t.string   "spotify_id"
+    t.string   "spotify_uri"
+    t.string   "track_link"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "playlists_tracks", force: :cascade do |t|
+    t.integer  "track_id"
+    t.integer  "playlist_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "playlists_tracks", ["playlist_id"], name: "index_playlists_tracks_on_playlist_id"
+  add_index "playlists_tracks", ["track_id"], name: "index_playlists_tracks_on_track_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -97,6 +139,39 @@ ActiveRecord::Schema.define(version: 20160308193956) do
     t.string   "dem_poll_slug"
     t.string   "gop_poll_slug"
   end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "duration"
+    t.boolean  "explicit"
+    t.float    "danceability"
+    t.float    "energy"
+    t.integer  "key"
+    t.float    "loudness"
+    t.integer  "mode"
+    t.float    "speechiness"
+    t.float    "acousticness"
+    t.float    "instrumentalness"
+    t.float    "liveness"
+    t.float    "valence"
+    t.float    "tempo"
+    t.string   "spotify_id"
+    t.string   "spotify_uri"
+    t.string   "href"
+    t.integer  "time_signature"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "tracks_artists", force: :cascade do |t|
+    t.integer  "track_id"
+    t.integer  "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tracks_artists", ["artist_id"], name: "index_tracks_artists_on_artist_id"
+  add_index "tracks_artists", ["track_id"], name: "index_tracks_artists_on_track_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
