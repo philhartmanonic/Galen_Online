@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'electiondashboard', to: 'parties#dashboard'
   get 'auth/spotify/callback', to: 'posts#callbacks'
   get 'callbacks', to: 'posts#callbacks'
+  get 'music', to: 'welcome#music'
 
   resources :posts do
     member do
@@ -42,10 +43,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'calendar', to: 'states#calendar'
-      get 'electiondashboard', to: 'parties#dashboard'
-      resources :states, only: [:index, :show]
-      resources :candidates, only: [:index, :show]
+      resources :playlists, only: [:show] do
+        get 'clusters', to: 'playlists#clusters'
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

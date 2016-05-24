@@ -163,7 +163,20 @@ class Playlist < ActiveRecord::Base
 
 	def kmeans(cent, iters)
 		songs = []
-		self.tracks.each {|t| songs << t}
+		attris =['duration', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature']
+		self.tracks.each do |t|
+			track_artist_genre = {}
+			track_artist_genre['id'] = t.id
+			track_artist_genre['name'] = t.name
+			track_artist_genre['artists'] = t.artists
+			track_artist_genre['genres'] = t.genres
+			track_artist_genre['explicit'] = t.explicit
+			track_artist_genre['spotify_id'] = t.spotify_id
+			track_artist_genre['spotify_uri'] = t.spotify_uri
+			track_artist_genre['href'] = t.href
+			attris.each {|a| track_artist_genre[a] = t[a]}
+			songs << track_artist_genre
+		end
 		stdDevs = self.track_std_dev
 		centrs = []
 		cent.times do |c|
@@ -275,6 +288,59 @@ class Playlist < ActiveRecord::Base
 			difs << newHash
 		end
 		return clusters, difs
+	end
+
+	def clusters
+		return self.clusters_and_differences(5, 30)
+	end
+
+	def p_stats
+		stats = {'averages' => self.track_averages, 'genres' => self.genre_frequency}
+	end
+
+	def self.p_stats
+		lists = Playlist.all
+		attris = ['duration', 'danceability', 'energy', 'explicit', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature']
+		stats = {'averages' => {}, 'genres' => {}}
+		lists.each do |pl|
+			lstats = pl.p_stats
+			attris.each do |a|
+				if stats['averages'].key? a
+					stats['averages'][a] += lstats['averages'][a]
+				else
+					stats['averages'][a] = lstats['averages'][a]
+				end
+			end
+			lstats['genres'].each do |g|
+				if stats['genres'].key? g[0]
+					stats['genres'][g[0]] += g[1]
+				else
+					stats['genres'][g[0]] = g[1]
+				end
+			end
+		end
+		stats['averages'].each {|k, v| stats['averages'][k] = v.to_f / lists.count}
+		stats['genres'].each {|k, v| stats['genres'][k] = v.to_f / lists.count}
+		prod_stats = {}
+		prod_stats['averages'] = stats['averages'].sort_by {|k, v| v * -1}.to_h
+		prod_stats['genres'] = stats['genres'].sort_by {|k, v| v * -1}.to_h
+		return prod_stats
+	end
+
+	def distinctions
+		every = Playlist.p_stats
+		own = self.p_stats
+		differences = {'averages' => {}, 'genre_dif' => {}, 'top_genres' => {}}
+		averages = {}
+		own['averages'].each {|k, v| averages[k] = (v - every['averages'][k]) / every['averages'][k]}
+		differences['averages'] = averages.sort_by{|k, v| v.abs * -1}.to_h
+		genre_dif = {}
+		own['genres'].each {|k, v| genre_dif[k] = (v - every['genres'][k]) / every['genres'][k]}
+		differences['genre_dif'] = genre_dif.sort_by {|k, v| v.abs * -1}.to_h
+		sorted_genres = own['genres'].sort_by {|k, v| v * -1}.to_h
+		sg_keys = sorted_genres.keys
+		sg_keys[0..4].each {|k| differences['top_genres'][k] = sorted_genres[k]}
+		return differences
 	end
 
 end 
